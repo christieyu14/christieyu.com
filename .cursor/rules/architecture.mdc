@@ -1,0 +1,16 @@
+---
+description: Core architecture conventions for christieyu.com
+alwaysApply: true
+---
+
+# Architecture
+
+- Preserve the established separation: data access in `src/sanity/lib`, presentational components in `src/components`, page shells in `src/app`.
+- Presentational components must not fetch content.
+- Page components must not contain long inline GROQ queries; use `src/sanity/queries`.
+- Provider/data normalization stays separate from UI rendering.
+- Do not bypass TypeScript with `any`.
+- Secrets and server-only credentials never belong in client components or `NEXT_PUBLIC_*` variables.
+- Cloudinary CDN URLs in `MediaRenderer` use plain `img` tags, not the Next.js image optimizer.
+- Do not hard-code fake portfolio projects as production content.
+- Preserve this architecture unless there is a clear, documented reason to change it.

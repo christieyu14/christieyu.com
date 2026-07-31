@@ -1,0 +1,5 @@
+# Prettier ignore
+.next
+node_modules
+package-lock.json
+tsconfig.tsbuildinfo

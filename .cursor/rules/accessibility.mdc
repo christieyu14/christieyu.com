@@ -1,0 +1,14 @@
+---
+description: Accessibility requirements
+globs: src/**/*.{tsx,ts,css}
+alwaysApply: false
+---
+
+# Accessibility
+
+- Include skip link, landmarks, and logical heading hierarchy on every page shell.
+- Use meaningful `alt` text; treat empty string or `decorative` as decorative images.
+- Prefer semantic HTML (`main`, `nav`, `header`, `footer`, `figure`, `figcaption`).
+- Maintain visible `:focus-visible` styles and honor `prefers-reduced-motion`.
+- Dialog/lightbox components must use `role="dialog"` and `aria-modal="true"` when implemented.
+- Do not remove accessibility scaffolding when applying final visual design from Figma.

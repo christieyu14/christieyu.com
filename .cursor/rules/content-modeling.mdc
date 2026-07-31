@@ -1,0 +1,13 @@
+---
+description: Sanity content modeling conventions
+globs: src/sanity/**/*
+alwaysApply: false
+---
+
+# Content Modeling
+
+- Portfolio body blocks use semantic names: `imageGallery`, `singleMedia`, `cloudinaryAlbumRef`, `pullQuote`, `projectFacts`, `projectMetrics`, `prototypeEmbed`, `twoColumnEditorial`, `beforeAfterComparison`.
+- Cloudinary assets store `publicId`, `alt`, and optional `caption` — never API secrets.
+- `siteSettings` is a singleton document affecting layout and global metadata.
+- Content-driven pages remain data-driven; do not invent placeholder portfolio entries in production code paths.
+- When adding fields, update queries, types in `src/types`, and fetch mappers together.

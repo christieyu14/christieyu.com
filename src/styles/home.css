@@ -1,0 +1,111 @@
+/* Homepage — Figma Desktop - 1 (17:103) + hero frame 17:184 */
+
+.home {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-section);
+  width: min(100%, var(--content-max-width));
+  margin-inline: auto;
+  padding-inline: var(--space-page);
+  padding-bottom: var(--space-page);
+}
+
+.home__hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.home__hero-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: var(--hero-aspect);
+  overflow: hidden;
+  background: color-mix(in srgb, var(--color-black) 6%, white);
+}
+
+.home__hero-media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Figma 17:184 — caption left / date right along the bottom edge */
+.home__hero-meta {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: var(--space-caption);
+  pointer-events: none;
+}
+
+.home__hero-caption,
+.home__hero-date {
+  font-family: var(--font-mono);
+  font-weight: var(--type-metadata-weight);
+  font-size: var(--type-metadata-size);
+  letter-spacing: var(--type-metadata-tracking);
+  line-height: normal;
+  color: var(--color-white);
+}
+
+.home__hero-caption[data-tone="light"],
+.home__hero-date[data-tone="light"] {
+  color: var(--color-white);
+}
+
+.home__hero-caption[data-tone="dark"],
+.home__hero-date[data-tone="dark"] {
+  color: var(--color-black);
+}
+
+.home__intro {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  width: 100%;
+}
+
+.home__intro-copy {
+  grid-column: 1 / span 3;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: var(--type-intro-size);
+  letter-spacing: var(--type-intro-tracking);
+  line-height: normal;
+  color: var(--color-black);
+}
+
+.home__intro-copy p + p {
+  margin-top: 1.5rem;
+}
+
+.home__intro-emphasis {
+  font-weight: 500;
+  color: var(--accent);
+  text-decoration: none;
+  text-decoration-thickness: var(--link-underline-thickness);
+  text-underline-offset: 0.2em;
+  transition: color 160ms ease;
+}
+
+a.home__intro-emphasis:hover,
+a.home__intro-emphasis:focus-visible {
+  color: var(--color-blue);
+  text-decoration: underline;
+  text-decoration-color: var(--color-blue);
+  text-decoration-thickness: var(--link-underline-thickness);
+}
+
+@media (max-width: 900px) {
+  .home__intro-copy {
+    grid-column: 1 / -1;
+  }
+}

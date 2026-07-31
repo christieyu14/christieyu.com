@@ -1,0 +1,13 @@
+---
+description: Code quality standards
+alwaysApply: true
+---
+
+# Code Quality
+
+- TypeScript strict mode; never use `any` to bypass types.
+- Run `npm run validate` before opening PRs (format, lint, typecheck, test).
+- Keep diffs focused; avoid unrelated refactors.
+- Match existing naming, imports, and file placement conventions.
+- Server-only env parsing belongs in `src/lib/env.ts` and server modules.
+- Use Zod for runtime validation at system boundaries (env, webhooks).

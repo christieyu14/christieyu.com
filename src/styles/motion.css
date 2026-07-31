@@ -1,0 +1,20 @@
+/**
+ * Project motion language — springy, slightly bouncy, natural.
+ * Prefer transform/opacity over layout properties when possible.
+ */
+
+:root {
+  /* Soft overshoot when expanding / settling into place */
+  --motion-spring: cubic-bezier(0.34, 1.45, 0.64, 1);
+  /* Clean deceleration when collapsing (no undershoot) */
+  --motion-spring-collapse: cubic-bezier(0.22, 1, 0.36, 1);
+  /* Quick UI feedback (hovers, focus) */
+  --motion-snap: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  --motion-duration: 620ms;
+  --motion-duration-collapse: 480ms;
+  --motion-duration-fast: 180ms;
+
+  --header-transition: var(--motion-duration) var(--motion-spring);
+  --header-transition-collapse: var(--motion-duration-collapse) var(--motion-spring-collapse);
+}

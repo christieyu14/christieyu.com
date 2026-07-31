@@ -1,0 +1,58 @@
+/**
+ * Design tokens from Figma file `personal`
+ * Node 17:103 (expanded) / 17:193 (compact header)
+ *
+ * Colors: black #080808, white #ffffff, blue #004cff
+ * Type: title (Manrope Semibold 16), body (Switzer Regular 16),
+ *        metadata (Tabular Semibold 14), brand 96→48
+ */
+
+:root {
+  --color-black: #080808;
+  --color-white: #ffffff;
+  --color-blue: #004cff;
+
+  --background: var(--color-white);
+  --foreground: var(--color-black);
+  --muted: color-mix(in srgb, var(--color-black) 55%, transparent);
+  --border: color-mix(in srgb, var(--color-black) 12%, transparent);
+  --focus: var(--color-blue);
+  --accent: var(--color-blue);
+
+  --font-sans: var(--font-switzer), system-ui, sans-serif;
+  --font-display: var(--font-manrope), system-ui, sans-serif;
+  --font-mono: var(--font-tabular), ui-monospace, monospace;
+
+  --space-page: clamp(2.5rem, 6vw, 6rem);
+  --space-header-block: 2rem; /* 32px bottom padding when expanded */
+  --space-header-compact-pad: 1rem; /* 16pt top/bottom when compact */
+  --space-section: 3rem; /* 48px header block → intro */
+  --space-nav-gap: 1.5rem; /* 24px */
+  --space-nav-row-gap: 0.5rem; /* 8px */
+  --space-social-gap: 0.75rem; /* 12px */
+  --space-caption: 1rem; /* 16px overlay padding */
+
+  /* Cap content on ultra-wide displays */
+  --content-max-width: 90rem; /* 1440px */
+
+  --brand-size-expanded: clamp(2.75rem, 7vw, 6rem); /* 96px desktop */
+  --brand-size-compact: clamp(1.75rem, 4vw, 3rem); /* 48px desktop */
+  --brand-tracking-expanded: 0.01em;
+  --brand-tracking-compact: 0.01em;
+  --brand-line-height: 0.8;
+
+  --type-nav-size: 1rem; /* 16px */
+  --type-nav-tracking: -0.01em;
+  --type-body-size: 1rem; /* 16px */
+  --type-intro-size: 1.5rem; /* 24px */
+  --type-intro-tracking: -0.01em;
+  --type-metadata-size: 0.875rem; /* 14px Tabular Semibold */
+  --type-metadata-tracking: -0.01em;
+  --type-metadata-weight: 600;
+
+  --link-underline-thickness: 15%;
+  --hero-aspect: 3968 / 2232;
+
+  /* Brand compact scale vs expanded (Figma 96 → 48) */
+  --brand-compact-scale: 0.5;
+}
