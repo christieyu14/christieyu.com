@@ -206,11 +206,10 @@ On first Studio launch after installing the plugin, open any Cloudinary field an
 
 Place files in:
 
-- `public/fonts/manrope/`
-- `public/fonts/switzer/`
-- `public/fonts/tabular/`
+- `public/fonts/helvetica-now-display/`
+- `public/fonts/inconsolata/`
 
-`src/fonts/local.ts` loads Manrope SemiBold, Switzer Regular/Medium, and Tabular Regular via `next/font/local`. Figma color/type tokens live in `src/styles/tokens.css`.
+`src/fonts/local.ts` loads Helvetica Now Display (Regular/Medium/Bold) and Inconsolata (variable) via `next/font/local`. Figma color/type tokens live in `src/styles/tokens.css`.
 
 ## Homepage featured photos
 

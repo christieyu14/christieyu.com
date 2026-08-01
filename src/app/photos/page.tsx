@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { EmptyState } from "@/components/content/EmptyState";
 import { MediaRenderer } from "@/components/media/MediaRenderer";
-import { getHeroAlbumPhotos } from "@/cloudinary/lib/hero-album";
+import { getHeroAlbumAssets } from "@/cloudinary/lib/hero-album";
 import { buildMetadata, formatPageTitle } from "@/lib/metadata";
 import { getPhotoAlbums, getSiteSettings } from "@/sanity/lib/fetch";
 
@@ -19,11 +19,11 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function PhotosPage() {
-  const [albums, heroPhotos] = await Promise.all([
+  const [albums, heroAssets] = await Promise.all([
     getPhotoAlbums(),
-    getHeroAlbumPhotos(),
+    getHeroAlbumAssets(),
   ]);
-  const hasHeroAlbum = heroPhotos.length > 0;
+  const hasHeroAlbum = heroAssets.length > 0;
   const hasAnyAlbums = hasHeroAlbum || albums.length > 0;
 
   return (

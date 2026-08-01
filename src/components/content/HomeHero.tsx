@@ -1,46 +1,110 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState, useTransition } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { buildCloudinaryUrl } from "@/cloudinary/lib/url";
 import {
   HERO_ALBUM_PATH,
-  selectHeroPhoto,
-  type HeroAlbumPhoto,
+  HERO_DELIVERY_WIDTH,
+  selectHeroAsset,
+  type HeroAlbumAsset,
 } from "@/cloudinary/lib/hero-album-shared";
 
 interface HomeHeroProps {
-  initialPhoto: HeroAlbumPhoto;
-  photos: HeroAlbumPhoto[];
+  assets: HeroAlbumAsset[];
+  initialAsset: HeroAlbumAsset;
+}
+
+interface ReadyPhoto {
+  asset: HeroAlbumAsset;
+  url: string;
 }
 
 function prefersReducedMotion(): boolean {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
-export function HomeHero({ initialPhoto, photos }: HomeHeroProps) {
-  const [photo, setPhoto] = useState(initialPhoto);
-  const [overlay, setOverlay] = useState<HeroAlbumPhoto | null>(null);
+function buildHeroUrl(publicId: string): string | undefined {
+  return buildCloudinaryUrl({
+    publicId,
+    width: HERO_DELIVERY_WIDTH,
+    quality: "auto",
+    format: "auto",
+    crop: "limit",
+  });
+}
+
+function preloadPhoto(asset: HeroAlbumAsset): Promise<ReadyPhoto | null> {
+  const url = buildHeroUrl(asset.publicId);
+  if (!url) {
+    return Promise.resolve(null);
+  }
+
+  return new Promise((resolve) => {
+    const image = new window.Image();
+    image.decoding = "async";
+    image.onload = () => resolve({ asset, url });
+    image.onerror = () => resolve(null);
+    image.src = url;
+  });
+}
+
+export function HomeHero({ assets, initialAsset }: HomeHeroProps) {
+  const initialUrl = buildHeroUrl(initialAsset.publicId) ?? "";
+  const [current, setCurrent] = useState<ReadyPhoto>({
+    asset: initialAsset,
+    url: initialUrl,
+  });
+  const [overlay, setOverlay] = useState<ReadyPhoto | null>(null);
   const [overlayOpaque, setOverlayOpaque] = useState(false);
   const [baseOpaque, setBaseOpaque] = useState(false);
-  const [metaPhoto, setMetaPhoto] = useState(initialPhoto);
+  const [metaAsset, setMetaAsset] = useState(initialAsset);
   const [metaVisible, setMetaVisible] = useState(false);
+  const [isRefreshing, setIsRefreshing] = useState(false);
+
+  const primedRef = useRef<ReadyPhoto | null>(null);
+  const primingRef = useRef<Promise<ReadyPhoto | null> | null>(null);
+  const currentIdRef = useRef(initialAsset.publicId);
   const baseImageRef = useRef<HTMLImageElement>(null);
   const swapTimeoutRef = useRef<number | null>(null);
-  const [, startTransition] = useTransition();
+
+  const beginPreload = useCallback((excludePublicId: string) => {
+    const nextAsset = selectHeroAsset(assets, excludePublicId);
+    if (!nextAsset) {
+      primedRef.current = null;
+      primingRef.current = null;
+      return;
+    }
+
+    const task = preloadPhoto(nextAsset).then((ready) => {
+      if (primingRef.current === task) {
+        primedRef.current = ready;
+        primingRef.current = null;
+      }
+      return ready;
+    });
+    primingRef.current = task;
+  }, [assets]);
 
   useEffect(() => {
-    setPhoto(initialPhoto);
-    setMetaPhoto(initialPhoto);
+    currentIdRef.current = initialAsset.publicId;
+    const url = buildHeroUrl(initialAsset.publicId) ?? "";
+    setCurrent({ asset: initialAsset, url });
+    setMetaAsset(initialAsset);
     setOverlay(null);
     setOverlayOpaque(false);
     setBaseOpaque(false);
     setMetaVisible(false);
+    setIsRefreshing(false);
+    primedRef.current = null;
+    primingRef.current = null;
+    beginPreload(initialAsset.publicId);
 
     const image = baseImageRef.current;
     if (image?.complete && image.naturalWidth > 0) {
       revealInitial();
     }
-  }, [initialPhoto]);
+  }, [initialAsset, beginPreload]);
 
   useEffect(() => {
     return () => {
@@ -56,23 +120,26 @@ export function HomeHero({ initialPhoto, photos }: HomeHeroProps) {
     }
 
     if (prefersReducedMotion()) {
-      setPhoto(overlay);
-      setMetaPhoto(overlay);
+      setCurrent(overlay);
+      currentIdRef.current = overlay.asset.publicId;
+      setMetaAsset(overlay.asset);
       setOverlay(null);
       setOverlayOpaque(false);
       setBaseOpaque(true);
       setMetaVisible(true);
+      setIsRefreshing(false);
+      beginPreload(overlay.asset.publicId);
       return;
     }
 
     const frame = requestAnimationFrame(() => {
       setOverlayOpaque(true);
-      setMetaPhoto(overlay);
+      setMetaAsset(overlay.asset);
       setMetaVisible(true);
     });
 
     return () => cancelAnimationFrame(frame);
-  }, [overlay]);
+  }, [overlay, beginPreload]);
 
   function revealInitial() {
     if (prefersReducedMotion()) {
@@ -86,40 +153,66 @@ export function HomeHero({ initialPhoto, photos }: HomeHeroProps) {
     });
   }
 
-  function refreshPhoto() {
-    const next = selectHeroPhoto(photos, overlay?.id ?? photo.id);
-    if (!next || next.id === photo.id || next.id === overlay?.id) {
+  async function refreshPhoto() {
+    if (isRefreshing || assets.length < 2) {
       return;
     }
 
-    startTransition(() => {
-      if (prefersReducedMotion()) {
-        setPhoto(next);
-        setMetaPhoto(next);
-        setBaseOpaque(true);
-        setMetaVisible(true);
-        return;
-      }
+    setIsRefreshing(true);
 
-      setMetaVisible(false);
-      if (swapTimeoutRef.current !== null) {
-        window.clearTimeout(swapTimeoutRef.current);
+    let next = primedRef.current;
+    primedRef.current = null;
+
+    if (!next || next.asset.publicId === currentIdRef.current) {
+      const pending = primingRef.current;
+      if (pending) {
+        next = await pending;
       }
-      swapTimeoutRef.current = window.setTimeout(() => {
-        setOverlayOpaque(false);
-        setOverlay(next);
-      }, 140);
-    });
+    }
+
+    if (!next || next.asset.publicId === currentIdRef.current) {
+      const asset = selectHeroAsset(assets, currentIdRef.current);
+      next = asset ? await preloadPhoto(asset) : null;
+    }
+
+    if (!next) {
+      setIsRefreshing(false);
+      return;
+    }
+
+    // Ensure the bitmap is fully ready before swapping — keep current visible.
+    if (prefersReducedMotion()) {
+      setCurrent(next);
+      currentIdRef.current = next.asset.publicId;
+      setMetaAsset(next.asset);
+      setBaseOpaque(true);
+      setMetaVisible(true);
+      setIsRefreshing(false);
+      beginPreload(next.asset.publicId);
+      return;
+    }
+
+    setMetaVisible(false);
+    if (swapTimeoutRef.current !== null) {
+      window.clearTimeout(swapTimeoutRef.current);
+    }
+    swapTimeoutRef.current = window.setTimeout(() => {
+      setOverlayOpaque(false);
+      setOverlay(next);
+    }, 120);
   }
 
   function finishCrossfade() {
     if (!overlay || !overlayOpaque) {
       return;
     }
-    setPhoto(overlay);
+    setCurrent(overlay);
+    currentIdRef.current = overlay.asset.publicId;
     setBaseOpaque(true);
     setOverlay(null);
     setOverlayOpaque(false);
+    setIsRefreshing(false);
+    beginPreload(overlay.asset.publicId);
   }
 
   return (
@@ -130,10 +223,10 @@ export function HomeHero({ initialPhoto, photos }: HomeHeroProps) {
           <img
             ref={baseImageRef}
             className={`home__hero-frame${baseOpaque ? " is-opaque" : ""}`}
-            src={photo.url}
-            alt={photo.alt}
-            width={photo.width}
-            height={photo.height}
+            src={current.url}
+            alt={current.asset.caption}
+            width={current.asset.width}
+            height={current.asset.height}
             decoding="async"
             fetchPriority="high"
             onLoad={revealInitial}
@@ -145,9 +238,9 @@ export function HomeHero({ initialPhoto, photos }: HomeHeroProps) {
                 overlayOpaque ? " is-opaque" : ""
               }`}
               src={overlay.url}
-              alt={overlay.alt}
-              width={overlay.width}
-              height={overlay.height}
+              alt={overlay.asset.caption}
+              width={overlay.asset.width}
+              height={overlay.asset.height}
               decoding="async"
               onTransitionEnd={(event) => {
                 if (event.propertyName === "opacity") {
@@ -164,7 +257,7 @@ export function HomeHero({ initialPhoto, photos }: HomeHeroProps) {
                 metaVisible ? " is-visible" : ""
               }`}
             >
-              {metaPhoto.caption}
+              {metaAsset.caption}
             </p>
           </div>
           <div className="home__hero-meta-date">
@@ -173,14 +266,17 @@ export function HomeHero({ initialPhoto, photos }: HomeHeroProps) {
                 metaVisible ? " is-visible" : ""
               }`}
             >
-              {metaPhoto.dateLabel}
+              {metaAsset.date}
             </p>
           </div>
           <div className="home__hero-meta-actions">
             <button
               type="button"
               className="home__meta-action"
-              onClick={refreshPhoto}
+              onClick={() => {
+                void refreshPhoto();
+              }}
+              disabled={isRefreshing || assets.length < 2}
             >
               see another photo →
             </button>

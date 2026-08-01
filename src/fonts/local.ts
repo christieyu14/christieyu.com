@@ -40,13 +40,6 @@ export const inconsolata = localFont({
   display: "swap",
 });
 
-/** @deprecated Prefer helveticaNowDisplay / inconsolata */
-export const manrope = helveticaNowDisplay;
-/** @deprecated Prefer helveticaNowDisplay */
-export const switzer = helveticaNowDisplay;
-/** @deprecated Prefer inconsolata */
-export const tabular = inconsolata;
-
 export const fontVariables = {
   display: "--font-helvetica-now-display",
   sans: "--font-helvetica-now-display",

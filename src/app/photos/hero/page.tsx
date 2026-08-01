@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { EmptyState } from "@/components/content/EmptyState";
 import { HeroAlbumGallery } from "@/components/content/HeroAlbumGallery";
-import { getHeroAlbumPhotos } from "@/cloudinary/lib/hero-album";
+import { getHeroAlbumAssets } from "@/cloudinary/lib/hero-album";
 import { buildMetadata, formatPageTitle } from "@/lib/metadata";
 import { getSiteSettings } from "@/sanity/lib/fetch";
 import "@/styles/hero-album.css";
@@ -22,7 +22,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function HeroAlbumPage() {
-  const photos = await getHeroAlbumPhotos();
+  const assets = await getHeroAlbumAssets();
 
   return (
     <main id="main-content" className="hero-album">
@@ -36,13 +36,13 @@ export default async function HeroAlbumPage() {
         </p>
       </header>
 
-      {photos.length === 0 ? (
+      {assets.length === 0 ? (
         <EmptyState
           title="No hero photos yet"
           description="Add images to the Cloudinary hero folder with caption and date context metadata."
         />
       ) : (
-        <HeroAlbumGallery photos={photos} />
+        <HeroAlbumGallery assets={assets} />
       )}
     </main>
   );

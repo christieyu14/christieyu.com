@@ -6,7 +6,7 @@ const ASCII_FLOWER = readFileSync(
   "utf8",
 );
 
-/** ASCII flower background from Figma node 40:974 — plaintext with color pulse. */
+/** ASCII flower background from Figma node 40:974 — solid black plaintext. */
 export function AsciiBackground() {
   return (
     <div className="ascii-bg" aria-hidden="true">

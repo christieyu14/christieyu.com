@@ -10,5 +10,5 @@ alwaysApply: false
 - Current page shells and minimal CSS are temporary foundations only.
 - Map Figma components to existing architecture (`layout`, `content`, `media`, `ui`) rather than replacing data layers.
 - Preserve semantic HTML, accessibility landmarks, and content-driven data flow while applying visual polish.
-- Font files for Manrope, Switzer, and Tabular belong in `public/fonts/`; configure via `src/fonts/local.ts`.
+- Font files for Helvetica Now Display and Inconsolata belong in `public/fonts/`; configure via `src/fonts/local.ts`.
 - Homepage visual work follows Figma Desktop nodes; do not invent alternate layouts when specs exist.

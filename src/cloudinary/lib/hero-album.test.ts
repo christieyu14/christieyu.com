@@ -1,37 +1,56 @@
 import { describe, expect, it } from "vitest";
-import { selectHeroPhoto, type HeroAlbumPhoto } from "@/cloudinary/lib/hero-album-shared";
+import {
+  selectHeroAsset,
+  type HeroAlbumAsset,
+} from "@/cloudinary/lib/hero-album-shared";
+import { buildCloudinaryUrl } from "@/cloudinary/lib/url";
 
-const samplePhotos: HeroAlbumPhoto[] = [
+const sampleAssets: HeroAlbumAsset[] = [
   {
-    id: "a",
-    publicId: "a",
-    alt: "A",
+    publicId: "hero/a",
+    width: 2000,
+    height: 1125,
     caption: "alpha",
-    dateLabel: "01.2026",
-    url: "https://res.cloudinary.com/demo/image/upload/a",
+    date: "01.2026",
   },
   {
-    id: "b",
-    publicId: "b",
-    alt: "B",
+    publicId: "hero/b",
+    width: 2000,
+    height: 1125,
     caption: "beta",
-    dateLabel: "02.2026",
-    url: "https://res.cloudinary.com/demo/image/upload/b",
+    date: "02.2026",
   },
 ];
 
 describe("hero album selection", () => {
-  it("returns a photo from the pool", () => {
-    const photo = selectHeroPhoto(samplePhotos);
-    expect(samplePhotos.map((entry) => entry.id)).toContain(photo?.id);
+  it("returns an asset from the pool", () => {
+    const asset = selectHeroAsset(sampleAssets);
+    expect(sampleAssets.map((entry) => entry.publicId)).toContain(asset?.publicId);
   });
 
-  it("can exclude the current photo when refreshing", () => {
-    const photo = selectHeroPhoto(samplePhotos, "a");
-    expect(photo?.id).toBe("b");
+  it("avoids selecting the same photo twice in a row", () => {
+    const asset = selectHeroAsset(sampleAssets, "hero/a");
+    expect(asset?.publicId).toBe("hero/b");
   });
 
   it("returns null for an empty pool", () => {
-    expect(selectHeroPhoto([])).toBeNull();
+    expect(selectHeroAsset([])).toBeNull();
+  });
+});
+
+describe("hero delivery urls", () => {
+  it("uses f_auto, q_auto, and a hero-sized width", async () => {
+    process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME = "demo";
+    const url = buildCloudinaryUrl({
+      publicId: "hero/a",
+      width: 1600,
+      quality: "auto",
+      format: "auto",
+      crop: "limit",
+    });
+    expect(url).toContain("f_auto");
+    expect(url).toContain("q_auto");
+    expect(url).toContain("w_1600");
+    expect(url).toContain("c_limit");
   });
 });

@@ -1,19 +1,21 @@
 import { unstable_cache } from "next/cache";
-import { buildCloudinaryUrl } from "@/cloudinary/lib/url";
 import {
   getCloudinaryAdmin,
   isCloudinaryAdminConfigured,
 } from "@/cloudinary/lib/admin";
+import { buildCloudinaryUrl } from "@/cloudinary/lib/url";
 import {
   HERO_ALBUM_FOLDER,
-  type HeroAlbumPhoto,
+  HERO_DELIVERY_WIDTH,
+  type HeroAlbumAsset,
 } from "@/cloudinary/lib/hero-album-shared";
 
 export {
   HERO_ALBUM_FOLDER,
   HERO_ALBUM_PATH,
-  selectHeroPhoto,
-  type HeroAlbumPhoto,
+  HERO_DELIVERY_WIDTH,
+  selectHeroAsset,
+  type HeroAlbumAsset,
 } from "@/cloudinary/lib/hero-album-shared";
 
 interface CloudinarySearchResource {
@@ -27,6 +29,9 @@ interface CloudinarySearchResource {
       }
     | string;
 }
+
+const ONE_HOUR = 3600;
+const ONE_DAY = 86400;
 
 function readContextFields(
   context: CloudinarySearchResource["context"],
@@ -61,42 +66,27 @@ function readContextFields(
   return { ...flat, ...custom };
 }
 
-function mapResource(resource: CloudinarySearchResource): HeroAlbumPhoto | null {
+function mapResource(resource: CloudinarySearchResource): HeroAlbumAsset | null {
   const fields = readContextFields(resource.context);
   const caption = fields.caption?.trim();
-  const dateLabel = fields.date?.trim();
+  const date = fields.date?.trim();
 
-  if (!caption || !dateLabel) {
-    return null;
-  }
-
-  const url = buildCloudinaryUrl({
-    publicId: resource.public_id,
-    width: 2400,
-    quality: "auto",
-    format: "auto",
-    crop: "limit",
-  });
-
-  if (!url) {
+  if (!caption || !date || !resource.public_id) {
     return null;
   }
 
   return {
-    id: resource.public_id,
     publicId: resource.public_id,
-    alt: fields.alt?.trim() || caption,
+    width: resource.width ?? HERO_DELIVERY_WIDTH,
+    height: resource.height ?? Math.round(HERO_DELIVERY_WIDTH * (558.35 / 992.65)),
     caption,
-    dateLabel,
-    width: resource.width,
-    height: resource.height,
-    url,
+    date,
   };
 }
 
-async function fetchHeroAlbumPhotosUncached(): Promise<HeroAlbumPhoto[]> {
+async function fetchHeroAlbumAssetsUncached(): Promise<HeroAlbumAsset[]> {
   const cloudinary = getCloudinaryAdmin();
-  const photos: HeroAlbumPhoto[] = [];
+  const assets: HeroAlbumAsset[] = [];
   let nextCursor: string | undefined;
 
   do {
@@ -118,27 +108,58 @@ async function fetchHeroAlbumPhotosUncached(): Promise<HeroAlbumPhoto[]> {
     for (const resource of result.resources ?? []) {
       const mapped = mapResource(resource);
       if (mapped) {
-        photos.push(mapped);
+        assets.push(mapped);
       }
     }
 
     nextCursor = result.next_cursor;
   } while (nextCursor);
 
-  return photos;
+  return assets;
 }
 
-const getCachedHeroAlbumPhotos = unstable_cache(
-  fetchHeroAlbumPhotosUncached,
-  ["cloudinary-hero-album-v2"],
-  { revalidate: 3600 },
+/**
+ * Cached Admin Search for the hero folder.
+ * Soft-revalidates after 1 hour; may keep serving the prior list for up to 24 hours
+ * while a background refresh runs (stale-while-revalidate).
+ */
+const getCachedHeroAlbumAssets = unstable_cache(
+  async () => {
+    const assets = await fetchHeroAlbumAssetsUncached();
+    return {
+      assets,
+      fetchedAt: Date.now(),
+    };
+  },
+  ["cloudinary-hero-album-assets-v3"],
+  {
+    // Soft TTL: after 1h the next request revalidates in the background.
+    revalidate: ONE_HOUR,
+    tags: ["hero-album"],
+  },
 );
 
+function isWithinStaleWindow(fetchedAt: number): boolean {
+  return Date.now() - fetchedAt < ONE_DAY * 1000;
+}
+
+/** Build an optimized delivery URL for the homepage hero frame. */
+export function buildHeroDeliveryUrl(publicId: string): string | undefined {
+  return buildCloudinaryUrl({
+    publicId,
+    width: HERO_DELIVERY_WIDTH,
+    quality: "auto",
+    format: "auto",
+    crop: "limit",
+  });
+}
+
 /**
- * Hero album photos from the Cloudinary `hero` folder.
+ * Hero album asset list from the Cloudinary `hero` folder.
  * Config checks stay outside the cache so a boot-time miss is not sticky.
+ * Never call this from a Client Component — Admin credentials stay server-only.
  */
-export async function getHeroAlbumPhotos(): Promise<HeroAlbumPhoto[]> {
+export async function getHeroAlbumAssets(): Promise<HeroAlbumAsset[]> {
   if (!isCloudinaryAdminConfigured()) {
     console.warn(
       "[hero-album] Cloudinary admin is not configured; returning no photos.",
@@ -154,19 +175,27 @@ export async function getHeroAlbumPhotos(): Promise<HeroAlbumPhoto[]> {
   }
 
   try {
-    const photos = await getCachedHeroAlbumPhotos();
-    if (photos.length === 0) {
-      // Avoid a sticky empty cache from a transient miss: fetch once uncached.
-      return await fetchHeroAlbumPhotosUncached();
+    const cached = await getCachedHeroAlbumAssets();
+
+    if (cached.assets.length === 0) {
+      // Avoid a sticky empty cache from a transient miss.
+      return await fetchHeroAlbumAssetsUncached();
     }
-    return photos;
+
+    if (!isWithinStaleWindow(cached.fetchedAt)) {
+      // Past the 24h stale window: block for a fresh Admin list.
+      return await fetchHeroAlbumAssetsUncached();
+    }
+
+    return cached.assets;
   } catch (error) {
     console.error("[hero-album] Failed to fetch Cloudinary hero folder:", error);
     try {
-      return await fetchHeroAlbumPhotosUncached();
+      return await fetchHeroAlbumAssetsUncached();
     } catch (retryError) {
       console.error("[hero-album] Retry also failed:", retryError);
       return [];
     }
   }
 }
+

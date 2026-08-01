@@ -80,7 +80,7 @@ export function Reveal({
     }
 
     // Fallback if transitionend is skipped (tab background, reduced paint, etc.)
-    const settleMs = 480 + delayMs + 100;
+    const settleMs = 920 + delayMs + 120;
     const timer = window.setTimeout(() => setSettled(true), settleMs);
     return () => window.clearTimeout(timer);
   }, [visible, settled, delayMs]);

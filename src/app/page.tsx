@@ -4,8 +4,8 @@ import { HomeIntro } from "@/components/content/HomeIntro";
 import { HomeProjects } from "@/components/content/HomeProjects";
 import { EmptyState } from "@/components/content/EmptyState";
 import {
-  getHeroAlbumPhotos,
-  selectHeroPhoto,
+  getHeroAlbumAssets,
+  selectHeroAsset,
 } from "@/cloudinary/lib/hero-album";
 import { buildMetadata, formatPageTitle } from "@/lib/metadata";
 import { getSiteSettings } from "@/sanity/lib/fetch";
@@ -27,14 +27,14 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function HomePage() {
-  const photos = await getHeroAlbumPhotos();
-  const featuredPhoto = selectHeroPhoto(photos);
+  const assets = await getHeroAlbumAssets();
+  const initialAsset = selectHeroAsset(assets);
 
   return (
     <main id="main-content" className="home">
       <div className="home__top page-frame">
-        {featuredPhoto ? (
-          <HomeHero initialPhoto={featuredPhoto} photos={photos} />
+        {initialAsset ? (
+          <HomeHero assets={assets} initialAsset={initialAsset} />
         ) : (
           <EmptyState
             title="No hero photos yet"

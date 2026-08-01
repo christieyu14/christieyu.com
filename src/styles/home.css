@@ -119,10 +119,21 @@
   transition: color 160ms ease, text-decoration-color 160ms ease;
 }
 
+.home__meta-action:disabled {
+  cursor: default;
+  opacity: 0.55;
+}
+
 .home__meta-action:hover,
 .home__meta-action:focus-visible {
   color: var(--color-blue);
   text-decoration-color: var(--color-blue);
+}
+
+.home__meta-action:disabled:hover,
+.home__meta-action:disabled:focus-visible {
+  color: var(--color-black);
+  text-decoration-color: var(--color-black);
 }
 
 .home__meta-fine {
@@ -180,80 +191,107 @@
 
 .home__projects-stage {
   position: relative;
-  /* Figma: bottom card mt 756.51 + ~card height */
-  min-height: 78rem;
 }
 
-.ascii-bg {
+/* Tall absolute layer — sticky child pins the flower while cards scroll over. */
+.home__projects-ascii {
   position: absolute;
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  overflow: hidden;
+  overflow: visible;
 }
 
+.home__projects-ascii-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  container-type: size;
+}
+
+.ascii-bg {
+  position: relative;
+  width: max-content;
+  max-width: none;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+/*
+ * Size to the sticky viewport (~110 lines).
+ * Canvas is wider than the column — sides bleed; stem sits in open cells.
+ */
 .ascii-bg__text {
   margin: 0;
   padding: 0;
-  position: absolute;
-  inset: 8% 2% 0;
-  width: 100%;
+  width: max-content;
   max-width: none;
-  overflow: hidden;
+  overflow: visible;
   font-family: var(--font-mono);
-  font-size: 0.625rem;
+  font-size: clamp(0.7rem, 1.15vw, 0.95rem);
+  font-size: calc(100cqh / 112);
   font-weight: 500;
-  line-height: 1.12;
-  letter-spacing: 0.01em;
+  line-height: 1.05;
+  letter-spacing: 0;
   font-variation-settings: "wdth" 100;
   white-space: pre;
   background: none;
   border: 0;
-  color: #c4c4c4;
-  animation: ascii-pulse var(--ascii-pulse-duration) ease-in-out infinite;
+  color: var(--color-black);
 }
 
-@keyframes ascii-pulse {
-  0%,
-  100% {
-    color: #c9cdd4;
-  }
-  25% {
-    color: #d7d0c8;
-  }
-  50% {
-    color: #b7c0ce;
-  }
-  75% {
-    color: #cfc7d8;
-  }
-}
-
-/* Figma absolute layout within 1080 content: left 0/619, tops 0/378/756.51 */
-.home__projects-grid {
+.home__projects-scroll {
   position: relative;
   z-index: 1;
-  min-height: 78rem;
 }
 
-.home__projects-slot {
-  position: absolute;
-  width: min(28.8125rem, 42.685%); /* ~461px at 1080 */
+/* Space for the bloom before the first diagonal card. */
+.home__projects-ascii-lead {
+  height: min(12vh, 6rem);
 }
 
-.home__projects-slot--top-right {
-  top: 0;
-  left: 57.315%; /* 619 / 1080 */
+/* 2×4 diagonal scatter: R L R L — empty cells reveal the flower. */
+.home__projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(4, auto);
+  gap: 24px 240px;
+  padding-bottom: 3rem;
 }
 
-.home__projects-slot--left {
-  top: 23.625rem; /* 378px */
-  left: 0;
+.home__projects-cell {
+  min-width: 0;
 }
 
-.home__projects-slot--bottom-right {
-  top: 47.282rem; /* 756.51px */
-  left: 57.315%;
+.home__projects-cell--end {
+  grid-column: 2;
+}
+
+.home__projects-cell--start {
+  grid-column: 1;
+}
+
+.home__projects-cell:nth-child(1) {
+  grid-row: 1;
+}
+
+.home__projects-cell:nth-child(2) {
+  grid-row: 2;
+}
+
+.home__projects-cell:nth-child(3) {
+  grid-row: 3;
+}
+
+.home__projects-cell:nth-child(4) {
+  grid-row: 4;
 }
 
 .project-preview {
@@ -262,6 +300,7 @@
   flex-direction: column;
   gap: 1rem;
   padding: 0.5rem;
+  height: 100%;
   background: rgb(255 255 255 / 0.1);
   -webkit-backdrop-filter: blur(100px);
   backdrop-filter: blur(100px);
@@ -278,6 +317,46 @@
   align-items: center;
   justify-content: center;
   padding: 4rem;
+  overflow: hidden;
+}
+
+.project-preview--compact {
+  gap: 0.75rem;
+  padding: 0.4rem;
+}
+
+.project-preview--compact .project-preview__media {
+  padding: 1.25rem 0.85rem;
+}
+
+.project-preview--compact .project-preview__placeholder {
+  width: min(100%, 8.5rem);
+  border-radius: 0.65rem;
+}
+
+.project-preview--compact .project-preview__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.project-preview--compact .project-preview__meta {
+  gap: 0.45rem;
+}
+
+.project-preview--compact .project-preview__title {
+  font-size: 0.8rem;
+  letter-spacing: 0.01em;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.project-preview--compact .project-preview__summary {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
@@ -396,31 +475,29 @@
     padding: 1.5rem;
   }
 
-  .home__projects-stage,
-  .home__projects-grid {
-    min-height: 0;
+  .home__projects-ascii-lead {
+    height: min(10vh, 5rem);
   }
 
   .home__projects-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-  }
-
-  .home__projects-slot {
-    position: static;
-    width: 100%;
-  }
-
-  .home__projects-slot--left,
-  .home__projects-slot--top-right,
-  .home__projects-slot--bottom-right {
-    top: auto;
-    left: auto;
+    gap: 24px 120px;
   }
 }
 
 @media (max-width: 640px) {
+  .home__projects-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    gap: 24px;
+  }
+
+  .home__projects-cell--start,
+  .home__projects-cell--end,
+  .home__projects-cell:nth-child(n) {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
   .project-preview__body {
     grid-template-columns: 1fr;
     gap: 1rem;
@@ -428,5 +505,14 @@
 
   .project-preview__media {
     padding: 2rem;
+  }
+
+  .home__projects-ascii-lead {
+    height: 8vh;
+  }
+
+  .home__projects-ascii-sticky {
+    height: 70vh;
+    top: 15vh;
   }
 }

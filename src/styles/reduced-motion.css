@@ -8,11 +8,6 @@
     scroll-behavior: auto !important;
   }
 
-  .ascii-bg__text {
-    animation: none !important;
-    color: #c4c4c4 !important;
-  }
-
   .sentence-reveal__cursor {
     display: none !important;
     animation: none !important;
