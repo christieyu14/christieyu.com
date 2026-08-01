@@ -1,68 +1,58 @@
 import localFont from "next/font/local";
 
 /**
- * Local fonts from Figma:
- * - Manrope SemiBold → brand / nav
- * - Switzer Regular / Medium → body
- * - Tabular Regular / Semibold → metadata
- *
- * Files live under public/fonts/{manrope,switzer,tabular}/
+ * Local fonts from Figma (Homepage — live):
+ * - Helvetica Now Display Bold / Medium / Regular
+ * - Inconsolata variable (wdth + wght) for Expanded SemiBold metadata + ASCII
  */
 
-export const manrope = localFont({
+export const helveticaNowDisplay = localFont({
   src: [
     {
-      path: "../../public/fonts/manrope/Manrope-SemiBold.ttf",
-      weight: "600",
-      style: "normal",
-    },
-  ],
-  variable: "--font-manrope",
-  display: "swap",
-});
-
-export const switzer = localFont({
-  src: [
-    {
-      path: "../../public/fonts/switzer/Switzer-Regular.woff2",
+      path: "../../public/fonts/helvetica-now-display/HelveticaNowDisplay-Regular.woff2",
       weight: "400",
       style: "normal",
     },
     {
-      path: "../../public/fonts/switzer/Switzer-Medium.woff2",
+      path: "../../public/fonts/helvetica-now-display/HelveticaNowDisplay-Medium.woff2",
       weight: "500",
       style: "normal",
     },
+    {
+      path: "../../public/fonts/helvetica-now-display/HelveticaNowDisplay-Bold.woff2",
+      weight: "700",
+      style: "normal",
+    },
   ],
-  variable: "--font-switzer",
+  variable: "--font-helvetica-now-display",
   display: "swap",
 });
 
-export const tabular = localFont({
+export const inconsolata = localFont({
   src: [
     {
-      path: "../../public/fonts/tabular/Tabular-Regular.woff2",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/tabular/Tabular-Semibold.woff2",
-      weight: "600",
+      path: "../../public/fonts/inconsolata/Inconsolata-Variable.ttf",
+      weight: "200 900",
       style: "normal",
     },
   ],
-  variable: "--font-tabular",
+  variable: "--font-inconsolata",
   display: "swap",
 });
 
+/** @deprecated Prefer helveticaNowDisplay / inconsolata */
+export const manrope = helveticaNowDisplay;
+/** @deprecated Prefer helveticaNowDisplay */
+export const switzer = helveticaNowDisplay;
+/** @deprecated Prefer inconsolata */
+export const tabular = inconsolata;
+
 export const fontVariables = {
-  manrope: "--font-manrope",
-  switzer: "--font-switzer",
-  tabular: "--font-tabular",
-  /** @deprecated Prefer fontVariables.switzer */
-  sans: "--font-switzer",
-  /** @deprecated Prefer fontVariables.tabular */
-  mono: "--font-tabular",
+  display: "--font-helvetica-now-display",
+  sans: "--font-helvetica-now-display",
+  mono: "--font-inconsolata",
+  helvetica: "--font-helvetica-now-display",
+  inconsolata: "--font-inconsolata",
 } as const;
 
-export const fontClassNames = `${manrope.variable} ${switzer.variable} ${tabular.variable}`;
+export const fontClassNames = `${helveticaNowDisplay.variable} ${inconsolata.variable}`;

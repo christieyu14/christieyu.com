@@ -8,7 +8,26 @@
     scroll-behavior: auto !important;
   }
 
-  .site-header__brand-label {
-    will-change: auto;
+  .ascii-bg__text {
+    animation: none !important;
+    color: #c4c4c4 !important;
+  }
+
+  .sentence-reveal__cursor {
+    display: none !important;
+    animation: none !important;
+  }
+
+  .reveal,
+  .reveal--in,
+  .reveal--settled,
+  .sentence-reveal__sentence,
+  .hero-album__frame img,
+  .home__hero-frame,
+  .home__hero-frame--overlay,
+  .home__meta-dissolve {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
   }
 }

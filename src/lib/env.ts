@@ -6,7 +6,9 @@ const publicEnvSchema = z.object({
   NEXT_PUBLIC_SANITY_PROJECT_ID: optionalString,
   NEXT_PUBLIC_SANITY_DATASET: optionalString,
   NEXT_PUBLIC_SANITY_API_VERSION: optionalString,
+  NEXT_PUBLIC_SANITY_STUDIO_URL: optionalString,
   NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME: optionalString,
+  NEXT_PUBLIC_CLOUDINARY_API_KEY: optionalString,
   NEXT_PUBLIC_SITE_URL: optionalString,
 });
 
@@ -26,7 +28,10 @@ function parsePublicEnv(): PublicEnv {
     NEXT_PUBLIC_SANITY_PROJECT_ID: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
     NEXT_PUBLIC_SANITY_DATASET: process.env.NEXT_PUBLIC_SANITY_DATASET,
     NEXT_PUBLIC_SANITY_API_VERSION: process.env.NEXT_PUBLIC_SANITY_API_VERSION,
+    NEXT_PUBLIC_SANITY_STUDIO_URL: process.env.NEXT_PUBLIC_SANITY_STUDIO_URL,
     NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
+    NEXT_PUBLIC_CLOUDINARY_API_KEY:
+      process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY || process.env.CLOUDINARY_API_KEY,
     NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
   });
 }
@@ -55,6 +60,15 @@ export function isSanityConfigured(): boolean {
 
 export function isCloudinaryConfigured(): boolean {
   return Boolean(process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME);
+}
+
+export function isCloudinaryAdminConfigured(): boolean {
+  const server = getServerEnv();
+  return Boolean(
+    isCloudinaryConfigured() &&
+      server.CLOUDINARY_API_KEY &&
+      server.CLOUDINARY_API_SECRET,
+  );
 }
 
 export function isPreviewConfigured(): boolean {
@@ -96,7 +110,15 @@ export function assertProductionEnv(): void {
 }
 
 export function getSanityApiVersion(): string {
-  return publicEnv.NEXT_PUBLIC_SANITY_API_VERSION || "2024-01-01";
+  return publicEnv.NEXT_PUBLIC_SANITY_API_VERSION || "2026-05-15";
+}
+
+export function getSanityStudioUrl(): string {
+  return (
+    process.env.NEXT_PUBLIC_SANITY_STUDIO_URL ||
+    publicEnv.NEXT_PUBLIC_SANITY_STUDIO_URL ||
+    "http://localhost:3333"
+  );
 }
 
 export function getSiteUrl(): string {

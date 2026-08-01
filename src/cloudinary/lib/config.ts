@@ -1,10 +1,12 @@
-import { publicEnv, isCloudinaryConfigured } from "@/lib/env";
+import { isCloudinaryConfigured } from "@/lib/env";
 
 export function getCloudinaryCloudName(): string | undefined {
   if (!isCloudinaryConfigured()) {
     return undefined;
   }
-  return publicEnv.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+
+  const name = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME?.trim();
+  return name || undefined;
 }
 
 export function getCloudinaryBaseUrl(cloudName?: string): string | undefined {

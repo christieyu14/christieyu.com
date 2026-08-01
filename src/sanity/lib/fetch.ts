@@ -8,7 +8,7 @@ import type {
 } from "@/types/content";
 import type { SiteSettings } from "@/types/site";
 import { DEFAULT_NAVIGATION, DEFAULT_SITE_SETTINGS } from "@/types/site";
-import { getSanityFetchClient } from "@/sanity/lib/live";
+import { getPublishedSanityClient, getSanityFetchClient } from "@/sanity/lib/live";
 import {
   featuredPortfolioPostsQuery,
   photoAlbumBySlugQuery,
@@ -239,7 +239,7 @@ export async function getPortfolioPostBySlug(
 }
 
 export async function getPortfolioPostSlugs(): Promise<string[]> {
-  const sanityClient = await getSanityFetchClient();
+  const sanityClient = getPublishedSanityClient();
   if (!sanityClient) {
     return [];
   }
@@ -282,7 +282,7 @@ export async function getPhotoAlbumBySlug(slug: string): Promise<PhotoAlbum | nu
 }
 
 export async function getPhotoAlbumSlugs(): Promise<string[]> {
-  const sanityClient = await getSanityFetchClient();
+  const sanityClient = getPublishedSanityClient();
   if (!sanityClient) {
     return [];
   }

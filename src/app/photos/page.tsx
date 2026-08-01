@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { EmptyState } from "@/components/content/EmptyState";
 import { MediaRenderer } from "@/components/media/MediaRenderer";
+import { getHeroAlbumPhotos } from "@/cloudinary/lib/hero-album";
 import { buildMetadata, formatPageTitle } from "@/lib/metadata";
 import { getPhotoAlbums, getSiteSettings } from "@/sanity/lib/fetch";
 
@@ -18,7 +19,12 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function PhotosPage() {
-  const albums = await getPhotoAlbums();
+  const [albums, heroPhotos] = await Promise.all([
+    getPhotoAlbums(),
+    getHeroAlbumPhotos(),
+  ]);
+  const hasHeroAlbum = heroPhotos.length > 0;
+  const hasAnyAlbums = hasHeroAlbum || albums.length > 0;
 
   return (
     <main id="main-content" className="container" style={{ paddingBlock: "2rem" }}>
@@ -26,13 +32,23 @@ export default async function PhotosPage() {
         <h1 className="page-title">Photos</h1>
       </header>
 
-      {albums.length === 0 ? (
+      {!hasAnyAlbums ? (
         <EmptyState
           title="No photo albums yet"
-          description="Connect Sanity and publish photo albums to populate this page."
+          description="Add Cloudinary hero images or publish Sanity photo albums."
         />
       ) : (
         <ul>
+          {hasHeroAlbum ? (
+            <li>
+              <article>
+                <h2>
+                  <Link href="/photos/hero">Hero</Link>
+                </h2>
+                <p>Homepage featured photographs from Cloudinary.</p>
+              </article>
+            </li>
+          ) : null}
           {albums.map((album) => (
             <li key={album._id}>
               <article>

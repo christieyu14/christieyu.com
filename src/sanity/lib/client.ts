@@ -1,4 +1,4 @@
-import { getSanityApiVersion, isSanityConfigured, publicEnv } from "@/lib/env";
+import { getSanityApiVersion, getSanityStudioUrl, isSanityConfigured, publicEnv } from "@/lib/env";
 import { createClient, type SanityClient } from "next-sanity";
 
 export function createSanityClient(): SanityClient | null {
@@ -14,7 +14,7 @@ export function createSanityClient(): SanityClient | null {
     perspective: "published",
     stega: {
       enabled: false,
-      studioUrl: "/studio",
+      studioUrl: getSanityStudioUrl(),
     },
   });
 }

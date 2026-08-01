@@ -1,16 +1,17 @@
 /**
  * Design tokens from Figma file `personal`
- * Node 17:103 (expanded) / 17:193 (compact header)
+ * Homepage — live (31:2)
  *
  * Colors: black #080808, white #ffffff, blue #004cff
- * Type: title (Manrope Semibold 16), body (Switzer Regular 16),
- *        metadata (Tabular Semibold 14), brand 96→48
+ * Type: Helvetica Now Display + Inconsolata
+ * Content max width: 1080px
  */
 
 :root {
   --color-black: #080808;
   --color-white: #ffffff;
   --color-blue: #004cff;
+  --color-surface: #f9f9f9;
 
   --background: var(--color-white);
   --foreground: var(--color-black);
@@ -19,40 +20,59 @@
   --focus: var(--color-blue);
   --accent: var(--color-blue);
 
-  --font-sans: var(--font-switzer), system-ui, sans-serif;
-  --font-display: var(--font-manrope), system-ui, sans-serif;
-  --font-mono: var(--font-tabular), ui-monospace, monospace;
+  --font-sans: var(--font-helvetica-now-display), "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
+  --font-display: var(--font-helvetica-now-display), "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
+  --font-mono: var(--font-inconsolata), ui-monospace, monospace;
 
-  --space-page: clamp(2.5rem, 6vw, 6rem);
-  --space-header-block: 2rem; /* 32px bottom padding when expanded */
-  --space-header-compact-pad: 1rem; /* 16pt top/bottom when compact */
-  --space-section: 3rem; /* 48px header block → intro */
-  --space-nav-gap: 1.5rem; /* 24px */
-  --space-nav-row-gap: 0.5rem; /* 8px */
-  --space-social-gap: 0.75rem; /* 12px */
-  --space-caption: 1rem; /* 16px overlay padding */
+  --space-page: 2rem; /* 32px outer padding */
+  --space-section: 3rem; /* 48px */
+  --space-block: 8rem; /* 128px major section gap */
+  --space-nav-gap: 1.5rem;
+  --space-nav-row-gap: 0.5rem;
+  --space-social-gap: 0.75rem;
+  --space-caption: 1rem;
 
-  /* Cap content on ultra-wide displays */
-  --content-max-width: 90rem; /* 1440px */
+  --content-max-width: 67.5rem; /* 1080px */
 
-  --brand-size-expanded: clamp(2.75rem, 7vw, 6rem); /* 96px desktop */
-  --brand-size-compact: clamp(1.75rem, 4vw, 3rem); /* 48px desktop */
-  --brand-tracking-expanded: 0.01em;
-  --brand-tracking-compact: 0.01em;
-  --brand-line-height: 0.8;
+  /* Brand / hero links: Bold 20, tracking 2.5%, line-height 0.8 */
+  --type-brand-size: 1.25rem;
+  --type-brand-weight: 700;
+  --type-brand-tracking: 0.025em;
+  --type-brand-leading: 0.8;
 
-  --type-nav-size: 1rem; /* 16px */
-  --type-nav-tracking: -0.01em;
-  --type-body-size: 1rem; /* 16px */
-  --type-intro-size: 1.5rem; /* 24px */
-  --type-intro-tracking: -0.01em;
-  --type-metadata-size: 0.875rem; /* 14px Tabular Semibold */
-  --type-metadata-tracking: -0.01em;
+  /* Nav: Bold 16, tracking 2.5% */
+  --type-nav-size: 1rem;
+  --type-nav-weight: 700;
+  --type-nav-tracking: 0.025em;
+
+  /* Body intro: Medium 18, tracking 1%, line-height 1.12 */
+  --type-body-size: 1.125rem;
+  --type-body-weight: 500;
+  --type-body-tracking: 0.01em;
+  --type-body-leading: 1.12;
+
+  /* Project description: Medium 12, tracking 1%, line-height 1.12 */
+  --type-desc-size: 0.75rem;
+  --type-desc-weight: 500;
+  --type-desc-tracking: 0.01em;
+  --type-desc-leading: 1.12;
+
+  /* Metadata: Inconsolata Expanded SemiBold 14, tracking -0.14px */
+  --type-metadata-size: 0.875rem;
   --type-metadata-weight: 600;
+  --type-metadata-tracking: -0.14px;
+  --type-metadata-width: 125;
 
-  --link-underline-thickness: 15%;
-  --hero-aspect: 3968 / 2232;
+  /* Fine print: Inconsolata SemiCondensed 12 */
+  --type-fine-size: 0.75rem;
+  --type-fine-weight: 400;
+  --type-fine-width: 87.5;
 
-  /* Brand compact scale vs expanded (Figma 96 → 48) */
-  --brand-compact-scale: 0.5;
+  --link-underline-thickness: 12%;
+  --link-underline-offset: 15%;
+  --hero-aspect: 992.65 / 558.35;
+
+  --ascii-pulse-duration: 18s;
 }

@@ -50,6 +50,7 @@ SANITY_PREVIEW_SECRET=
 SANITY_REVALIDATE_SECRET=
 
 NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=
+NEXT_PUBLIC_CLOUDINARY_API_KEY=
 CLOUDINARY_API_KEY=
 CLOUDINARY_API_SECRET=
 
@@ -67,8 +68,9 @@ NEXT_PUBLIC_SITE_URL=
 | `SANITY_PREVIEW_SECRET`             | Server | No                            | Manual preview URLs     |
 | `SANITY_REVALIDATE_SECRET`          | Server | No                            | Yes (webhooks)          |
 | `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME` | Public | No                            | Yes (media URLs)        |
-| `CLOUDINARY_API_KEY`                | Server | No                            | Server uploads only     |
-| `CLOUDINARY_API_SECRET`             | Server | No                            | Server uploads only     |
+| `NEXT_PUBLIC_CLOUDINARY_API_KEY`    | Public | No                            | Upload widgets          |
+| `CLOUDINARY_API_KEY`                | Server | No                            | Server uploads / sign   |
+| `CLOUDINARY_API_SECRET`             | Server | No                            | Server uploads / sign   |
 | `NEXT_PUBLIC_SITE_URL`              | Public | No (defaults to localhost)    | Yes                     |
 
 Helpers in `src/lib/env.ts`:
@@ -108,16 +110,25 @@ src/
 
 ### Studio
 
-Embedded at `/studio` via `next-sanity/studio`.
+Standalone Studio lives in the sibling folder `studio-christieyu.com` (not embedded in Next.js).
 
-When Sanity is not configured, the studio page shows an empty state instead of crashing.
+```bash
+cd ../studio-christieyu.com
+npm run dev   # http://localhost:3333
+```
 
-Configuration files:
+Content types (source of truth in the Studio repo):
 
-- `sanity.config.ts`
-- `sanity.cli.ts`
-- `src/sanity/schemaTypes/`
-- `src/sanity/structure.ts` (siteSettings singleton)
+- `portfolioPost`, `photoAlbum`, `siteSettings` (+ portable body blocks)
+
+Config:
+
+- `studio-christieyu.com/sanity.config.ts`
+- `studio-christieyu.com/sanity.cli.ts`
+- `studio-christieyu.com/schemaTypes/`
+- `studio-christieyu.com/structure.ts` (siteSettings singleton)
+
+Set `NEXT_PUBLIC_SANITY_PROJECT_ID=g25dm52w` and `NEXT_PUBLIC_SANITY_DATASET=production` in the Next app `.env.local`.
 
 ### Data access
 
@@ -144,7 +155,7 @@ Requires `SANITY_API_READ_TOKEN`. Two entry paths:
 GET /api/draft-mode/enable
 ```
 
-Configure in Studio via `presentationTool({ previewUrl: { previewMode: { enable } } })` in `sanity.config.ts`.
+Configure in the standalone Studio via `presentationTool({ previewUrl: { … } })` in `studio-christieyu.com/sanity.config.ts`.
 
 **Manual shared-secret preview** (requires `SANITY_PREVIEW_SECRET`):
 
@@ -180,11 +191,16 @@ Configure a Sanity webhook pointing to this endpoint in production.
 
 ## Cloudinary
 
-Public cloud name drives CDN URLs via `src/cloudinary/lib/url.ts`.
+Delivery uses Cloudinary CDN URLs via `src/cloudinary/lib/url.ts` (cloud name from `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME`).
 
+- Studio picks assets with `sanity-plugin-cloudinary` (`cloudinary.asset` nested under our `cloudinaryAsset` object)
 - `MediaRenderer` uses plain `<img>` for Cloudinary URLs (not Next.js Image optimizer)
-- API key/secret stay server-side only
-- `next.config.ts` includes `res.cloudinary.com` in `images.remotePatterns` for optional use elsewhere
+- Server Admin SDK: `src/cloudinary/lib/admin.ts`
+- Signed upload helper: `POST /api/cloudinary/sign` (for `next-cloudinary` upload widgets)
+- API secret stays server-side only; API key may also be exposed as `NEXT_PUBLIC_CLOUDINARY_API_KEY` for client upload widgets
+- `next.config.ts` includes `res.cloudinary.com` in `images.remotePatterns`
+
+On first Studio launch after installing the plugin, open any Cloudinary field and configure the cloud name + API key when prompted (stored as a private dataset document).
 
 ## Fonts
 
@@ -225,7 +241,6 @@ Helpers are in `src/lib/featured-photos.ts`. Add pool entries as photos become a
 | `/about`         | About shell             |
 | `/resume`        | Resume shell            |
 | `/contact`       | Contact shell           |
-| `/studio`        | Sanity Studio           |
 
 Also: `sitemap.ts`, `robots.ts`, `loading.tsx`, `not-found.tsx`.
 
@@ -278,9 +293,8 @@ npm run validate     # format:check + lint + typecheck + test
 ## What works without credentials
 
 - `npm run dev`, `npm run build`, `npm run test`, `npm run validate`
-- All routes render with empty states
-- Studio shows configuration message
-- Draft mode and revalidate endpoints return `503`
+- All routes render with empty states when content is missing
+- Draft mode and revalidate endpoints return `503` without secrets
 
 ## What requires credentials
 

@@ -14,8 +14,9 @@ body {
   background: var(--background);
   font-family: var(--font-sans);
   font-size: var(--type-body-size);
-  line-height: 1.45;
-  letter-spacing: -0.01em;
+  font-weight: var(--type-body-weight);
+  line-height: var(--type-body-leading);
+  letter-spacing: var(--type-body-tracking);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -53,6 +54,32 @@ a {
   text-decoration: none;
 }
 
+main a:not(.project-preview__media-link):not([class*="__media"]) {
+  text-decoration: underline;
+  text-decoration-color: currentColor;
+  text-decoration-thickness: var(--link-underline-thickness);
+  text-underline-offset: var(--link-underline-offset);
+}
+
+main a:not(.project-preview__media-link):not([class*="__media"]):hover,
+main a:not(.project-preview__media-link):not([class*="__media"]):focus-visible {
+  color: var(--color-blue);
+  text-decoration-color: var(--color-blue);
+}
+
+.site-footer a {
+  text-decoration: underline;
+  text-decoration-color: currentColor;
+  text-decoration-thickness: var(--link-underline-thickness);
+  text-underline-offset: var(--link-underline-offset);
+}
+
+.site-footer a:hover,
+.site-footer a:focus-visible {
+  color: var(--color-blue);
+  text-decoration-color: var(--color-blue);
+}
+
 main {
   flex: 1;
   width: 100%;
@@ -80,9 +107,10 @@ main {
 
 .page-title {
   font-family: var(--font-display);
-  font-weight: 600;
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
-  line-height: 1.1;
+  font-weight: 700;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  letter-spacing: var(--type-brand-tracking);
+  line-height: var(--type-brand-leading);
 }
 
 .page-description {
@@ -97,18 +125,7 @@ main {
   color: var(--muted);
 }
 
-/* ——— Site header (Figma 17:103 expanded / 17:193 compact) ——— */
-
-.site-header-sentinel {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 1px;
-  /* Tall sentinel = natural hysteresis so compact state does not flicker */
-  height: 48px;
-  pointer-events: none;
-  visibility: hidden;
-}
+/* ——— Site header (Figma 31:2 — fixed, no shrink) ——— */
 
 .site-header {
   position: sticky;
@@ -116,38 +133,22 @@ main {
   z-index: 40;
   background: var(--color-white);
   padding-block: var(--space-page) 0;
-  transition: padding-block var(--header-transition);
-}
-
-.site-header[data-compact="true"] {
-  padding-block: var(--space-header-compact-pad) 0;
-  transition: padding-block var(--header-transition-collapse);
 }
 
 .site-header__inner {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   align-items: center;
-  justify-content: space-between;
   gap: var(--space-nav-gap);
-  padding-bottom: var(--space-header-block);
-  transition: padding-bottom var(--header-transition);
-}
-
-.site-header[data-compact="true"] .site-header__inner {
-  padding-bottom: var(--space-header-compact-pad); /* 16pt */
-  transition: padding-bottom var(--header-transition-collapse);
+  padding-bottom: 2rem;
 }
 
 .site-header__brand {
+  grid-column: 1 / span 3;
   display: flex;
   align-items: center;
-  height: calc(var(--brand-size-expanded) * var(--brand-line-height));
   color: var(--color-black);
   text-decoration: none;
-  overflow: visible;
-  transition:
-    color var(--motion-duration-fast) var(--motion-snap),
-    height var(--header-transition);
 }
 
 .site-header__brand:hover,
@@ -156,58 +157,21 @@ main {
   text-decoration: none;
 }
 
-.site-header[data-compact="true"] .site-header__brand {
-  height: calc(
-    var(--brand-size-expanded) * var(--brand-line-height) * var(--brand-compact-scale)
-  );
-  transition:
-    color var(--motion-duration-fast) var(--motion-snap),
-    height var(--header-transition-collapse);
-}
-
-/*
- * Animate with transform (compositor) instead of font-size (layout)
- * to avoid per-frame reflow jitter.
- */
 .site-header__brand-label {
   display: block;
   font-family: var(--font-display);
-  font-weight: 600;
-  font-size: var(--brand-size-expanded);
-  line-height: var(--brand-line-height);
-  letter-spacing: var(--brand-tracking-expanded);
+  font-weight: var(--type-brand-weight);
+  font-size: var(--type-brand-size);
+  line-height: var(--type-brand-leading);
+  letter-spacing: var(--type-brand-tracking);
   text-transform: uppercase;
   white-space: nowrap;
-  transform: scale(1);
-  transform-origin: left center;
-  transition: transform var(--header-transition);
-  will-change: transform;
-}
-
-.site-header[data-compact="true"] .site-header__brand-label {
-  transform: scale(var(--brand-compact-scale));
-  transition: transform var(--header-transition-collapse);
 }
 
 .site-header__nav-wrap {
+  grid-column: 4 / span 3;
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  padding-top: 0.15rem;
-  width: min(100%, 16.5rem);
-  transition:
-    padding-top var(--header-transition),
-    width var(--header-transition-collapse);
-}
-
-.site-header[data-compact="true"] .site-header__nav-wrap {
-  padding-top: 0;
-  width: auto;
-  flex-direction: row;
-  align-items: center;
-  transition:
-    padding-top var(--header-transition-collapse),
-    width var(--header-transition-collapse);
+  justify-content: flex-end;
 }
 
 .site-nav__list {
@@ -215,27 +179,25 @@ main {
   flex-wrap: wrap;
   align-items: center;
   justify-content: flex-end;
-  gap: var(--space-nav-row-gap) var(--space-nav-gap);
+  gap: 0.75rem 1.25rem;
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.site-header[data-compact="true"] .site-nav__list {
-  flex-wrap: nowrap;
-}
-
 .site-nav__link {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: var(--type-nav-weight);
   font-size: var(--type-nav-size);
   letter-spacing: var(--type-nav-tracking);
   line-height: normal;
   color: var(--color-black);
   text-decoration: none;
   text-decoration-thickness: var(--link-underline-thickness);
-  text-underline-offset: 0.2em;
-  transition: color var(--motion-duration-fast) var(--motion-snap);
+  text-underline-offset: var(--link-underline-offset);
+  transition:
+    color var(--motion-duration-fast) var(--motion-snap),
+    text-decoration-color var(--motion-duration-fast) var(--motion-snap);
 }
 
 .site-nav__link:hover,
@@ -244,38 +206,44 @@ main {
   text-decoration: underline;
   text-decoration-color: var(--color-blue);
   text-decoration-thickness: var(--link-underline-thickness);
+  text-underline-offset: var(--link-underline-offset);
 }
 
 .site-nav__link[aria-current="page"] {
+  color: var(--color-blue);
   text-decoration: underline;
+  text-decoration-color: var(--color-blue);
   text-decoration-thickness: var(--link-underline-thickness);
-  text-underline-offset: 0.2em;
+  text-underline-offset: var(--link-underline-offset);
+}
+
+.site-nav__social-item {
+  display: flex;
+  align-items: center;
 }
 
 .site-nav__social-item + .site-nav__social-item {
-  margin-left: calc(var(--space-social-gap) - var(--space-nav-gap));
+  margin-left: calc(var(--space-social-gap) - 1.25rem);
 }
 
 .site-nav__social-link {
   display: block;
   width: 24px;
   height: 24px;
+  color: var(--color-black);
   overflow: clip;
-  transition:
-    opacity var(--motion-duration-fast) var(--motion-snap),
-    transform var(--motion-duration-fast) var(--motion-spring);
+  transition: color var(--motion-duration-fast) var(--motion-snap);
 }
 
 .site-nav__social-link:hover,
 .site-nav__social-link:focus-visible {
-  opacity: 0.7;
-  transform: translateY(-1px);
+  color: var(--color-blue);
 }
 
-.site-nav__social-link img {
+.site-nav__social-link svg {
+  display: block;
   width: 100%;
   height: 100%;
-  object-fit: contain;
 }
 
 .site-footer {
@@ -295,21 +263,20 @@ main {
 
 @media (max-width: 720px) {
   .site-header__inner {
-    flex-direction: column;
-    align-items: flex-start;
+    grid-template-columns: 1fr;
     gap: 1rem;
   }
 
-  .site-header__nav-wrap,
-  .site-header[data-compact="true"] .site-header__nav-wrap {
-    width: 100%;
-    align-items: flex-start;
-    padding-top: 0;
+  .site-header__brand,
+  .site-header__nav-wrap {
+    grid-column: 1;
   }
 
-  .site-nav__list,
-  .site-header[data-compact="true"] .site-nav__list {
+  .site-header__nav-wrap {
     justify-content: flex-start;
-    flex-wrap: wrap;
+  }
+
+  .site-nav__list {
+    justify-content: flex-start;
   }
 }

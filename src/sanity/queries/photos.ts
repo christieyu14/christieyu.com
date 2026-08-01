@@ -1,4 +1,4 @@
-import { coverMediaProjection } from "./projections";
+import { cloudinaryAssetProjection, coverMediaProjection } from "./projections";
 
 export const photoAlbumsQuery = `*[_type == "photoAlbum"] | order(date desc){
   _id,
@@ -24,14 +24,7 @@ export const photoAlbumBySlugQuery = `*[_type == "photoAlbum" && slug.current ==
   ${coverMediaProjection},
   seoTitle,
   seoDescription,
-  photos[]{
-    _key,
-    publicId,
-    alt,
-    caption,
-    width,
-    height
-  }
+  "photos": photos[] ${cloudinaryAssetProjection}
 }`;
 
 export const photoAlbumSlugsQuery = `*[_type == "photoAlbum" && defined(slug.current)]{

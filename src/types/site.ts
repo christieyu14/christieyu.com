@@ -26,7 +26,7 @@ export interface SiteSettings {
 export const DEFAULT_NAVIGATION: NavigationItem[] = [
   { label: "resume", href: "/resume" },
   { label: "portfolio", href: "/work" },
-  { label: "albums", href: "/photos" },
+  { label: "album", href: "/photos" },
   { label: "contact", href: "/contact" },
 ];
 
@@ -37,10 +37,14 @@ export const DEFAULT_SITE_SETTINGS: SiteSettings = {
   defaultSeoDescription: "Product designer",
   navigation: DEFAULT_NAVIGATION,
   socialLinks: [
-    { platform: "github", url: "https://github.com", label: "GitHub" },
+    {
+      platform: "github",
+      url: "https://github.com/christieyu14",
+      label: "GitHub",
+    },
     {
       platform: "linkedin",
-      url: "https://www.linkedin.com",
+      url: "https://www.linkedin.com/in/christieyu/",
       label: "LinkedIn",
     },
   ],

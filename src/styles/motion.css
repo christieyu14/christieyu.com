@@ -1,6 +1,6 @@
 /**
- * Project motion language — springy, slightly bouncy, natural.
- * Prefer transform/opacity over layout properties when possible.
+ * Project motion language — soft, natural, non-jittery.
+ * Prefer transform/opacity over layout properties.
  */
 
 :root {
@@ -8,13 +8,108 @@
   --motion-spring: cubic-bezier(0.34, 1.45, 0.64, 1);
   /* Clean deceleration when collapsing (no undershoot) */
   --motion-spring-collapse: cubic-bezier(0.22, 1, 0.36, 1);
+  /* Soft ease-out for reveals / dissolves */
+  --motion-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   /* Quick UI feedback (hovers, focus) */
   --motion-snap: cubic-bezier(0.2, 0.8, 0.2, 1);
 
   --motion-duration: 620ms;
   --motion-duration-collapse: 480ms;
   --motion-duration-fast: 180ms;
+  --motion-duration-reveal: 480ms;
+  --motion-duration-dissolve: 560ms;
+  --motion-reveal-distance: 2.75rem;
 
   --header-transition: var(--motion-duration) var(--motion-spring);
   --header-transition-collapse: var(--motion-duration-collapse) var(--motion-spring-collapse);
+}
+
+/* ——— Scroll / entrance reveals ——— */
+
+.reveal {
+  opacity: 0;
+  transform: translate3d(0, var(--motion-reveal-distance), 0);
+  transition:
+    opacity var(--motion-duration-reveal) var(--motion-snap),
+    transform var(--motion-duration-reveal) var(--motion-snap);
+  will-change: opacity, transform;
+}
+
+.reveal--in {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/*
+ * Clear the transform after motion ends. An ancestor transform creates a
+ * containing block that prevents backdrop-filter from sampling page content.
+ */
+.reveal--settled {
+  opacity: 1;
+  transform: none;
+  transition: none;
+  will-change: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal--in,
+  .reveal--settled {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    will-change: auto;
+  }
+}
+
+/* ——— Sentence-by-sentence body reveal ——— */
+
+.sentence-reveal__sentence {
+  display: inline;
+  opacity: 0;
+  filter: blur(2px);
+  transition:
+    opacity 360ms var(--motion-ease-out),
+    filter 380ms var(--motion-ease-out);
+  will-change: opacity, filter;
+}
+
+.sentence-reveal__sentence.is-visible {
+  opacity: 1;
+  filter: blur(0);
+}
+
+.sentence-reveal__cursor {
+  display: inline-block;
+  width: 0.08em;
+  height: 1em;
+  margin-left: 0.08em;
+  vertical-align: -0.12em;
+  background: currentColor;
+  animation: sentence-caret 900ms steps(1, end) infinite;
+}
+
+@keyframes sentence-caret {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sentence-reveal__sentence {
+    opacity: 1;
+    filter: none;
+    transition: none;
+    will-change: auto;
+  }
+
+  .sentence-reveal__cursor {
+    display: none;
+    animation: none;
+  }
 }

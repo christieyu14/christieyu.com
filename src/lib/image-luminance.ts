@@ -71,12 +71,15 @@ export function averageLuminanceInRegion(
 }
 
 export interface HeroMetadataTones {
-  caption: OverlayTone;
-  date: OverlayTone;
+  /** Caption + date cluster (bottom-left) */
+  left: OverlayTone;
+  /** See more + refresh cluster (bottom-right) */
+  right: OverlayTone;
 }
 
 /**
- * Sample bottom-left (caption) and bottom-right (date) regions of a loaded image.
+ * Sample bottom-left and bottom-right regions of a loaded image
+ * for overlay text contrast.
  */
 export function sampleHeroMetadataTones(
   image: CanvasImageSource & { naturalWidth: number; naturalHeight: number },
@@ -89,7 +92,6 @@ export function sampleHeroMetadataTones(
   }
 
   const canvas = document.createElement("canvas");
-  // Downsample for speed while keeping enough detail for local averages.
   const maxWidth = 320;
   const scale = Math.min(1, maxWidth / width);
   canvas.width = Math.max(1, Math.round(width * scale));
@@ -106,15 +108,15 @@ export function sampleHeroMetadataTones(
 
     const bandHeight = 0.12;
     const bandY = 1 - bandHeight;
-    const sideWidth = 0.28;
+    const sideWidth = 0.36;
 
-    const captionLuma = averageLuminanceInRegion(data, canvas.width, canvas.height, {
+    const leftLuma = averageLuminanceInRegion(data, canvas.width, canvas.height, {
       x: 0.02,
       y: bandY,
       width: sideWidth,
       height: bandHeight,
     });
-    const dateLuma = averageLuminanceInRegion(data, canvas.width, canvas.height, {
+    const rightLuma = averageLuminanceInRegion(data, canvas.width, canvas.height, {
       x: 1 - sideWidth - 0.02,
       y: bandY,
       width: sideWidth,
@@ -122,11 +124,10 @@ export function sampleHeroMetadataTones(
     });
 
     return {
-      caption: overlayToneFromLuminance(captionLuma),
-      date: overlayToneFromLuminance(dateLuma),
+      left: overlayToneFromLuminance(leftLuma),
+      right: overlayToneFromLuminance(rightLuma),
     };
   } catch {
-    // Tainted canvas (CORS) — keep a safe default (light text on typical photos).
     return null;
   }
 }

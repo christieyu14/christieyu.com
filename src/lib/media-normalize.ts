@@ -7,12 +7,29 @@ import type {
   SanityImageMedia,
 } from "@/types/media";
 
+interface SanityCloudinaryPluginAsset {
+  public_id?: string;
+  width?: number;
+  height?: number;
+  resource_type?: string;
+  format?: string;
+  version?: number;
+  context?: { custom?: { alt?: string } };
+  derived?: Array<{ raw_transformation?: string; secure_url?: string }>;
+}
+
 interface SanityCloudinaryAsset {
   publicId?: string;
   alt?: string;
   caption?: string;
   width?: number;
   height?: number;
+  resourceType?: string;
+  format?: string;
+  version?: number;
+  derived?: SanityCloudinaryPluginAsset["derived"];
+  /** Nested plugin shape when queried without projection flattening */
+  asset?: SanityCloudinaryPluginAsset;
 }
 
 interface SanityImageAsset {
@@ -25,17 +42,22 @@ interface SanityImageAsset {
 export function normalizeCloudinaryAsset(
   asset: SanityCloudinaryAsset | null | undefined,
 ): CloudinaryImageMedia | undefined {
-  if (!asset?.publicId) {
+  if (!asset) {
+    return undefined;
+  }
+
+  const publicId = asset.publicId ?? asset.asset?.public_id;
+  if (!publicId) {
     return undefined;
   }
 
   return {
     kind: "cloudinary-image",
-    publicId: asset.publicId,
-    alt: asset.alt,
+    publicId,
+    alt: asset.alt ?? asset.asset?.context?.custom?.alt,
     caption: asset.caption,
-    width: asset.width,
-    height: asset.height,
+    width: asset.width ?? asset.asset?.width,
+    height: asset.height ?? asset.asset?.height,
   };
 }
 

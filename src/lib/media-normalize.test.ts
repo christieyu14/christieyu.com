@@ -22,6 +22,27 @@ describe("media normalization", () => {
     });
   });
 
+  it("normalizes nested cloudinary.asset plugin shapes", () => {
+    const media = normalizeCloudinaryAsset({
+      asset: {
+        public_id: "portfolio/from-plugin",
+        width: 2400,
+        height: 1600,
+        context: { custom: { alt: "From context" } },
+      },
+      caption: "Caption",
+    });
+
+    expect(media).toEqual({
+      kind: "cloudinary-image",
+      publicId: "portfolio/from-plugin",
+      alt: "From context",
+      caption: "Caption",
+      width: 2400,
+      height: 1600,
+    });
+  });
+
   it("returns undefined for incomplete cloudinary assets", () => {
     expect(normalizeCloudinaryAsset({ alt: "Missing id" })).toBeUndefined();
   });

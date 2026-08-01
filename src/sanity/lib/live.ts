@@ -1,8 +1,23 @@
 import { draftMode } from "next/headers";
+import { getSanityStudioUrl } from "@/lib/env";
 import { client } from "@/sanity/lib/client";
 import { getSanityReadToken } from "@/sanity/lib/token";
 import type { SanityClient } from "next-sanity";
 
+/** Published-only client — safe for generateStaticParams / sitemap. */
+export function getPublishedSanityClient(): SanityClient | null {
+  if (!client) {
+    return null;
+  }
+
+  return client.withConfig({
+    useCdn: false,
+    perspective: "published",
+    stega: { enabled: false },
+  });
+}
+
+/** Preview-aware client for request-time rendering. */
 export async function getSanityFetchClient(): Promise<SanityClient | null> {
   if (!client) {
     return null;
@@ -22,7 +37,7 @@ export async function getSanityFetchClient(): Promise<SanityClient | null> {
       useCdn: false,
       stega: {
         enabled: true,
-        studioUrl: "/studio",
+        studioUrl: getSanityStudioUrl(),
       },
     });
   }
