@@ -1,17 +1,20 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { EmptyState } from "@/components/content/EmptyState";
-import { MediaRenderer } from "@/components/media/MediaRenderer";
+import { PhotoAlbumGallery } from "@/components/content/PhotoAlbumGallery";
 import { getHeroAlbumAssets } from "@/cloudinary/lib/hero-album";
+import { isCloudinaryAdminConfigured } from "@/lib/env";
 import { buildMetadata, formatPageTitle } from "@/lib/metadata";
-import { getPhotoAlbums, getSiteSettings } from "@/sanity/lib/fetch";
+import { getSiteSettings } from "@/sanity/lib/fetch";
+import "@/styles/photos.css";
+
+export const revalidate = 3600;
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSiteSettings();
   return buildMetadata(
     {
       title: formatPageTitle("Photos", settings.siteTitle),
-      description: "Photo albums",
+      description: "Photo album",
       path: "/photos",
     },
     settings,
@@ -19,51 +22,30 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function PhotosPage() {
-  const [albums, heroAssets] = await Promise.all([
-    getPhotoAlbums(),
-    getHeroAlbumAssets(),
-  ]);
-  const hasHeroAlbum = heroAssets.length > 0;
-  const hasAnyAlbums = hasHeroAlbum || albums.length > 0;
+  const cloudinaryReady = isCloudinaryAdminConfigured();
+  const assets = cloudinaryReady ? await getHeroAlbumAssets() : [];
 
   return (
-    <main id="main-content" className="container" style={{ paddingBlock: "2rem" }}>
-      <header className="page-header">
-        <h1 className="page-title">Photos</h1>
-      </header>
+    <main id="main-content" className="photos-page">
+      <div className="photos-page__body">
+        <header className="photos-page__header">
+          <h1 className="photos-page__title">My photo album</h1>
+        </header>
 
-      {!hasAnyAlbums ? (
-        <EmptyState
-          title="No photo albums yet"
-          description="Add Cloudinary hero images or publish Sanity photo albums."
-        />
-      ) : (
-        <ul>
-          {hasHeroAlbum ? (
-            <li>
-              <article>
-                <h2>
-                  <Link href="/photos/hero">Hero</Link>
-                </h2>
-                <p>Homepage featured photographs from Cloudinary.</p>
-              </article>
-            </li>
-          ) : null}
-          {albums.map((album) => (
-            <li key={album._id}>
-              <article>
-                <h2>
-                  <Link href={`/photos/${album.slug}`}>{album.title}</Link>
-                </h2>
-                {album.summary ? <p>{album.summary}</p> : null}
-                {album.coverMedia ? (
-                  <MediaRenderer media={album.coverMedia} variant="thumbnail" />
-                ) : null}
-              </article>
-            </li>
-          ))}
-        </ul>
-      )}
+        {!cloudinaryReady ? (
+          <EmptyState
+            title="Cloudinary not configured"
+            description="Set NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, and CLOUDINARY_API_SECRET in .env.local. Images must live in the hero folder with caption and date context metadata."
+          />
+        ) : assets.length === 0 ? (
+          <EmptyState
+            title="No photos yet"
+            description="Add images to the Cloudinary hero folder with caption, date context, and tags."
+          />
+        ) : (
+          <PhotoAlbumGallery assets={assets} />
+        )}
+      </div>
     </main>
   );
 }

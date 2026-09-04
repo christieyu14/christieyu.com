@@ -4,9 +4,12 @@ import {
   isCloudinaryAdminConfigured,
 } from "@/cloudinary/lib/admin";
 import { buildCloudinaryUrl } from "@/cloudinary/lib/url";
+import { slugMatchesTag, tagToSlug } from "@/cloudinary/lib/album-tags";
 import {
   HERO_ALBUM_FOLDER,
+  HERO_ALBUM_PATH,
   HERO_DELIVERY_WIDTH,
+  selectHeroAsset,
   type HeroAlbumAsset,
 } from "@/cloudinary/lib/hero-album-shared";
 
@@ -16,12 +19,13 @@ export {
   HERO_DELIVERY_WIDTH,
   selectHeroAsset,
   type HeroAlbumAsset,
-} from "@/cloudinary/lib/hero-album-shared";
+};
 
 interface CloudinarySearchResource {
   public_id: string;
   width?: number;
   height?: number;
+  tags?: string[];
   context?:
     | {
         custom?: Record<string, string>;
@@ -46,7 +50,9 @@ function readContextFields(
       context
         .split("|")
         .map((pair) => pair.split("="))
-        .filter((parts): parts is [string, string] => parts.length === 2 && Boolean(parts[0]))
+        .filter(
+          (parts): parts is [string, string] => parts.length === 2 && Boolean(parts[0]),
+        )
         .map(([key, value]) => [key, value ?? ""]),
     );
   }
@@ -81,6 +87,7 @@ function mapResource(resource: CloudinarySearchResource): HeroAlbumAsset | null 
     height: resource.height ?? Math.round(HERO_DELIVERY_WIDTH * (558.35 / 992.65)),
     caption,
     date,
+    tags: resource.tags ?? [],
   };
 }
 
@@ -93,6 +100,7 @@ async function fetchHeroAlbumAssetsUncached(): Promise<HeroAlbumAsset[]> {
     let query = cloudinary.search
       .expression(`folder:${HERO_ALBUM_FOLDER}`)
       .with_field("context")
+      .with_field("tags")
       .sort_by("created_at", "desc")
       .max_results(500);
 
@@ -131,7 +139,7 @@ const getCachedHeroAlbumAssets = unstable_cache(
       fetchedAt: Date.now(),
     };
   },
-  ["cloudinary-hero-album-assets-v3"],
+  ["cloudinary-hero-album-assets-v4"],
   {
     // Soft TTL: after 1h the next request revalidates in the background.
     revalidate: ONE_HOUR,
@@ -159,6 +167,29 @@ export function buildHeroDeliveryUrl(publicId: string): string | undefined {
  * Config checks stay outside the cache so a boot-time miss is not sticky.
  * Never call this from a Client Component — Admin credentials stay server-only.
  */
+export async function getHeroAlbumAssetsByTag(
+  tagSlug: string,
+): Promise<HeroAlbumAsset[]> {
+  const assets = await getHeroAlbumAssets();
+  return assets.filter((asset) =>
+    asset.tags.some((tag) => slugMatchesTag(tagSlug, tag)),
+  );
+}
+
+export async function getHeroAlbumTagSlugs(): Promise<string[]> {
+  const assets = await getHeroAlbumAssets();
+  const slugs = new Set<string>();
+  for (const asset of assets) {
+    for (const tag of asset.tags) {
+      const slug = tagToSlug(tag);
+      if (slug) {
+        slugs.add(slug);
+      }
+    }
+  }
+  return [...slugs].sort();
+}
+
 export async function getHeroAlbumAssets(): Promise<HeroAlbumAsset[]> {
   if (!isCloudinaryAdminConfigured()) {
     console.warn(
@@ -198,4 +229,3 @@ export async function getHeroAlbumAssets(): Promise<HeroAlbumAsset[]> {
     }
   }
 }
-

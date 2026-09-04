@@ -1,6 +1,6 @@
 /** Cloudinary folder that feeds the homepage hero rotation. */
 export const HERO_ALBUM_FOLDER = "hero";
-export const HERO_ALBUM_PATH = "/photos/hero";
+export const HERO_ALBUM_PATH = "/photos";
 
 /** Delivery width near the rendered hero (~888 CSS px at 1080 frame, 2× DPR). */
 export const HERO_DELIVERY_WIDTH = 1600;
@@ -15,6 +15,7 @@ export interface HeroAlbumAsset {
   height: number;
   caption: string;
   date: string;
+  tags: string[];
 }
 
 export function selectHeroAsset(

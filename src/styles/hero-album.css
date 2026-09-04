@@ -17,10 +17,12 @@
 
 .hero-album__eyebrow {
   margin: 0;
-  font-family: var(--font-mono);
+  font-family: var(--font-dreamboat);
   font-size: var(--type-metadata-size);
   font-weight: var(--type-metadata-weight);
   letter-spacing: var(--type-metadata-tracking);
+  line-height: var(--type-metadata-leading);
+  text-transform: uppercase;
 }
 
 .hero-album__eyebrow a {
@@ -39,18 +41,22 @@
 
 .hero-album__title {
   margin: 0;
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  line-height: 1;
+  font-family: var(--font-dreamboat);
+  font-weight: var(--type-hero-weight);
+  font-size: var(--type-hero-size);
+  line-height: var(--type-hero-leading);
+  letter-spacing: var(--type-hero-tracking);
+  text-transform: uppercase;
   color: var(--color-black);
 }
 
 .hero-album__summary {
   margin: 0;
-  font-family: var(--font-sans);
-  font-size: var(--type-body-size);
+  font-family: var(--font-display);
+  font-size: var(--type-body-lg-size);
+  font-weight: var(--type-body-lg-weight);
+  letter-spacing: var(--type-body-lg-tracking);
+  line-height: var(--type-body-lg-leading);
   color: var(--muted);
 }
 
@@ -104,10 +110,12 @@
   align-items: baseline;
   justify-content: space-between;
   gap: 1rem;
-  font-family: var(--font-mono);
+  font-family: var(--font-dreamboat);
   font-weight: var(--type-metadata-weight);
   font-size: var(--type-metadata-size);
   letter-spacing: var(--type-metadata-tracking);
+  line-height: var(--type-metadata-leading);
+  text-transform: uppercase;
   color: var(--color-black);
 }
 

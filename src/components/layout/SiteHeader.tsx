@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import {
-  FlowerIcon,
+  BrandLogo,
   GitHubStarIcon,
   LinkedInStarIcon,
 } from "@/components/icons";
@@ -111,8 +111,7 @@ export function SiteHeader({ settings }: SiteHeaderProps) {
           href="/"
           className={`site-header__brand ${itemClass(revealedCount > 0)}`}
         >
-          <span className="site-header__brand-label">Christie Yu</span>
-          <FlowerIcon className="site-header__brand-mark" />
+          <BrandLogo className="site-header__brand-logo" />
         </Link>
         <nav className="site-header__nav-wrap" aria-label="Primary">
           <ul className="site-nav__list">

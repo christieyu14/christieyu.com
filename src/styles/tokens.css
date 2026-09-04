@@ -1,9 +1,8 @@
 /**
  * Design tokens from Figma file `personal`
- * Homepage — live (31:2)
  *
  * Colors: black #080808, white #ffffff, accent #4dac4d
- * Type: TAY Dreamboat + Helvetica Now Display + Inconsolata
+ * Type: TAY Dreamboat + Helvetica Now Display (+ Inconsolata for code only)
  * Content max width: 1080px
  */
 
@@ -12,6 +11,7 @@
   --color-white: #ffffff;
   --color-blue: #4dac4d;
   --color-surface: #f9f9f9;
+  --color-ascii-mint: #a8e8dc;
 
   --background: var(--color-white);
   --foreground: var(--color-black);
@@ -21,66 +21,79 @@
   --accent: var(--color-blue);
 
   --font-dreamboat: var(--font-tay-dreamboat), "Times New Roman", Times, serif;
-  --font-sans: var(--font-helvetica-now-display), "Helvetica Neue", Helvetica, Arial,
-    sans-serif;
-  --font-display: var(--font-helvetica-now-display), "Helvetica Neue", Helvetica, Arial,
-    sans-serif;
+  --font-sans:
+    var(--font-helvetica-now-display), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-display:
+    var(--font-helvetica-now-display), "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-mono: var(--font-inconsolata), ui-monospace, monospace;
 
-  --space-page: 2rem; /* 32px outer padding */
-  --space-section: 3rem; /* 48px */
-  --space-block: 8rem; /* 128px major section gap */
+  --gradient-radial-mint: radial-gradient(
+    circle at center,
+    #b8f0e8 0%,
+    #d4f5ef 55%,
+    #e8faf6 100%
+  );
+
+  --space-page: 2rem;
+  --space-section: 3rem;
+  --space-block: 8rem;
   --space-nav-gap: 1.5rem;
   --space-nav-row-gap: 0.5rem;
   --space-social-gap: 0.75rem;
   --space-caption: 1rem;
 
-  --content-max-width: 67.5rem; /* 1080px */
+  --content-max-width: 67.5rem;
 
-  /* Brand: Dreamboat Regular 18, tracking -6%, line-height 1 (Figma 58:412) */
-  --type-brand-size: 1.125rem;
-  --type-brand-weight: 400;
-  --type-brand-tracking: -0.06em;
-  --type-brand-leading: 1;
+  /* hero — Dreamboat 18, 100%, -6% */
+  --type-hero-size: 1.125rem;
+  --type-hero-weight: 400;
+  --type-hero-tracking: -0.06em;
+  --type-hero-leading: 1;
 
-  /* Nav: Dreamboat Regular 14, tracking -6% */
-  --type-nav-size: 0.875rem;
-  --type-nav-weight: 400;
-  --type-nav-tracking: -0.06em;
+  /* header — Dreamboat 14, auto, -6% */
+  --type-header-size: 0.875rem;
+  --type-header-weight: 400;
+  --type-header-tracking: -0.06em;
 
-  /* Uppercase UI / funky links: Dreamboat Regular 12, tracking -6% */
-  --type-ui-size: 0.75rem;
-  --type-ui-weight: 400;
-  --type-ui-tracking: -0.06em;
+  /* subheader — Dreamboat 12, auto, -6% */
+  --type-subheader-size: 0.75rem;
+  --type-subheader-weight: 400;
+  --type-subheader-tracking: -0.06em;
 
-  /* Fine UI caption: Dreamboat Regular 8, tracking -6% */
-  --type-ui-fine-size: 0.5rem;
-  --type-ui-fine-tracking: -0.06em;
+  /* large body — Helvetica Medium 18, 112%, 1% */
+  --type-body-lg-size: 1.125rem;
+  --type-body-lg-weight: 500;
+  --type-body-lg-tracking: 0.01em;
+  --type-body-lg-leading: 1.12;
 
-  /* Body intro: Helvetica Medium 18, tracking 1%, line-height 1.12 */
-  --type-body-size: 1.125rem;
+  /* regular body — Helvetica Medium 12, 112%, 1% */
+  --type-body-size: 0.75rem;
   --type-body-weight: 500;
   --type-body-tracking: 0.01em;
   --type-body-leading: 1.12;
 
-  /* Project description: Helvetica Medium 12, tracking 1%, line-height 1.12 */
-  --type-desc-size: 0.75rem;
-  --type-desc-weight: 500;
-  --type-desc-tracking: 0.01em;
-  --type-desc-leading: 1.12;
+  /* metadata — Dreamboat 10, 112%, -6% */
+  --type-metadata-size: 0.625rem;
+  --type-metadata-weight: 400;
+  --type-metadata-tracking: -0.06em;
+  --type-metadata-leading: 1.12;
 
-  /* Metadata: Inconsolata Expanded SemiBold 14, tracking -0.14px */
-  --type-metadata-size: 0.875rem;
-  --type-metadata-weight: 600;
-  --type-metadata-tracking: -0.14px;
-  --type-metadata-width: 125;
+  /* Back-compat aliases (prefer semantic names in new CSS) */
+  --type-brand-size: var(--type-hero-size);
+  --type-brand-weight: var(--type-hero-weight);
+  --type-brand-tracking: var(--type-hero-tracking);
+  --type-brand-leading: var(--type-hero-leading);
+  --type-nav-size: var(--type-header-size);
+  --type-nav-weight: var(--type-header-weight);
+  --type-nav-tracking: var(--type-header-tracking);
+  --type-ui-size: var(--type-subheader-size);
+  --type-ui-weight: var(--type-subheader-weight);
+  --type-ui-tracking: var(--type-subheader-tracking);
+  --type-desc-size: var(--type-body-size);
+  --type-desc-weight: var(--type-body-weight);
+  --type-desc-tracking: var(--type-body-tracking);
+  --type-desc-leading: var(--type-body-leading);
 
-  /* Fine print: Inconsolata SemiCondensed 12 */
-  --type-fine-size: 0.75rem;
-  --type-fine-weight: 400;
-  --type-fine-width: 87.5;
-
-  /* Dotted underline: 16% thickness, 24% offset (width spacing) */
   --link-underline-style: dotted;
   --link-underline-thickness: 16%;
   --link-underline-offset: 24%;

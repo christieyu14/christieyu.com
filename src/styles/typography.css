@@ -1,0 +1,53 @@
+/* Semantic type utilities — six documented styles */
+
+.type-hero {
+  font-family: var(--font-dreamboat);
+  font-weight: var(--type-hero-weight);
+  font-size: var(--type-hero-size);
+  line-height: var(--type-hero-leading);
+  letter-spacing: var(--type-hero-tracking);
+  text-transform: uppercase;
+}
+
+.type-header {
+  font-family: var(--font-dreamboat);
+  font-weight: var(--type-header-weight);
+  font-size: var(--type-header-size);
+  line-height: normal;
+  letter-spacing: var(--type-header-tracking);
+  text-transform: uppercase;
+}
+
+.type-subheader {
+  font-family: var(--font-dreamboat);
+  font-weight: var(--type-subheader-weight);
+  font-size: var(--type-subheader-size);
+  line-height: normal;
+  letter-spacing: var(--type-subheader-tracking);
+  text-transform: uppercase;
+}
+
+.type-body-lg {
+  font-family: var(--font-display);
+  font-weight: var(--type-body-lg-weight);
+  font-size: var(--type-body-lg-size);
+  line-height: var(--type-body-lg-leading);
+  letter-spacing: var(--type-body-lg-tracking);
+}
+
+.type-body {
+  font-family: var(--font-display);
+  font-weight: var(--type-body-weight);
+  font-size: var(--type-body-size);
+  line-height: var(--type-body-leading);
+  letter-spacing: var(--type-body-tracking);
+}
+
+.type-metadata {
+  font-family: var(--font-dreamboat);
+  font-weight: var(--type-metadata-weight);
+  font-size: var(--type-metadata-size);
+  line-height: var(--type-metadata-leading);
+  letter-spacing: var(--type-metadata-tracking);
+  text-transform: uppercase;
+}

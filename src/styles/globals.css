@@ -1,5 +1,6 @@
 @import "./tokens.css";
 @import "./motion.css";
+@import "./typography.css";
 
 html {
   height: 100%;
@@ -13,10 +14,10 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: var(--font-sans);
-  font-size: var(--type-body-size);
-  font-weight: var(--type-body-weight);
-  line-height: var(--type-body-leading);
-  letter-spacing: var(--type-body-tracking);
+  font-size: var(--type-body-lg-size);
+  font-weight: var(--type-body-lg-weight);
+  line-height: var(--type-body-lg-leading);
+  letter-spacing: var(--type-body-lg-tracking);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -54,7 +55,10 @@ a {
   text-decoration: none;
 }
 
-main a:not(.project-preview__media-link):not([class*="__media"]):not(.home__cta-link):not(.home__meta-action):not(.home__intro-caption):not(.resume__chrome-btn) {
+main
+  a:not(.project-preview__media-link):not([class*="__media"]):not(.home__cta-link):not(
+    .home__meta-action
+  ):not(.home__intro-caption):not(.resume__chrome-btn) {
   text-decoration: underline;
   text-decoration-style: var(--link-underline-style);
   text-decoration-color: currentColor;
@@ -62,8 +66,14 @@ main a:not(.project-preview__media-link):not([class*="__media"]):not(.home__cta-
   text-underline-offset: var(--link-underline-offset);
 }
 
-main a:not(.project-preview__media-link):not([class*="__media"]):not(.home__cta-link):not(.home__meta-action):not(.home__intro-caption):not(.resume__chrome-btn):hover,
-main a:not(.project-preview__media-link):not([class*="__media"]):not(.home__cta-link):not(.home__meta-action):not(.home__intro-caption):not(.resume__chrome-btn):focus-visible {
+main
+  a:not(.project-preview__media-link):not([class*="__media"]):not(.home__cta-link):not(
+    .home__meta-action
+  ):not(.home__intro-caption):not(.resume__chrome-btn):hover,
+main
+  a:not(.project-preview__media-link):not([class*="__media"]):not(.home__cta-link):not(
+    .home__meta-action
+  ):not(.home__intro-caption):not(.resume__chrome-btn):focus-visible {
   color: var(--color-blue);
   text-decoration-color: var(--color-blue);
 }
@@ -94,11 +104,13 @@ main {
 }
 
 .page-title {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  letter-spacing: var(--type-brand-tracking);
-  line-height: var(--type-brand-leading);
+  font-family: var(--font-dreamboat);
+  font-weight: var(--type-hero-weight);
+  font-size: var(--type-hero-size);
+  line-height: var(--type-hero-leading);
+  letter-spacing: var(--type-hero-tracking);
+  text-transform: uppercase;
+  color: var(--color-black);
 }
 
 .page-description {
@@ -135,7 +147,6 @@ main {
   grid-column: 1 / span 2;
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem; /* 8px — Figma 58:412 */
   color: var(--color-black);
   text-decoration: none;
 }
@@ -146,22 +157,11 @@ main {
   text-decoration: none;
 }
 
-.site-header__brand-label {
+.site-header__brand-logo {
   display: block;
-  font-family: var(--font-dreamboat);
-  font-weight: var(--type-brand-weight);
-  font-size: var(--type-brand-size);
-  line-height: var(--type-brand-leading);
-  letter-spacing: var(--type-brand-tracking);
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.site-header__brand-mark {
-  flex-shrink: 0;
-  width: 20px;
-  height: 20px;
-  overflow: clip;
+  width: 11.5625rem; /* 185px */
+  height: 1.5625rem; /* 25px */
+  overflow: visible;
 }
 
 /* Header type-in: brand → nav → social, one beat at a time */
@@ -205,7 +205,7 @@ main {
   line-height: normal;
   color: var(--color-black);
   text-decoration: none;
-  text-transform: lowercase;
+  text-transform: uppercase;
   text-decoration-thickness: var(--link-underline-thickness);
   text-underline-offset: var(--link-underline-offset);
   transition:
@@ -244,17 +244,22 @@ main {
 }
 
 .site-nav__social-link {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 24px;
   height: 24px;
   color: var(--color-black);
-  overflow: clip;
-  transition: color var(--motion-duration-fast) var(--motion-snap);
+  overflow: visible;
 }
 
 .site-nav__social-link:hover,
 .site-nav__social-link:focus-visible {
   color: var(--color-blue);
+}
+
+.site-nav__social-link:focus-visible {
+  outline: none;
 }
 
 .site-nav__social-link svg {
@@ -285,7 +290,6 @@ main {
   grid-column: 1 / span 2;
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
   color: var(--color-white);
   text-decoration: none;
 }
@@ -297,21 +301,11 @@ main {
   text-decoration: none;
 }
 
-.site-footer__brand-label {
-  font-family: var(--font-dreamboat);
-  font-weight: var(--type-brand-weight);
-  font-size: var(--type-brand-size);
-  line-height: var(--type-brand-leading);
-  letter-spacing: var(--type-brand-tracking);
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.site-footer__brand-mark {
-  flex-shrink: 0;
-  width: 20px;
-  height: 20px;
-  overflow: clip;
+.site-footer__brand-logo {
+  display: block;
+  width: 11.5625rem;
+  height: 1.5625rem;
+  overflow: visible;
 }
 
 .site-footer__rights {

@@ -1,0 +1,48 @@
+/* Background splashes — resume ASCII flower, contact clover composite */
+
+.ascii-splash {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ascii-splash__flower {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 4.75px;
+  line-height: 1;
+  white-space: pre;
+  color: var(--color-ascii-mint);
+  opacity: 0.45;
+  user-select: none;
+}
+
+/* Resume — single flower, ~half page width (Figma 63:502) */
+.ascii-splash--resume .ascii-splash__flower {
+  position: absolute;
+  right: 0;
+  top: -0.5rem;
+  width: min(50%, 540px);
+  max-width: none;
+}
+
+/*
+ * Contact — Frame 14 clover composite as a fixed background image.
+ * Natural size only; do not scale with viewport.
+ */
+.ascii-splash--contact {
+  background-image: url("/images/contact/clovers.png");
+  background-repeat: no-repeat;
+  background-position: right top;
+  background-size: auto;
+}
+
+@media (max-width: 900px) {
+  .ascii-splash--resume .ascii-splash__flower {
+    opacity: 0.22;
+    width: min(62%, 420px);
+    font-size: 3.5px;
+  }
+}

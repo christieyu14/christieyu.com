@@ -10,6 +10,7 @@ const publicEnvSchema = z.object({
   NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME: optionalString,
   NEXT_PUBLIC_CLOUDINARY_API_KEY: optionalString,
   NEXT_PUBLIC_SITE_URL: optionalString,
+  NEXT_PUBLIC_ADOBE_PDF_CLIENT_ID: optionalString,
 });
 
 const serverEnvSchema = z.object({
@@ -34,6 +35,7 @@ function parsePublicEnv(): PublicEnv {
     NEXT_PUBLIC_CLOUDINARY_API_KEY:
       process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY || process.env.CLOUDINARY_API_KEY,
     NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
+    NEXT_PUBLIC_ADOBE_PDF_CLIENT_ID: process.env.NEXT_PUBLIC_ADOBE_PDF_CLIENT_ID,
   });
 }
 
@@ -68,8 +70,8 @@ export function isCloudinaryAdminConfigured(): boolean {
   const server = getServerEnv();
   return Boolean(
     isCloudinaryConfigured() &&
-      server.CLOUDINARY_API_KEY &&
-      server.CLOUDINARY_API_SECRET,
+    server.CLOUDINARY_API_KEY &&
+    server.CLOUDINARY_API_SECRET,
   );
 }
 

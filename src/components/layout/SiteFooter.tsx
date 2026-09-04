@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FlowerIcon } from "@/components/icons";
+import { BrandLogo } from "@/components/icons";
 import type { SiteSettings } from "@/types/site";
 
 interface SiteFooterProps {
@@ -11,10 +11,10 @@ export function SiteFooter({ settings }: SiteFooterProps) {
     <footer className="site-footer">
       <div className="site-footer__inner">
         <Link href="/" className="site-footer__brand">
-          <span className="site-footer__brand-label">
-            {settings.siteTitle || "Christie Yu"}
-          </span>
-          <FlowerIcon className="site-footer__brand-mark" />
+          <BrandLogo
+            className="site-footer__brand-logo"
+            title={settings.siteTitle || "Christie Yu"}
+          />
         </Link>
         <p className="site-footer__rights">All rights reserved.</p>
       </div>

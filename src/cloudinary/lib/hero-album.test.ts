@@ -12,6 +12,7 @@ const sampleAssets: HeroAlbumAsset[] = [
     height: 1125,
     caption: "alpha",
     date: "01.2026",
+    tags: ["iceland-2026"],
   },
   {
     publicId: "hero/b",
@@ -19,6 +20,7 @@ const sampleAssets: HeroAlbumAsset[] = [
     height: 1125,
     caption: "beta",
     date: "02.2026",
+    tags: [],
   },
 ];
 
