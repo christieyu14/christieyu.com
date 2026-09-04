@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
-import { EmptyState } from "@/components/content/EmptyState";
+import { ContactForm } from "@/components/content/ContactForm";
 import { buildMetadata, formatPageTitle } from "@/lib/metadata";
 import { getSiteSettings } from "@/sanity/lib/fetch";
+import "@/styles/contact.css";
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSiteSettings();
   return buildMetadata(
     {
       title: formatPageTitle("Contact", settings.siteTitle),
-      description: "Contact",
+      description: "Get in touch with Christie Yu.",
       path: "/contact",
     },
     settings,
@@ -16,23 +17,23 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function ContactPage() {
-  const settings = await getSiteSettings();
-
   return (
-    <main id="main-content" className="container" style={{ paddingBlock: "2rem" }}>
-      <header className="page-header">
-        <h1 className="page-title">Contact</h1>
-      </header>
-      {settings.contactEmail ? (
-        <p>
-          Email: <a href={`mailto:${settings.contactEmail}`}>{settings.contactEmail}</a>
-        </p>
-      ) : (
-        <EmptyState
-          title="Contact details not configured"
-          description="Add a contact email in Sanity site settings."
-        />
-      )}
+    <main id="main-content" className="contact-page">
+      <div className="contact-page__body">
+        <div className="contact-page__layout">
+          <ContactForm />
+          <aside className="contact-page__art" aria-hidden="true">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              className="contact-page__ascii"
+              src="/images/contact/ascii-branch.png"
+              alt=""
+              width={554}
+              height={848}
+            />
+          </aside>
+        </div>
+      </div>
     </main>
   );
 }

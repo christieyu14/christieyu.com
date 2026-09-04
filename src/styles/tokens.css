@@ -2,15 +2,15 @@
  * Design tokens from Figma file `personal`
  * Homepage — live (31:2)
  *
- * Colors: black #080808, white #ffffff, blue #004cff
- * Type: Helvetica Now Display + Inconsolata
+ * Colors: black #080808, white #ffffff, accent #4dac4d
+ * Type: TAY Dreamboat + Helvetica Now Display + Inconsolata
  * Content max width: 1080px
  */
 
 :root {
   --color-black: #080808;
   --color-white: #ffffff;
-  --color-blue: #004cff;
+  --color-blue: #4dac4d;
   --color-surface: #f9f9f9;
 
   --background: var(--color-white);
@@ -20,6 +20,7 @@
   --focus: var(--color-blue);
   --accent: var(--color-blue);
 
+  --font-dreamboat: var(--font-tay-dreamboat), "Times New Roman", Times, serif;
   --font-sans: var(--font-helvetica-now-display), "Helvetica Neue", Helvetica, Arial,
     sans-serif;
   --font-display: var(--font-helvetica-now-display), "Helvetica Neue", Helvetica, Arial,
@@ -36,24 +37,33 @@
 
   --content-max-width: 67.5rem; /* 1080px */
 
-  /* Brand / hero links: Bold 20, tracking 2.5%, line-height 0.8 */
-  --type-brand-size: 1.25rem;
-  --type-brand-weight: 700;
-  --type-brand-tracking: 0.025em;
-  --type-brand-leading: 0.8;
+  /* Brand: Dreamboat Regular 18, tracking -6%, line-height 1 (Figma 58:412) */
+  --type-brand-size: 1.125rem;
+  --type-brand-weight: 400;
+  --type-brand-tracking: -0.06em;
+  --type-brand-leading: 1;
 
-  /* Nav: Bold 16, tracking 2.5% */
-  --type-nav-size: 1rem;
-  --type-nav-weight: 700;
-  --type-nav-tracking: 0.025em;
+  /* Nav: Dreamboat Regular 14, tracking -6% */
+  --type-nav-size: 0.875rem;
+  --type-nav-weight: 400;
+  --type-nav-tracking: -0.06em;
 
-  /* Body intro: Medium 18, tracking 1%, line-height 1.12 */
+  /* Uppercase UI / funky links: Dreamboat Regular 12, tracking -6% */
+  --type-ui-size: 0.75rem;
+  --type-ui-weight: 400;
+  --type-ui-tracking: -0.06em;
+
+  /* Fine UI caption: Dreamboat Regular 8, tracking -6% */
+  --type-ui-fine-size: 0.5rem;
+  --type-ui-fine-tracking: -0.06em;
+
+  /* Body intro: Helvetica Medium 18, tracking 1%, line-height 1.12 */
   --type-body-size: 1.125rem;
   --type-body-weight: 500;
   --type-body-tracking: 0.01em;
   --type-body-leading: 1.12;
 
-  /* Project description: Medium 12, tracking 1%, line-height 1.12 */
+  /* Project description: Helvetica Medium 12, tracking 1%, line-height 1.12 */
   --type-desc-size: 0.75rem;
   --type-desc-weight: 500;
   --type-desc-tracking: 0.01em;
@@ -70,7 +80,9 @@
   --type-fine-weight: 400;
   --type-fine-width: 87.5;
 
-  --link-underline-thickness: 12%;
-  --link-underline-offset: 15%;
+  /* Dotted underline: 16% thickness, 24% offset (width spacing) */
+  --link-underline-style: dotted;
+  --link-underline-thickness: 16%;
+  --link-underline-offset: 24%;
   --hero-aspect: 992.65 / 558.35;
 }

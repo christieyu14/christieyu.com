@@ -1,0 +1,289 @@
+/* Resume page — Figma Resume (63:502) */
+
+.resume-page {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-bottom: var(--space-block);
+}
+
+.resume-page__body {
+  width: min(100%, var(--content-max-width));
+  margin-inline: auto;
+  padding-inline: var(--space-page);
+}
+
+.resume-page__layout {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 3rem;
+  align-items: start;
+}
+
+.resume__viewer {
+  grid-column: 1 / span 2;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  min-width: 0;
+}
+
+.resume__meta {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+}
+
+.resume__meta-label {
+  margin: 0;
+  font-family: var(--font-dreamboat);
+  font-size: var(--type-ui-size);
+  font-weight: var(--type-ui-weight);
+  letter-spacing: var(--type-ui-tracking);
+  line-height: normal;
+  text-transform: uppercase;
+  color: var(--color-black);
+}
+
+.resume__stage {
+  position: relative;
+  width: 100%;
+  min-height: 36rem;
+  background: transparent;
+}
+
+.resume__stage:fullscreen,
+.resume__stage--fullscreen:fullscreen {
+  display: flex;
+  justify-content: safe center;
+  align-items: safe center;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  overflow: auto;
+  background: var(--color-white);
+}
+
+.resume__embed {
+  display: block;
+  width: 100%;
+  height: min(70vh, 52rem);
+  min-height: 32rem;
+  border: 0;
+  background: var(--color-white);
+}
+
+.resume__stage:fullscreen .resume__embed,
+.resume__stage--fullscreen:fullscreen .resume__embed {
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+}
+
+.resume__chrome {
+  position: absolute;
+  left: 50%;
+  bottom: 1rem;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.75rem;
+  border-radius: 0.35rem;
+  border: 1px solid color-mix(in srgb, var(--color-white) 18%, transparent);
+  background: color-mix(in srgb, var(--color-black) 68%, transparent);
+  backdrop-filter: blur(20px) saturate(1.25);
+  -webkit-backdrop-filter: blur(20px) saturate(1.25);
+  color: var(--color-white);
+  transform: translateX(-50%) translateY(0.25rem);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 160ms ease,
+    transform 160ms ease;
+  isolation: isolate;
+}
+
+.resume__stage:fullscreen .resume__chrome,
+.resume__stage--fullscreen:fullscreen .resume__chrome {
+  position: fixed;
+  bottom: 1.5rem;
+}
+
+.resume__stage:hover .resume__chrome,
+.resume__stage:focus-within .resume__chrome {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+@media (hover: none) {
+  .resume__chrome {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.resume__chrome-zoom {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.resume__chrome-zoom-label {
+  min-width: 2.75rem;
+  text-align: center;
+  font-family: var(--font-dreamboat);
+  font-size: var(--type-ui-size);
+  letter-spacing: var(--type-ui-tracking);
+  text-transform: uppercase;
+  color: var(--color-white);
+  text-decoration: none;
+}
+
+.resume__chrome-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0.35rem 0.45rem;
+  min-height: 2rem;
+  border: 0;
+  background: transparent;
+  font-family: var(--font-dreamboat);
+  font-size: var(--type-ui-size);
+  font-weight: var(--type-ui-weight);
+  letter-spacing: var(--type-ui-tracking);
+  line-height: 1;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-decoration-line: none;
+  color: var(--color-white);
+  cursor: pointer;
+  transition:
+    color 160ms ease,
+    text-decoration-color 160ms ease;
+}
+
+.resume__chrome-btn--icon {
+  min-width: 2.25rem;
+  min-height: 2.25rem;
+  padding: 0;
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.resume__chrome-btn:hover,
+.resume__chrome-btn:focus-visible {
+  color: var(--color-blue);
+  text-decoration-line: underline;
+  text-decoration-style: dotted;
+  text-decoration-color: var(--color-blue);
+  text-decoration-thickness: var(--link-underline-thickness);
+  text-underline-offset: var(--link-underline-offset);
+  outline: none;
+}
+
+.resume__chrome-btn:disabled {
+  cursor: default;
+  opacity: 0.35;
+  color: var(--color-white);
+  text-decoration: none;
+}
+
+.resume__chrome-btn:disabled:hover,
+.resume__chrome-btn:disabled:focus-visible {
+  color: var(--color-white);
+  text-decoration: none;
+  opacity: 0.35;
+}
+
+.resume__empty {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 100%;
+  min-height: 20rem;
+  padding: 1.5rem;
+  color: var(--color-black);
+  background: var(--color-surface);
+}
+
+.resume__empty-title {
+  margin: 0;
+  font-family: var(--font-dreamboat);
+  font-size: var(--type-ui-size);
+  letter-spacing: var(--type-ui-tracking);
+  text-transform: uppercase;
+}
+
+.resume__empty-copy {
+  margin: 0;
+  max-width: 36ch;
+  font-family: var(--font-display);
+  font-size: var(--type-desc-size);
+  font-weight: var(--type-desc-weight);
+  letter-spacing: var(--type-desc-tracking);
+  line-height: var(--type-desc-leading);
+}
+
+.resume__empty-copy code {
+  font-family: var(--font-mono);
+  font-size: 0.95em;
+}
+
+/* Exact clover composition from provided Frame 14 art */
+.resume__art {
+  grid-column: 3;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  max-width: 20.5rem;
+  justify-self: stretch;
+  align-self: start;
+  pointer-events: none;
+}
+
+.resume__clovers {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 328 / 437;
+  object-fit: contain;
+}
+
+@media (max-width: 900px) {
+  .resume-page__layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .resume__viewer,
+  .resume__art {
+    grid-column: 1;
+  }
+
+  .resume__art {
+    max-width: 16rem;
+    margin-inline: auto;
+  }
+
+  .resume__stage {
+    min-height: 28rem;
+  }
+
+  .resume__embed {
+    min-height: 24rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .resume__chrome {
+    transition: none;
+  }
+}

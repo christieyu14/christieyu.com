@@ -8,15 +8,16 @@ interface ProjectsParallaxProps {
 }
 
 /**
- * Sticky ASCII flower behind a tall project stage.
- * Cards scroll over it; the flower stays fixed in the viewport while the section is in view.
+ * Sticky fish animation on the left; project cards scroll on the right.
+ * Sticky is on the column itself so it can pin while the grid row
+ * (stretched by the scrolling posts) is taller than the fish.
  */
 export function ProjectsParallax({ ascii, children }: ProjectsParallaxProps) {
   return (
     <div className="home__projects-stage">
-      <div className="home__projects-ascii" aria-hidden="true">
-        <div className="home__projects-ascii-sticky">{ascii}</div>
-      </div>
+      <aside className="home__projects-ascii" aria-hidden="true">
+        {ascii}
+      </aside>
       <div className="home__projects-scroll">{children}</div>
     </div>
   );

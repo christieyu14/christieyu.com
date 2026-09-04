@@ -1,6 +1,7 @@
 /**
  * Homepage intro copy from Figma Homepage — live (31:2).
  */
+import { ArrowForwardIcon } from "@/components/icons";
 import { Reveal } from "@/components/ui/Reveal";
 import { SentenceRevealBlock } from "@/components/ui/SentenceRevealBlock";
 
@@ -26,6 +27,10 @@ export function HomeIntro() {
           width={240}
           height={258}
         />
+        <p className="home__intro-caption">
+          <ArrowForwardIcon size={20} />
+          This is Me in Milan
+        </p>
       </Reveal>
     </section>
   );

@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useEffect, useRef, useState } from "react";
 import { buildCloudinaryUrl } from "@/cloudinary/lib/url";
 import {
   HERO_ALBUM_PATH,
@@ -9,6 +8,8 @@ import {
   selectHeroAsset,
   type HeroAlbumAsset,
 } from "@/cloudinary/lib/hero-album-shared";
+import { ArrowForwardIcon } from "@/components/icons";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 interface HomeHeroProps {
   assets: HeroAlbumAsset[];
@@ -278,10 +279,12 @@ export function HomeHero({ assets, initialAsset }: HomeHeroProps) {
               }}
               disabled={isRefreshing || assets.length < 2}
             >
-              see another photo →
+              <span className="home__meta-action-text">see another photo</span>
+              <ArrowForwardIcon size={20} />
             </button>
             <Link href={HERO_ALBUM_PATH} className="home__meta-action">
-              or see all my photos →
+              <span className="home__meta-action-text">or see all my photos</span>
+              <ArrowForwardIcon size={20} />
             </Link>
             <p className="home__meta-fine">(do not distribute)</p>
           </div>

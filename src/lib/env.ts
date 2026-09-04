@@ -18,6 +18,7 @@ const serverEnvSchema = z.object({
   SANITY_REVALIDATE_SECRET: optionalString,
   CLOUDINARY_API_KEY: optionalString,
   CLOUDINARY_API_SECRET: optionalString,
+  FIGMA_ACCESS_TOKEN: optionalString,
 });
 
 export type PublicEnv = z.infer<typeof publicEnvSchema>;
@@ -43,6 +44,7 @@ function parseServerEnv(): ServerEnv {
     SANITY_REVALIDATE_SECRET: process.env.SANITY_REVALIDATE_SECRET,
     CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY,
     CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET,
+    FIGMA_ACCESS_TOKEN: process.env.FIGMA_ACCESS_TOKEN,
   });
 }
 
@@ -82,6 +84,15 @@ export function hasPreviewSecret(): boolean {
 
 export function isRevalidateConfigured(): boolean {
   return Boolean(getServerEnv().SANITY_REVALIDATE_SECRET);
+}
+
+export function isFigmaConfigured(): boolean {
+  return Boolean(getServerEnv().FIGMA_ACCESS_TOKEN);
+}
+
+export function getFigmaAccessToken(): string | undefined {
+  const token = getServerEnv().FIGMA_ACCESS_TOKEN;
+  return token || undefined;
 }
 
 export function isProductionEnvRequired(): boolean {

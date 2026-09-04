@@ -47,6 +47,22 @@ export function buildCloudinaryUrl(options: CloudinaryUrlOptions): string | unde
   return `${baseUrl}/image/upload/${transformation}/${publicId}`;
 }
 
+/** Force-download URL for a Cloudinary-hosted resume PDF (or other file). */
+export function buildCloudinaryAttachmentUrl(
+  publicId: string,
+  filename = "Christie-Yu-Resume.pdf",
+  cloudName?: string,
+): string | undefined {
+  const baseUrl = getCloudinaryBaseUrl(cloudName);
+  if (!baseUrl) {
+    return undefined;
+  }
+
+  const id = publicId.replace(/^\//, "");
+  const safeName = encodeURIComponent(filename);
+  return `${baseUrl}/image/upload/fl_attachment:${safeName}/${id}`;
+}
+
 export function buildCloudinarySrcSet(
   publicId: string,
   widths: number[],

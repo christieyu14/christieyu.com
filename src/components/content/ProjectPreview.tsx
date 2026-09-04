@@ -3,18 +3,9 @@ import type { ProjectPreviewData } from "@/content/project-previews";
 
 interface ProjectPreviewProps {
   project: ProjectPreviewData;
-  /** Denser layout for the 4×4 homepage grid. */
-  compact?: boolean;
 }
 
-/** Inline so Turbopack/LightningCSS cannot drop the standard backdrop-filter. */
-const CARD_SURFACE_STYLE = {
-  background: "rgba(255, 255, 255, 0.1)",
-  WebkitBackdropFilter: "blur(100px)",
-  backdropFilter: "blur(100px)",
-} as const;
-
-export function ProjectPreview({ project, compact = false }: ProjectPreviewProps) {
+export function ProjectPreview({ project }: ProjectPreviewProps) {
   const media = (
     <div className="project-preview__media">
       {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -29,10 +20,7 @@ export function ProjectPreview({ project, compact = false }: ProjectPreviewProps
   );
 
   return (
-    <article
-      className={`project-preview${compact ? " project-preview--compact" : ""}`}
-      style={CARD_SURFACE_STYLE}
-    >
+    <article className="project-preview">
       {project.href ? (
         <Link href={project.href} className="project-preview__media-link">
           {media}
@@ -43,8 +31,10 @@ export function ProjectPreview({ project, compact = false }: ProjectPreviewProps
       <div className="project-preview__body">
         <div className="project-preview__meta">
           <h3 className="project-preview__title">{project.title}</h3>
-          <p className="project-preview__client">{project.client}</p>
-          <p className="project-preview__date">{project.dateLabel}</p>
+          <div>
+            <p className="project-preview__client">{project.client}</p>
+            <p className="project-preview__date">{project.dateLabel}</p>
+          </div>
         </div>
         <p className="project-preview__summary">{project.summary}</p>
       </div>

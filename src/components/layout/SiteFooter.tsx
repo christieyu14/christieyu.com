@@ -1,6 +1,5 @@
-"use client";
-
-import { usePathname } from "next/navigation";
+import Link from "next/link";
+import { FlowerIcon } from "@/components/icons";
 import type { SiteSettings } from "@/types/site";
 
 interface SiteFooterProps {
@@ -8,24 +7,16 @@ interface SiteFooterProps {
 }
 
 export function SiteFooter({ settings }: SiteFooterProps) {
-  const pathname = usePathname();
-  const year = new Date().getFullYear();
-
-  if (pathname === "/") {
-    return null;
-  }
-
   return (
     <footer className="site-footer">
-      <div className="container site-footer__inner">
-        <p>
-          © {year} {settings.siteTitle}
-        </p>
-        {settings.contactEmail ? (
-          <p>
-            <a href={`mailto:${settings.contactEmail}`}>{settings.contactEmail}</a>
-          </p>
-        ) : null}
+      <div className="site-footer__inner">
+        <Link href="/" className="site-footer__brand">
+          <span className="site-footer__brand-label">
+            {settings.siteTitle || "Christie Yu"}
+          </span>
+          <FlowerIcon className="site-footer__brand-mark" />
+        </Link>
+        <p className="site-footer__rights">All rights reserved.</p>
       </div>
     </footer>
   );

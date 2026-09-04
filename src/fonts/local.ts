@@ -2,9 +2,27 @@ import localFont from "next/font/local";
 
 /**
  * Local fonts from Figma (Homepage — live):
- * - Helvetica Now Display Bold / Medium / Regular
- * - Inconsolata variable (wdth + wght) for Expanded SemiBold metadata + ASCII
+ * - TAY Dreamboat Regular / Light (brand, nav, uppercase UI)
+ * - Helvetica Now Display Bold / Medium / Regular (body)
+ * - Inconsolata variable (wdth + wght) for Expanded SemiBold metadata
  */
+
+export const tayDreamboat = localFont({
+  src: [
+    {
+      path: "../../public/fonts/tay-dreamboat/TAYDreamboatLight.woff2",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/tay-dreamboat/TAYDreamboat-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+  ],
+  variable: "--font-tay-dreamboat",
+  display: "swap",
+});
 
 export const helveticaNowDisplay = localFont({
   src: [
@@ -41,6 +59,7 @@ export const inconsolata = localFont({
 });
 
 export const fontVariables = {
+  dreamboat: "--font-tay-dreamboat",
   display: "--font-helvetica-now-display",
   sans: "--font-helvetica-now-display",
   mono: "--font-inconsolata",
@@ -48,4 +67,4 @@ export const fontVariables = {
   inconsolata: "--font-inconsolata",
 } as const;
 
-export const fontClassNames = `${helveticaNowDisplay.variable} ${inconsolata.variable}`;
+export const fontClassNames = `${tayDreamboat.variable} ${helveticaNowDisplay.variable} ${inconsolata.variable}`;

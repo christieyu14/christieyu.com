@@ -59,7 +59,7 @@ export interface MediaTransformOptions {
   width?: number;
   height?: number;
   quality?: number | "auto";
-  format?: "auto" | "webp" | "jpg" | "png";
+  format?: "auto" | "webp" | "jpg" | "png" | "pdf";
   crop?: CloudinaryCropMode;
   dpr?: number;
 }
