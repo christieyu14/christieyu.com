@@ -28,8 +28,7 @@ export async function generateMetadata({
   const { tagSlug } = await params;
   const settings = await getSiteSettings();
   const assets = await getHeroAlbumAssetsByTag(tagSlug);
-  const label =
-    assets[0]?.tags.find((tag) => slugMatchesTag(tagSlug, tag)) ?? tagSlug;
+  const label = assets[0]?.tags.find((tag) => slugMatchesTag(tagSlug, tag)) ?? tagSlug;
 
   return buildMetadata(
     {
@@ -54,19 +53,16 @@ export default async function PhotoTagPage({ params }: PhotoTagPageProps) {
   const tagLabel = formatTagLabel(matchedTag);
 
   return (
-    <main id="main-content" className="photos-page">
-      <div className="photos-page__body">
-        <header className="photos-page__header">
-          <p className="photos-page__breadcrumb">
-            <Link className="photos-page__breadcrumb-link" href="/photos">
+    <main id="main-content">
+      <div className="content-page">
+        <header className="content-page__header">
+          <h1 className="photos-page__breadcrumb type-title">
+            <Link className="type-link" href="/photos">
               My photo album
             </Link>
-            <span className="photos-page__breadcrumb-sep" aria-hidden="true">
-              {" "}
-              &gt;{" "}
-            </span>
-            <span className="photos-page__breadcrumb-tag">{tagLabel}</span>
-          </p>
+            <span aria-hidden="true">&gt;</span>
+            <span>{tagLabel}</span>
+          </h1>
         </header>
 
         <PhotoAlbumGallery assets={assets} />

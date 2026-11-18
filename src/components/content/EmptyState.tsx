@@ -9,9 +9,11 @@ interface EmptyStateProps {
 export function EmptyState({ title, description, action }: EmptyStateProps) {
   return (
     <section className="empty-state" aria-labelledby="empty-state-title">
-      <h2 id="empty-state-title">{title}</h2>
-      {description ? <p>{description}</p> : null}
-      {action ? <div style={{ marginTop: "1rem" }}>{action}</div> : null}
+      <h2 id="empty-state-title" className="type-title">
+        {title}
+      </h2>
+      {description ? <p className="type-md">{description}</p> : null}
+      {action ? <div className="empty-state__action">{action}</div> : null}
     </section>
   );
 }

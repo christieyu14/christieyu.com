@@ -10,6 +10,7 @@ export interface PortfolioPostSummary {
   publishedAt?: string;
   projectYear?: number;
   client?: string;
+  location?: string;
   role?: string;
   featured?: boolean;
   coverMedia?: NormalizedMedia;

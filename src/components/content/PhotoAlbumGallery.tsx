@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { Reveal } from "@/components/ui/Reveal";
 import { formatTagLabel, tagToSlug } from "@/cloudinary/lib/album-tags";
 import { buildCloudinaryUrl } from "@/cloudinary/lib/url";
@@ -37,13 +37,13 @@ export function PhotoAlbumGallery({ assets }: PhotoAlbumGalleryProps) {
         >
           <figure className="photos__figure">
             <PhotoAlbumImage asset={asset} />
-            <figcaption className="photos__overlay">
+            <figcaption className="photos__overlay type-sm">
               <span className="photos__caption">{asset.caption}</span>
               <span className="photos__meta-right">
-                <span className="photos__date">{asset.date}</span>
+                <span>{asset.date}</span>
                 {asset.tags[0] ? (
                   <Link
-                    className="photos__tag"
+                    className="type-link"
                     href={`/photos/tags/${tagToSlug(asset.tags[0])}`}
                   >
                     {formatTagLabel(asset.tags[0])}
@@ -59,17 +59,14 @@ export function PhotoAlbumGallery({ assets }: PhotoAlbumGalleryProps) {
 }
 
 function PhotoAlbumImage({ asset }: { asset: HeroAlbumAsset }) {
-  const imageRef = useRef<HTMLImageElement>(null);
   const [loaded, setLoaded] = useState(false);
   const src = assetUrl(asset.publicId);
 
-  useEffect(() => {
-    setLoaded(false);
-    const image = imageRef.current;
+  function markCachedImage(image: HTMLImageElement | null) {
     if (image?.complete && image.naturalWidth > 0) {
       setLoaded(true);
     }
-  }, [asset.publicId]);
+  }
 
   if (!src) {
     return null;
@@ -79,7 +76,7 @@ function PhotoAlbumImage({ asset }: { asset: HeroAlbumAsset }) {
     <div className={`photos__frame${loaded ? " photos__frame--ready" : ""}`}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        ref={imageRef}
+        ref={markCachedImage}
         src={src}
         alt={asset.caption}
         width={asset.width}

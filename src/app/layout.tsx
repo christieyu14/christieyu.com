@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SkipLink } from "@/components/ui/SkipLink";
 import { SiteFooter } from "@/components/layout/SiteFooter";
+import { SiteFrame } from "@/components/layout/SiteFrame";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { fontClassNames } from "@/fonts/local";
 import { buildMetadata } from "@/lib/metadata";
@@ -31,11 +32,17 @@ export default async function RootLayout({
 
   return (
     <html lang="en" className={fontClassNames}>
+      <head>
+        <link rel="preconnect" href="https://res.cloudinary.com" />
+        <link rel="dns-prefetch" href="https://res.cloudinary.com" />
+      </head>
       <body>
         <SkipLink />
-        <SiteHeader settings={settings} />
-        {children}
-        <SiteFooter settings={settings} />
+        <SiteFrame>
+          <SiteHeader />
+          {children}
+          <SiteFooter settings={settings} />
+        </SiteFrame>
       </body>
     </html>
   );

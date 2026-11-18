@@ -1,7 +1,7 @@
 "use client";
 
 import Script from "next/script";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { publicEnv } from "@/lib/env";
 
 declare global {
@@ -42,68 +42,53 @@ const PREVIEW_CONFIG = {
 interface ResumeViewerProps {
   pdfSrc?: string;
   downloadFilename: string;
-  updatedLabel: string;
 }
 
-export function ResumeViewer({
-  pdfSrc,
-  downloadFilename,
-  updatedLabel,
-}: ResumeViewerProps) {
+export function ResumeViewer({ pdfSrc, downloadFilename }: ResumeViewerProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const [sdkReady, setSdkReady] = useState(false);
   const clientId = publicEnv.NEXT_PUBLIC_ADOBE_PDF_CLIENT_ID;
 
   useEffect(() => {
-    function onReady() {
-      setSdkReady(true);
-    }
-
-    if (typeof window !== "undefined" && window.AdobeDC) {
-      setSdkReady(true);
+    if (!pdfSrc || !clientId) {
       return;
     }
 
-    document.addEventListener(ADOBE_READY_EVENT, onReady);
-    return () => document.removeEventListener(ADOBE_READY_EVENT, onReady);
-  }, []);
+    function renderViewer() {
+      const container = containerRef.current;
+      const AdobeView = window.AdobeDC?.View;
+      if (!container || !AdobeView || !pdfSrc || !clientId) {
+        return;
+      }
 
-  useEffect(() => {
-    if (!sdkReady || !pdfSrc || !clientId || !containerRef.current) {
-      return;
-    }
+      container.innerHTML = "";
+      const viewDiv = document.createElement("div");
+      viewDiv.id = "adobe-dc-view";
+      container.append(viewDiv);
 
-    const AdobeView = window.AdobeDC?.View;
-    if (!AdobeView) {
-      return;
-    }
-
-    containerRef.current.innerHTML = "";
-
-    const viewDiv = document.createElement("div");
-    viewDiv.id = "adobe-dc-view";
-    containerRef.current.append(viewDiv);
-
-    const adobeDCView = new AdobeView({
-      clientId,
-      divId: "adobe-dc-view",
-    });
-
-    adobeDCView.previewFile(
-      {
-        content: {
-          promise: fetch(pdfSrc).then((response) => {
-            if (!response.ok) {
-              throw new Error("Failed to load resume PDF");
-            }
-            return response.arrayBuffer();
-          }),
+      new AdobeView({ clientId, divId: "adobe-dc-view" }).previewFile(
+        {
+          content: {
+            promise: fetch(pdfSrc).then((response) => {
+              if (!response.ok) {
+                throw new Error("Failed to load resume PDF");
+              }
+              return response.arrayBuffer();
+            }),
+          },
+          metaData: { fileName: downloadFilename },
         },
-        metaData: { fileName: downloadFilename },
-      },
-      PREVIEW_CONFIG,
-    );
-  }, [clientId, downloadFilename, pdfSrc, sdkReady]);
+        PREVIEW_CONFIG,
+      );
+    }
+
+    if (window.AdobeDC) {
+      renderViewer();
+      return;
+    }
+
+    document.addEventListener(ADOBE_READY_EVENT, renderViewer);
+    return () => document.removeEventListener(ADOBE_READY_EVENT, renderViewer);
+  }, [clientId, downloadFilename, pdfSrc]);
 
   const canView = Boolean(pdfSrc && clientId);
 
@@ -111,37 +96,28 @@ export function ResumeViewer({
     <div className="resume__viewer">
       <Script src={ADOBE_VIEWER_SCRIPT} strategy="lazyOnload" />
 
-      <div className="resume__meta">
-        <p className="resume__meta-label">
-          Resume
-          {updatedLabel ? ` - Last updated ${updatedLabel}` : null}
-        </p>
-      </div>
-
-      <div className="resume__stage">
-        {canView ? (
-          <div ref={containerRef} className="resume__adobe" />
-        ) : (
-          <div className="resume__empty">
-            <p className="resume__empty-title">Resume PDF not found</p>
-            <p className="resume__empty-copy">
-              {!clientId ? (
-                <>
-                  Set <code>NEXT_PUBLIC_ADOBE_PDF_CLIENT_ID</code> for the PDF viewer,
-                  plus <code>FIGMA_ACCESS_TOKEN</code> or drop{" "}
-                  <code>public/resume/Christie-Yu-Resume.pdf</code>.
-                </>
-              ) : (
-                <>
-                  Set <code>FIGMA_ACCESS_TOKEN</code> to export from Figma (which also
-                  saves a fallback PDF), or drop{" "}
-                  <code>public/resume/Christie-Yu-Resume.pdf</code>, then refresh.
-                </>
-              )}
-            </p>
-          </div>
-        )}
-      </div>
+      {canView ? (
+        <div ref={containerRef} className="resume__adobe" />
+      ) : (
+        <div className="resume__empty type-md">
+          <p className="type-title">Resume PDF not found</p>
+          <p>
+            {!clientId ? (
+              <>
+                Set <code>NEXT_PUBLIC_ADOBE_PDF_CLIENT_ID</code> for the PDF viewer,
+                plus <code>FIGMA_ACCESS_TOKEN</code> or drop{" "}
+                <code>public/resume/Christie-Yu-Resume.pdf</code>.
+              </>
+            ) : (
+              <>
+                Set <code>FIGMA_ACCESS_TOKEN</code> to export from Figma (which also
+                saves a fallback PDF), or drop{" "}
+                <code>public/resume/Christie-Yu-Resume.pdf</code>, then refresh.
+              </>
+            )}
+          </p>
+        </div>
+      )}
     </div>
   );
 }

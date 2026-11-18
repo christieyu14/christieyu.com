@@ -1,11 +1,7 @@
 import { access, mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { unstable_cache } from "next/cache";
-import {
-  parseResumeUpdatedLabel,
-  RESUME,
-  resumeUpdatedLabel,
-} from "@/content/resume";
+import { parseResumeUpdatedLabel, RESUME, resumeUpdatedLabel } from "@/content/resume";
 import { getFigmaAccessToken, isFigmaConfigured } from "@/lib/env";
 
 const ONE_DAY = 86_400;
@@ -123,10 +119,7 @@ async function resolveUpdatedLabel(token: string): Promise<string> {
   return resumeUpdatedLabel();
 }
 
-async function fetchPdfRenderUrl(
-  token: string,
-  attempt: number,
-): Promise<string> {
+async function fetchPdfRenderUrl(token: string, attempt: number): Promise<string> {
   const url = new URL(`${FIGMA_API}/images/${RESUME.figmaFileKey}`);
   url.searchParams.set("ids", RESUME.figmaNodeId);
   url.searchParams.set("format", "pdf");
@@ -162,11 +155,7 @@ async function downloadPdfBytes(renderUrl: string): Promise<Buffer> {
 }
 
 function localPdfAbsolutePath(): string {
-  return path.join(
-    process.cwd(),
-    "public",
-    RESUME.pdfPath.replace(/^\//, ""),
-  );
+  return path.join(process.cwd(), "public", RESUME.pdfPath.replace(/^\//, ""));
 }
 
 function lastSavedMetaAbsolutePath(): string {
@@ -311,10 +300,7 @@ export async function getResumePdf(): Promise<ResumePdfPayload | null> {
         );
         return saved;
       }
-      console.error(
-        "[resume-pdf] Figma export failed and no last-saved PDF.",
-        error,
-      );
+      console.error("[resume-pdf] Figma export failed and no last-saved PDF.", error);
     }
   }
 

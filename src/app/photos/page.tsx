@@ -26,10 +26,10 @@ export default async function PhotosPage() {
   const assets = cloudinaryReady ? await getHeroAlbumAssets() : [];
 
   return (
-    <main id="main-content" className="photos-page">
-      <div className="photos-page__body">
-        <header className="photos-page__header">
-          <h1 className="photos-page__title">My photo album</h1>
+    <main id="main-content">
+      <div className="content-page">
+        <header className="content-page__header">
+          <h1 className="type-title">My photo album</h1>
         </header>
 
         {!cloudinaryReady ? (

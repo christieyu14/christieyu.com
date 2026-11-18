@@ -1,4 +1,9 @@
-import { getSanityApiVersion, getSanityStudioUrl, isSanityConfigured, publicEnv } from "@/lib/env";
+import {
+  getSanityApiVersion,
+  getSanityStudioUrl,
+  isSanityConfigured,
+  publicEnv,
+} from "@/lib/env";
 import { createClient, type SanityClient } from "next-sanity";
 
 export function createSanityClient(): SanityClient | null {

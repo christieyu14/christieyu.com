@@ -1,9 +1,5 @@
 import { portfolioSummaryProjection } from "./projections";
 
-export const featuredPortfolioPostsQuery = `*[_type == "portfolioPost" && featured == true] | order(publishedAt desc){
-  ${portfolioSummaryProjection}
-}`;
-
 export const portfolioPostsQuery = `*[_type == "portfolioPost"] | order(publishedAt desc){
   ${portfolioSummaryProjection}
 }`;

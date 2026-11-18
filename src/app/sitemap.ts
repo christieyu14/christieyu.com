@@ -9,7 +9,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     getPhotoAlbumSlugs(),
   ]);
 
-  const staticRoutes = ["", "/work", "/photos", "/about", "/resume", "/contact"];
+  const staticRoutes = ["", "/portfolio", "/photos", "/resume", "/contact"];
 
   const entries: MetadataRoute.Sitemap = staticRoutes.map((path) => ({
     url: `${baseUrl}${path || "/"}`,
@@ -18,7 +18,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   for (const slug of portfolioSlugs) {
     entries.push({
-      url: `${baseUrl}/work/${slug}`,
+      url: `${baseUrl}/portfolio/${slug}`,
       lastModified: new Date(),
     });
   }

@@ -1,96 +1,32 @@
-.photos-page {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding-bottom: var(--space-block);
-}
-
-.photos-page__body {
-  position: relative;
-  z-index: 1;
-  width: min(100%, var(--content-max-width));
-  margin-inline: auto;
-  padding-inline: var(--space-page);
-}
-
-.photos-page__header {
-  margin-bottom: 2rem;
-}
-
-.photos-page__title {
-  margin: 0;
-  font-family: var(--font-dreamboat);
-  font-weight: var(--type-hero-weight);
-  font-size: var(--type-hero-size);
-  line-height: var(--type-hero-leading);
-  letter-spacing: var(--type-hero-tracking);
-  text-transform: uppercase;
-  color: var(--color-black);
-}
-
 .photos-page__breadcrumb {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
   gap: 0.35rem;
   margin: 0;
-  font-family: var(--font-dreamboat);
-  font-weight: var(--type-hero-weight);
-  font-size: var(--type-hero-size);
-  line-height: var(--type-hero-leading);
-  letter-spacing: var(--type-hero-tracking);
-  text-transform: uppercase;
-  color: var(--color-black);
-}
-
-.photos-page__breadcrumb-link {
-  color: inherit;
-  text-decoration: none;
-}
-
-.photos-page__breadcrumb-link:hover,
-.photos-page__breadcrumb-link:focus-visible {
-  color: var(--color-blue);
-  text-decoration: underline;
-  text-decoration-style: var(--link-underline-style);
-  text-decoration-color: var(--color-blue);
-  text-decoration-thickness: var(--link-underline-thickness);
-  text-underline-offset: var(--link-underline-offset);
-}
-
-.photos-page__breadcrumb-sep {
-  color: var(--color-black);
-}
-
-.photos-page__breadcrumb-tag {
-  color: var(--color-blue);
-  text-decoration: underline;
-  text-decoration-style: var(--link-underline-style);
-  text-decoration-color: var(--color-blue);
-  text-decoration-thickness: var(--link-underline-thickness);
-  text-underline-offset: var(--link-underline-offset);
 }
 
 .photos__grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 4px;
+  gap: var(--space-gap);
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
 .photos__figure {
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
   margin: 0;
 }
 
 .photos__frame {
   position: relative;
   overflow: hidden;
-  background: color-mix(in srgb, var(--color-black) 6%, white);
-  aspect-ratio: var(--hero-aspect);
+  background: var(--color-paper);
+  aspect-ratio: 3 / 2;
 }
 
 .photos__frame img {
@@ -112,55 +48,44 @@
 }
 
 .photos__overlay {
-  position: absolute;
-  inset-inline: 0;
-  bottom: 0;
   display: flex;
-  align-items: flex-end;
+  align-items: baseline;
   justify-content: space-between;
   gap: 1rem;
-  padding: 0.75rem 1rem;
-  background: color-mix(in srgb, var(--color-black) 55%, transparent);
-  color: var(--color-white);
 }
 
 .photos__caption {
   min-width: 0;
-  font-family: var(--font-dreamboat);
-  font-weight: var(--type-metadata-weight);
-  font-size: var(--type-metadata-size);
-  line-height: var(--type-metadata-leading);
-  letter-spacing: var(--type-metadata-tracking);
-  text-transform: uppercase;
 }
 
 .photos__meta-right {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0.15rem;
+  align-items: baseline;
+  gap: 0.75rem;
   flex-shrink: 0;
   text-align: right;
 }
 
-.photos__date,
-.photos__tag {
-  font-family: var(--font-dreamboat);
-  font-weight: var(--type-metadata-weight);
-  font-size: var(--type-metadata-size);
-  line-height: var(--type-metadata-leading);
-  letter-spacing: var(--type-metadata-tracking);
-  text-transform: uppercase;
-  color: var(--color-white);
-  text-decoration: none;
+.photo-album__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-gap);
+  margin: var(--space-gap) 0 0;
+  padding: 0;
+  list-style: none;
 }
 
-.photos__tag:hover,
-.photos__tag:focus-visible {
-  color: var(--color-blue);
-  text-decoration: underline;
-  text-decoration-style: var(--link-underline-style);
-  text-decoration-color: var(--color-blue);
+.photo-album__list figure {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0;
+}
+
+.photo-album__list img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 @media (max-width: 720px) {

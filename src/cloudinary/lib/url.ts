@@ -88,7 +88,7 @@ export const THUMBNAIL_TRANSFORM: MediaTransformOptions = {
 };
 
 export const FULL_TRANSFORM: MediaTransformOptions = {
-  width: 1600,
+  width: 3200,
   quality: "auto",
   format: "auto",
   crop: "limit" as CloudinaryCropMode,

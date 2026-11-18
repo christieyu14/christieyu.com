@@ -1,48 +1,43 @@
 import localFont from "next/font/local";
 
 /**
- * Local fonts from Figma (Homepage — live):
- * - TAY Dreamboat Regular / Light (brand, nav, uppercase UI)
- * - Helvetica Now Display Bold / Medium / Regular (body)
- * - Inconsolata variable (wdth + wght) for Expanded SemiBold metadata
+ * Local fonts from Figma (`personal` → New draft):
+ * - Switzer Regular / Medium / Bold (links use Medium → Bold on hover/active)
+ * - TAY Bang! for display accents (e.g. “welcome...”)
+ * - Inconsolata variable (monospace ASCII art only)
  */
 
-export const tayDreamboat = localFont({
+export const switzer = localFont({
   src: [
     {
-      path: "../../public/fonts/tay-dreamboat/TAYDreamboatLight.woff2",
-      weight: "300",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/tay-dreamboat/TAYDreamboat-Regular.woff2",
-      weight: "400",
-      style: "normal",
-    },
-  ],
-  variable: "--font-tay-dreamboat",
-  display: "swap",
-});
-
-export const helveticaNowDisplay = localFont({
-  src: [
-    {
-      path: "../../public/fonts/helvetica-now-display/HelveticaNowDisplay-Regular.woff2",
+      path: "../../public/fonts/switzer/Switzer-Regular.woff2",
       weight: "400",
       style: "normal",
     },
     {
-      path: "../../public/fonts/helvetica-now-display/HelveticaNowDisplay-Medium.woff2",
+      path: "../../public/fonts/switzer/Switzer-Medium.woff2",
       weight: "500",
       style: "normal",
     },
     {
-      path: "../../public/fonts/helvetica-now-display/HelveticaNowDisplay-Bold.woff2",
+      path: "../../public/fonts/switzer/Switzer-Bold.woff2",
       weight: "700",
       style: "normal",
     },
   ],
-  variable: "--font-helvetica-now-display",
+  variable: "--font-switzer",
+  display: "swap",
+});
+
+export const tayBang = localFont({
+  src: [
+    {
+      path: "../../public/fonts/taybang/TAYBang.otf",
+      weight: "400",
+      style: "normal",
+    },
+  ],
+  variable: "--font-taybang",
   display: "swap",
 });
 
@@ -59,12 +54,9 @@ export const inconsolata = localFont({
 });
 
 export const fontVariables = {
-  dreamboat: "--font-tay-dreamboat",
-  display: "--font-helvetica-now-display",
-  sans: "--font-helvetica-now-display",
+  sans: "--font-switzer",
+  display: "--font-taybang",
   mono: "--font-inconsolata",
-  helvetica: "--font-helvetica-now-display",
-  inconsolata: "--font-inconsolata",
 } as const;
 
-export const fontClassNames = `${tayDreamboat.variable} ${helveticaNowDisplay.variable} ${inconsolata.variable}`;
+export const fontClassNames = `${switzer.variable} ${tayBang.variable} ${inconsolata.variable}`;

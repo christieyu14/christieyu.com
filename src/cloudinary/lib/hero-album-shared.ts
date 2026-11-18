@@ -2,13 +2,15 @@
 export const HERO_ALBUM_FOLDER = "hero";
 export const HERO_ALBUM_PATH = "/photos";
 
-/** Delivery width near the rendered hero (~888 CSS px at 1080 frame, 2× DPR). */
+/**
+ * Hero delivery width used by the previous fast homepage.
+ * Full-bleed looks sharp at 1600 with Cloudinary c_limit.
+ */
 export const HERO_DELIVERY_WIDTH = 1600;
 
-/**
- * Slim asset record returned from the server-cached Cloudinary album list.
- * Delivery URLs are built from `publicId` using the public cloud name only.
- */
+/** Alias kept for older call sites. */
+export const HERO_LCP_WIDTH = HERO_DELIVERY_WIDTH;
+
 export interface HeroAlbumAsset {
   publicId: string;
   width: number;

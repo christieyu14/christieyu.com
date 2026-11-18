@@ -1,53 +1,114 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { EmptyState } from "@/components/content/EmptyState";
-import { MediaRenderer } from "@/components/media/MediaRenderer";
+import { PortfolioCard } from "@/components/content/PortfolioCard";
+import { PortfolioAsciiBackground } from "@/components/content/PortfolioAsciiBackground";
 import { buildMetadata, formatPageTitle } from "@/lib/metadata";
 import { getPortfolioPosts, getSiteSettings } from "@/sanity/lib/fetch";
+import type { PortfolioPostSummary } from "@/types/content";
+import "@/styles/portfolio.css";
+
+const PLACEHOLDER_COUNT = 6;
+
+const PLACEHOLDER_POSTS: PortfolioPostSummary[] = [
+  {
+    _id: "placeholder-1",
+    title: "Generative AI at Lenovo",
+    slug: "generative-ai-at-lenovo",
+    summary:
+      "I defined the product vision for Lenovo IT Assist from day one, pioneering patentable generative AI design patterns.",
+    publishedAt: "2025-06-01",
+    client: "lenovo",
+    location: "remote (chicago)",
+  },
+  {
+    _id: "placeholder-2",
+    title: "Generative AI at Lenovo",
+    slug: "generative-ai-at-lenovo-2",
+    summary:
+      "I defined the product vision for Lenovo IT Assist from day one, pioneering patentable generative AI design patterns.",
+    publishedAt: "2025-06-01",
+    client: "lenovo",
+    location: "remote (chicago)",
+  },
+  {
+    _id: "placeholder-3",
+    title: "Generative AI at Lenovo",
+    slug: "generative-ai-at-lenovo-3",
+    summary:
+      "I defined the product vision for Lenovo IT Assist from day one, pioneering patentable generative AI design patterns.",
+    publishedAt: "2025-06-01",
+    client: "lenovo",
+    location: "remote (chicago)",
+  },
+  {
+    _id: "placeholder-4",
+    title: "Generative AI at Lenovo",
+    slug: "generative-ai-at-lenovo-4",
+    summary:
+      "I defined the product vision for Lenovo IT Assist from day one, pioneering patentable generative AI design patterns.",
+    publishedAt: "2025-06-01",
+    client: "lenovo",
+    location: "remote (chicago)",
+  },
+  {
+    _id: "placeholder-5",
+    title: "Generative AI at Lenovo",
+    slug: "generative-ai-at-lenovo-5",
+    summary:
+      "I defined the product vision for Lenovo IT Assist from day one, pioneering patentable generative AI design patterns.",
+    publishedAt: "2025-06-01",
+    client: "lenovo",
+    location: "remote (chicago)",
+  },
+  {
+    _id: "placeholder-6",
+    title: "Generative AI at Lenovo",
+    slug: "generative-ai-at-lenovo-6",
+    summary:
+      "I defined the product vision for Lenovo IT Assist from day one, pioneering patentable generative AI design patterns.",
+    publishedAt: "2025-06-01",
+    client: "lenovo",
+    location: "remote (chicago)",
+  },
+];
+
+function withPlaceholders(posts: PortfolioPostSummary[]): PortfolioPostSummary[] {
+  if (posts.length >= PLACEHOLDER_COUNT) {
+    return posts;
+  }
+  return [...posts, ...PLACEHOLDER_POSTS.slice(0, PLACEHOLDER_COUNT - posts.length)];
+}
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSiteSettings();
   return buildMetadata(
     {
-      title: formatPageTitle("Work", settings.siteTitle),
-      description: "Portfolio work",
-      path: "/work",
+      title: formatPageTitle("Portfolio", settings.siteTitle),
+      description: "Selected product design work by Christie Yu.",
+      path: "/portfolio",
     },
     settings,
   );
 }
 
-export default async function WorkPage() {
-  const posts = await getPortfolioPosts();
+export default async function PortfolioPage() {
+  const posts = withPlaceholders(await getPortfolioPosts());
 
   return (
-    <main id="main-content" className="container" style={{ paddingBlock: "2rem" }}>
-      <header className="page-header">
-        <h1 className="page-title">Work</h1>
-      </header>
-
-      {posts.length === 0 ? (
-        <EmptyState
-          title="No portfolio projects yet"
-          description="Connect Sanity and publish portfolio posts to populate this page."
-        />
-      ) : (
-        <ul>
-          {posts.map((post) => (
+    <main id="main-content" className="portfolio">
+      <PortfolioAsciiBackground />
+      <div className="portfolio__body">
+        <h1 className="visually-hidden">Portfolio</h1>
+        <ul className="portfolio__grid">
+          {posts.map((post, index) => (
             <li key={post._id}>
-              <article>
-                <h2>
-                  <Link href={`/work/${post.slug}`}>{post.title}</Link>
-                </h2>
-                {post.summary ? <p>{post.summary}</p> : null}
-                {post.coverMedia ? (
-                  <MediaRenderer media={post.coverMedia} variant="thumbnail" />
-                ) : null}
-              </article>
+              <PortfolioCard
+                post={post}
+                placeholderIndex={index}
+              />
             </li>
           ))}
         </ul>
-      )}
+      </div>
     </main>
   );
 }

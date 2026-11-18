@@ -2,7 +2,7 @@
 
 Personal portfolio foundation built with Next.js 16 App Router, Sanity CMS, and Cloudinary media.
 
-This repository contains the **architecture foundation** — data layers, content models, API routes, accessibility scaffolding, and minimal page shells. Final visual design will be implemented from Figma specs in a later pass.
+The visual design is implemented from the Figma file `personal` (section "New draft").
 
 ## Stack
 
@@ -17,7 +17,7 @@ This repository contains the **architecture foundation** — data layers, conten
 | Vitest      | 4.x     |
 | Prettier    | 3.x     |
 
-No Tailwind. Minimal temporary CSS lives in `src/styles/`.
+No Tailwind. Plain CSS lives in `src/styles/` (tokens in `tokens.css`, type utilities in `typography.css`, one file per page).
 
 ## Prerequisites
 
@@ -55,6 +55,10 @@ CLOUDINARY_API_KEY=
 CLOUDINARY_API_SECRET=
 
 NEXT_PUBLIC_SITE_URL=
+
+RESEND_API_KEY=
+CONTACT_TO_EMAIL=
+CONTACT_FROM_EMAIL=
 ```
 
 ### Variable groups
@@ -72,6 +76,9 @@ NEXT_PUBLIC_SITE_URL=
 | `CLOUDINARY_API_KEY`                | Server | No                            | Server uploads / sign   |
 | `CLOUDINARY_API_SECRET`             | Server | No                            | Server uploads / sign   |
 | `NEXT_PUBLIC_SITE_URL`              | Public | No (defaults to localhost)    | Yes                     |
+| `RESEND_API_KEY`                    | Server | No (contact form returns 503) | Yes (contact form)      |
+| `CONTACT_TO_EMAIL`                  | Server | No                            | Yes (contact form)      |
+| `CONTACT_FROM_EMAIL`                | Server | No                            | Yes (contact form)      |
 
 Helpers in `src/lib/env.ts`:
 
@@ -89,11 +96,12 @@ src/
 ├── app/                  # Routes, API handlers, metadata
 ├── components/           # Presentational UI (no data fetching)
 ├── sanity/               # Schemas, queries, client, fetch layer
-├── cloudinary/           # URL builder and transforms
-├── lib/                  # Env, metadata, slugs, revalidation
-├── styles/               # Global, focus, reduced-motion CSS
+├── cloudinary/           # URL builder and hero album (Admin API)
+├── content/              # Static content (ASCII art)
+├── lib/                  # Env, metadata, slugs, revalidation, contact
+├── styles/               # Tokens, typography, per-page CSS
 ├── types/                # Shared TypeScript types
-└── fonts/                # Font placeholder (system fallbacks)
+└── fonts/                # next/font/local definitions
 ```
 
 ## Sanity CMS
@@ -135,11 +143,9 @@ Set `NEXT_PUBLIC_SANITY_PROJECT_ID=g25dm52w` and `NEXT_PUBLIC_SANITY_DATASET=pro
 All GROQ lives in `src/sanity/queries/`. Fetch functions in `src/sanity/lib/fetch.ts`:
 
 - `getSiteSettings`
-- `getFeaturedPortfolioPosts`
 - `getPortfolioPosts`
 - `getPortfolioPostBySlug`
 - `getPortfolioPostSlugs`
-- `getPhotoAlbums`
 - `getPhotoAlbumBySlug`
 - `getPhotoAlbumSlugs`
 
@@ -160,7 +166,7 @@ Configure in the standalone Studio via `presentationTool({ previewUrl: { … } }
 **Manual shared-secret preview** (requires `SANITY_PREVIEW_SECRET`):
 
 ```
-GET /api/draft-mode/enable?secret=<SANITY_PREVIEW_SECRET>&redirect=/work/my-slug
+GET /api/draft-mode/enable?secret=<SANITY_PREVIEW_SECRET>&redirect=/portfolio/my-slug
 ```
 
 Disable and redirect:
@@ -181,11 +187,11 @@ Body: { "_type": "portfolioPost", "slug": { "current": "my-project" } }
 
 Revalidates paths based on document type:
 
-| Type            | Paths                            |
-| --------------- | -------------------------------- |
-| `portfolioPost` | `/`, `/work`, `/work/[slug]`     |
-| `photoAlbum`    | `/`, `/photos`, `/photos/[slug]` |
-| `siteSettings`  | `/`, all main pages              |
+| Type            | Paths                             |
+| --------------- | --------------------------------- |
+| `portfolioPost` | `/portfolio`, `/portfolio/[slug]` |
+| `photoAlbum`    | `/photos`, `/photos/[slug]`       |
+| `siteSettings`  | `/`, all main pages               |
 
 Configure a Sanity webhook pointing to this endpoint in production.
 
@@ -196,7 +202,8 @@ Delivery uses Cloudinary CDN URLs via `src/cloudinary/lib/url.ts` (cloud name fr
 - Studio picks assets with `sanity-plugin-cloudinary` (`cloudinary.asset` nested under our `cloudinaryAsset` object)
 - `MediaRenderer` uses plain `<img>` for Cloudinary URLs (not Next.js Image optimizer)
 - Server Admin SDK: `src/cloudinary/lib/admin.ts`
-- Signed upload helper: `POST /api/cloudinary/sign` (for `next-cloudinary` upload widgets)
+- Signed upload helper: `POST /api/cloudinary/sign`
+- Home and resume backgrounds are picked at random from the Cloudinary `hero` folder (`src/cloudinary/lib/hero-album.ts`); each image needs `caption` and `date` context metadata
 - API secret stays server-side only; API key may also be exposed as `NEXT_PUBLIC_CLOUDINARY_API_KEY` for client upload widgets
 - `next.config.ts` includes `res.cloudinary.com` in `images.remotePatterns`
 
@@ -204,42 +211,33 @@ On first Studio launch after installing the plugin, open any Cloudinary field an
 
 ## Fonts
 
-Place files in:
+`src/fonts/local.ts` loads, via `next/font/local`:
 
-- `public/fonts/helvetica-now-display/`
-- `public/fonts/inconsolata/`
+- Switzer Regular and Bold (`public/fonts/switzer/`) for all text. Body copy is Regular; links are Bold and underlined; card titles are Bold uppercase.
+- Inconsolata variable (`public/fonts/inconsolata/`) for the portfolio ASCII art only.
 
-`src/fonts/local.ts` loads Helvetica Now Display (Regular/Medium/Bold) and Inconsolata (variable) via `next/font/local`. Figma color/type tokens live in `src/styles/tokens.css`.
+Figma color/type tokens live in `src/styles/tokens.css`.
 
-## Homepage featured photos
+## Contact form
 
-The hero image, caption, and date are chosen at random on each request from `FEATURED_PHOTO_POOL` in `src/content/featured-photos.ts`.
+`POST /api/contact` validates with Zod, drops honeypot submissions, rate-limits per IP (best effort, in memory), and sends through Resend using the published template `contact-form` (variables `SENDER_NAME`, `SENDER_EMAIL`, `MESSAGE`). The visitor's address is set as reply-to. Each variable is capped at 2,000 characters by Resend, so messages are limited to 2,000 characters.
 
-```ts
-{
-  id: "puffins-iceland",
-  src: "/images/featured/puffins-iceland.jpg", // or Cloudinary public ID
-  provider: "local", // or "cloudinary"
-  alt: "...",
-  caption: "puffins in iceland",
-  dateLabel: "07.2026",
-}
-```
-
-Helpers are in `src/lib/featured-photos.ts`. Add pool entries as photos become available; later this can be Sanity + Cloudinary driven without changing `HomeHero`.
+Use a **sending-only** Resend API key restricted to `christieyu.com`. Without the three env vars the endpoint returns `503`.
 
 ## Routes
 
-| Route            | Purpose                 |
-| ---------------- | ----------------------- |
-| `/`              | Home (Figma homepage)   |
-| `/work`          | Portfolio index         |
-| `/work/[slug]`   | Case study detail       |
-| `/photos`        | Photo albums index      |
-| `/photos/[slug]` | Album detail            |
-| `/about`         | About shell             |
-| `/resume`        | Resume shell            |
-| `/contact`       | Contact shell           |
+| Route                    | Purpose                                |
+| ------------------------ | -------------------------------------- |
+| `/`                      | Home                                   |
+| `/portfolio`             | Portfolio index (ASCII header + cards) |
+| `/portfolio/[slug]`      | Case study detail                      |
+| `/photos`                | Photo album (Cloudinary `hero` folder) |
+| `/photos/tags/[tagSlug]` | Photos by tag                          |
+| `/photos/[slug]`         | Sanity album detail                    |
+| `/resume`                | Resume (Adobe PDF Embed)               |
+| `/contact`               | Contact form                           |
+
+`/work` and `/work/[slug]` permanently redirect to `/portfolio`; `/about` redirects to `/`.
 
 Also: `sitemap.ts`, `robots.ts`, `loading.tsx`, `not-found.tsx`.
 
@@ -253,16 +251,13 @@ Also: `sitemap.ts`, `robots.ts`, `loading.tsx`, `not-found.tsx`.
 - Landmarks: `header`, `nav`, `main`, `footer`
 - Focus-visible styles in `src/styles/focus.css`
 - Reduced motion in `src/styles/reduced-motion.css`
-- `PhotoLightbox` typed placeholder with `role="dialog"` architecture
+- Contact message resize handle is a keyboard-operable `separator` (arrow keys)
 
-## Figma implementation (future)
-
-Current shells are intentionally minimal. When Figma specs are available:
+## Figma implementation
 
 1. Map components to `src/components/layout`, `content`, `media`, `ui`
-2. Replace temporary CSS in `src/styles/`
-3. Do not invent design when specs are missing
-4. Preserve data-driven architecture and accessibility landmarks
+2. Do not invent design when specs are missing
+3. Preserve data-driven architecture and accessibility landmarks
 
 See `.cursor/rules/figma-implementation.mdc`.
 

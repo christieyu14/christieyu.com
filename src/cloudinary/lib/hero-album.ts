@@ -9,6 +9,7 @@ import {
   HERO_ALBUM_FOLDER,
   HERO_ALBUM_PATH,
   HERO_DELIVERY_WIDTH,
+  HERO_LCP_WIDTH,
   selectHeroAsset,
   type HeroAlbumAsset,
 } from "@/cloudinary/lib/hero-album-shared";
@@ -17,6 +18,7 @@ export {
   HERO_ALBUM_FOLDER,
   HERO_ALBUM_PATH,
   HERO_DELIVERY_WIDTH,
+  HERO_LCP_WIDTH,
   selectHeroAsset,
   type HeroAlbumAsset,
 };
@@ -34,8 +36,20 @@ interface CloudinarySearchResource {
     | string;
 }
 
+interface HeroAlbumCachePayload {
+  assets: HeroAlbumAsset[];
+  fetchedAt: number;
+}
+
 const ONE_HOUR = 3600;
 const ONE_DAY = 86400;
+
+/**
+ * Process-local warm cache so force-dynamic home/resume pages skip Admin Search
+ * on every request within the same Node process (dev + warm serverless).
+ */
+let memoryCache: HeroAlbumCachePayload | null = null;
+let memoryInflight: Promise<HeroAlbumCachePayload> | null = null;
 
 function readContextFields(
   context: CloudinarySearchResource["context"],
@@ -132,14 +146,14 @@ async function fetchHeroAlbumAssetsUncached(): Promise<HeroAlbumAsset[]> {
  * while a background refresh runs (stale-while-revalidate).
  */
 const getCachedHeroAlbumAssets = unstable_cache(
-  async () => {
+  async (): Promise<HeroAlbumCachePayload> => {
     const assets = await fetchHeroAlbumAssetsUncached();
     return {
       assets,
       fetchedAt: Date.now(),
     };
   },
-  ["cloudinary-hero-album-assets-v4"],
+  ["cloudinary-hero-album-assets-v5"],
   {
     // Soft TTL: after 1h the next request revalidates in the background.
     revalidate: ONE_HOUR,
@@ -149,6 +163,50 @@ const getCachedHeroAlbumAssets = unstable_cache(
 
 function isWithinStaleWindow(fetchedAt: number): boolean {
   return Date.now() - fetchedAt < ONE_DAY * 1000;
+}
+
+function isWithinMemoryWindow(fetchedAt: number): boolean {
+  return Date.now() - fetchedAt < ONE_HOUR * 1000;
+}
+
+async function loadHeroAlbumCache(): Promise<HeroAlbumCachePayload> {
+  if (memoryCache && memoryCache.assets.length > 0 && isWithinMemoryWindow(memoryCache.fetchedAt)) {
+    return memoryCache;
+  }
+
+  if (memoryInflight) {
+    return memoryInflight;
+  }
+
+  memoryInflight = (async () => {
+    try {
+      const cached = await getCachedHeroAlbumAssets();
+
+      if (cached.assets.length === 0) {
+        // Avoid a sticky empty cache from a transient miss.
+        const assets = await fetchHeroAlbumAssetsUncached();
+        const payload = { assets, fetchedAt: Date.now() };
+        if (assets.length > 0) {
+          memoryCache = payload;
+        }
+        return payload;
+      }
+
+      if (!isWithinStaleWindow(cached.fetchedAt)) {
+        const assets = await fetchHeroAlbumAssetsUncached();
+        const payload = { assets, fetchedAt: Date.now() };
+        memoryCache = payload;
+        return payload;
+      }
+
+      memoryCache = cached;
+      return cached;
+    } finally {
+      memoryInflight = null;
+    }
+  })();
+
+  return memoryInflight;
 }
 
 /** Build an optimized delivery URL for the homepage hero frame. */
@@ -206,23 +264,19 @@ export async function getHeroAlbumAssets(): Promise<HeroAlbumAsset[]> {
   }
 
   try {
-    const cached = await getCachedHeroAlbumAssets();
-
-    if (cached.assets.length === 0) {
-      // Avoid a sticky empty cache from a transient miss.
-      return await fetchHeroAlbumAssetsUncached();
-    }
-
-    if (!isWithinStaleWindow(cached.fetchedAt)) {
-      // Past the 24h stale window: block for a fresh Admin list.
-      return await fetchHeroAlbumAssetsUncached();
-    }
-
+    const cached = await loadHeroAlbumCache();
     return cached.assets;
   } catch (error) {
     console.error("[hero-album] Failed to fetch Cloudinary hero folder:", error);
+    if (memoryCache && memoryCache.assets.length > 0) {
+      return memoryCache.assets;
+    }
     try {
-      return await fetchHeroAlbumAssetsUncached();
+      const assets = await fetchHeroAlbumAssetsUncached();
+      if (assets.length > 0) {
+        memoryCache = { assets, fetchedAt: Date.now() };
+      }
+      return assets;
     } catch (retryError) {
       console.error("[hero-album] Retry also failed:", retryError);
       return [];

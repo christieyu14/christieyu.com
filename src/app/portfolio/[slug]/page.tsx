@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PortableBody } from "@/components/content/PortableBody";
 import { MediaRenderer } from "@/components/media/MediaRenderer";
+import { formatMonthYear } from "@/lib/format-date";
 import { buildMetadata, formatPageTitle } from "@/lib/metadata";
 import { isValidSlug } from "@/lib/slugs";
 import {
@@ -9,8 +10,9 @@ import {
   getPortfolioPostSlugs,
   getSiteSettings,
 } from "@/sanity/lib/fetch";
+import "@/styles/portfolio.css";
 
-interface WorkDetailPageProps {
+interface PortfolioDetailPageProps {
   params: Promise<{ slug: string }>;
 }
 
@@ -21,7 +23,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({
   params,
-}: WorkDetailPageProps): Promise<Metadata> {
+}: PortfolioDetailPageProps): Promise<Metadata> {
   const { slug } = await params;
   const [settings, post] = await Promise.all([
     getSiteSettings(),
@@ -32,7 +34,7 @@ export async function generateMetadata({
     return buildMetadata(
       {
         title: formatPageTitle("Project not found", settings.siteTitle),
-        path: `/work/${slug}`,
+        path: `/portfolio/${slug}`,
         noIndex: true,
       },
       settings,
@@ -43,14 +45,16 @@ export async function generateMetadata({
     {
       title: formatPageTitle(post.seoTitle ?? post.title, settings.siteTitle),
       description: post.seoDescription ?? post.summary,
-      path: `/work/${slug}`,
+      path: `/portfolio/${slug}`,
       ogImage: post.ogImage,
     },
     settings,
   );
 }
 
-export default async function WorkDetailPage({ params }: WorkDetailPageProps) {
+export default async function PortfolioDetailPage({
+  params,
+}: PortfolioDetailPageProps) {
   const { slug } = await params;
 
   if (!isValidSlug(slug)) {
@@ -63,19 +67,32 @@ export default async function WorkDetailPage({ params }: WorkDetailPageProps) {
     notFound();
   }
 
+  const meta = [post.client, post.location, formatMonthYear(post.publishedAt)].filter(
+    Boolean,
+  );
+
   return (
-    <main id="main-content" className="container" style={{ paddingBlock: "2rem" }}>
-      <article>
-        <header className="page-header">
-          <h1 className="page-title">{post.title}</h1>
-          {post.summary ? <p className="page-description">{post.summary}</p> : null}
+    <main id="main-content" className="project">
+      <article className="content-page">
+        <header className="content-page__header">
+          {meta.length > 0 ? <p className="type-sm">{meta.join(" / ")}</p> : null}
+          <h1 className="type-title">{post.title}</h1>
+          {post.summary ? (
+            <p className="content-page__description type-md">{post.summary}</p>
+          ) : null}
         </header>
 
         {post.coverMedia ? (
-          <MediaRenderer media={post.coverMedia} variant="full" />
+          <MediaRenderer
+            media={post.coverMedia}
+            variant="full"
+            className="project__cover"
+          />
         ) : null}
 
-        <PortableBody value={post.body} />
+        <div className="project__body type-md">
+          <PortableBody value={post.body} />
+        </div>
       </article>
     </main>
   );

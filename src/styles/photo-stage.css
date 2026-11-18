@@ -1,0 +1,162 @@
+/* Shared random-photo stage — Figma Hero (105:121) and Resume (107:926) */
+
+.photo-stage {
+  --home-panel-width: 41.25rem; /* 660px */
+
+  position: relative;
+  display: flex;
+  min-height: 100dvh;
+  /* Avoid overflow:hidden here — it kills backdrop-filter on the frost panel */
+  color: var(--color-black);
+  background: var(--color-paper);
+}
+
+.photo-stage__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.photo-stage__bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo-stage__bg-img--overlay {
+  opacity: 0;
+  transition: opacity var(--motion-duration-dissolve) var(--motion-ease-out);
+}
+
+.photo-stage__bg-img--overlay.is-opaque {
+  opacity: 1;
+}
+
+.photo-stage__panel {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100dvh;
+  padding: 4.0625rem var(--space-frame); /* clears 24px header/footer rows */
+  /* Ensure frost fill + blur are both applied even if utility order varies */
+  background: var(--surface-frost);
+  backdrop-filter: blur(17px);
+}
+
+.photo-stage--home .photo-stage__panel {
+  flex: 0 0 var(--home-panel-width);
+  width: var(--home-panel-width);
+}
+
+.photo-stage--resume .photo-stage__panel {
+  /* Spacing owned by resume.css (Figma 107:926 — 88px inset, 1024 box) */
+  flex: 1 1 auto;
+  width: 100%;
+  background: transparent;
+  backdrop-filter: none;
+}
+
+.photo-stage__meta {
+  position: absolute;
+  z-index: 2;
+  top: 46.7%;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1rem;
+  width: min(62.75rem, calc(100% - var(--home-panel-width)));
+  transition: color var(--motion-duration-fast) var(--motion-snap);
+}
+
+.photo-stage__meta--light {
+  color: var(--color-white);
+}
+
+.photo-stage__meta--dark {
+  color: var(--color-black);
+}
+
+.photo-stage__caption,
+.photo-stage__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: 0.5rem var(--space-gap);
+  padding-right: var(--space-frame);
+  text-align: right;
+}
+
+.photo-stage__actions {
+  margin-bottom: 0.75rem;
+}
+
+.photo-stage__thumb {
+  width: 18.125rem; /* 290px */
+  height: 10.1875rem; /* 163px */
+  overflow: hidden;
+}
+
+.photo-stage__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 900px) {
+  .photo-stage {
+    flex-direction: column;
+  }
+
+  .photo-stage--home .photo-stage__panel {
+    flex: 0 0 auto;
+    width: 100%;
+    min-height: 0;
+    padding-bottom: 3rem;
+  }
+
+  .photo-stage__meta {
+    position: relative;
+    top: auto;
+    width: 100%;
+    padding-block: 2rem 5rem;
+  }
+
+  .photo-stage--resume .photo-stage__meta {
+    padding-top: 0;
+  }
+}
+
+.photo-stage__reveal {
+  opacity: 0;
+  transition: opacity var(--motion-duration-dissolve) var(--motion-ease-out);
+}
+
+.photo-stage__reveal.is-ready {
+  opacity: 1;
+}
+
+/* Invisible hit regions matching header/footer bars for resume contrast sampling */
+.photo-stage__chrome-sample {
+  position: absolute;
+  left: var(--space-frame);
+  right: var(--space-frame);
+  height: 1.25rem;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.photo-stage__chrome-sample--header {
+  top: var(--space-frame);
+}
+
+.photo-stage__chrome-sample--footer {
+  bottom: var(--space-frame);
+}

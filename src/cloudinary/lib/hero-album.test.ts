@@ -45,14 +45,14 @@ describe("hero delivery urls", () => {
     process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME = "demo";
     const url = buildCloudinaryUrl({
       publicId: "hero/a",
-      width: 1600,
+      width: 3200,
       quality: "auto",
       format: "auto",
       crop: "limit",
     });
     expect(url).toContain("f_auto");
     expect(url).toContain("q_auto");
-    expect(url).toContain("w_1600");
+    expect(url).toContain("w_3200");
     expect(url).toContain("c_limit");
   });
 });

@@ -25,8 +25,7 @@ export interface SiteSettings {
 
 export const DEFAULT_NAVIGATION: NavigationItem[] = [
   { label: "resume", href: "/resume" },
-  { label: "portfolio", href: "/work" },
-  { label: "album", href: "/photos" },
+  { label: "portfolio", href: "/portfolio" },
   { label: "contact", href: "/contact" },
 ];
 

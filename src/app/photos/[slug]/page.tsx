@@ -10,6 +10,7 @@ import {
   getPhotoAlbumSlugs,
   getSiteSettings,
 } from "@/sanity/lib/fetch";
+import "@/styles/photos.css";
 
 interface PhotoAlbumPageProps {
   params: Promise<{ slug: string }>;
@@ -64,11 +65,13 @@ export default async function PhotoAlbumPage({ params }: PhotoAlbumPageProps) {
   }
 
   return (
-    <main id="main-content" className="container" style={{ paddingBlock: "2rem" }}>
-      <article>
-        <header className="page-header">
-          <h1 className="page-title">{album.title}</h1>
-          {album.summary ? <p className="page-description">{album.summary}</p> : null}
+    <main id="main-content">
+      <article className="content-page">
+        <header className="content-page__header">
+          <h1 className="type-title">{album.title}</h1>
+          {album.summary ? (
+            <p className="content-page__description type-md">{album.summary}</p>
+          ) : null}
         </header>
 
         {album.coverMedia ? (
@@ -78,7 +81,7 @@ export default async function PhotoAlbumPage({ params }: PhotoAlbumPageProps) {
         {album.photos.length === 0 ? (
           <EmptyState title="This album has no photos yet" />
         ) : (
-          <ul>
+          <ul className="photo-album__list">
             {album.photos.map((photo) => {
               const src = buildCloudinaryUrl({
                 publicId: photo.publicId,
@@ -102,7 +105,9 @@ export default async function PhotoAlbumPage({ params }: PhotoAlbumPageProps) {
                         decoding="async"
                       />
                     ) : null}
-                    {photo.caption ? <figcaption>{photo.caption}</figcaption> : null}
+                    {photo.caption ? (
+                      <figcaption className="type-sm">{photo.caption}</figcaption>
+                    ) : null}
                   </figure>
                 </li>
               );

@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { normalizeCloudinaryAsset } from "@/lib/media-normalize";
 import { slugFromSanity } from "@/lib/slugs";
 import type {
@@ -10,10 +11,8 @@ import type { SiteSettings } from "@/types/site";
 import { DEFAULT_NAVIGATION, DEFAULT_SITE_SETTINGS } from "@/types/site";
 import { getPublishedSanityClient, getSanityFetchClient } from "@/sanity/lib/live";
 import {
-  featuredPortfolioPostsQuery,
   photoAlbumBySlugQuery,
   photoAlbumSlugsQuery,
-  photoAlbumsQuery,
   portfolioPostBySlugQuery,
   portfolioPostSlugsQuery,
   portfolioPostsQuery,
@@ -41,6 +40,7 @@ interface SanityPortfolioSummaryResponse {
   publishedAt?: string;
   projectYear?: number;
   client?: string;
+  location?: string;
   role?: string;
   featured?: boolean;
   coverMedia?: Parameters<typeof normalizeCloudinaryAsset>[0];
@@ -126,6 +126,7 @@ function mapPortfolioSummary(
     publishedAt: data.publishedAt,
     projectYear: data.projectYear,
     client: data.client,
+    location: data.location,
     role: data.role,
     featured: data.featured,
     coverMedia: normalizeCloudinaryAsset(data.coverMedia),
@@ -180,7 +181,7 @@ function mapPhotoAlbum(data: SanityPhotoAlbumResponse): PhotoAlbum {
   };
 }
 
-export async function getSiteSettings(): Promise<SiteSettings> {
+export const getSiteSettings = cache(async function getSiteSettings(): Promise<SiteSettings> {
   const sanityClient = await getSanityFetchClient();
   if (!sanityClient) {
     return DEFAULT_SITE_SETTINGS;
@@ -191,20 +192,7 @@ export async function getSiteSettings(): Promise<SiteSettings> {
   );
 
   return mapSiteSettings(data);
-}
-
-export async function getFeaturedPortfolioPosts(): Promise<PortfolioPostSummary[]> {
-  const sanityClient = await getSanityFetchClient();
-  if (!sanityClient) {
-    return [];
-  }
-
-  const data = await sanityClient.fetch<SanityPortfolioSummaryResponse[]>(
-    featuredPortfolioPostsQuery,
-  );
-
-  return data.map(mapPortfolioSummary);
-}
+});
 
 export async function getPortfolioPosts(): Promise<PortfolioPostSummary[]> {
   const sanityClient = await getSanityFetchClient();
@@ -249,18 +237,6 @@ export async function getPortfolioPostSlugs(): Promise<string[]> {
   return data
     .map((entry) => entry.slug)
     .filter((slug): slug is string => Boolean(slug));
-}
-
-export async function getPhotoAlbums(): Promise<PhotoAlbumSummary[]> {
-  const sanityClient = await getSanityFetchClient();
-  if (!sanityClient) {
-    return [];
-  }
-
-  const data =
-    await sanityClient.fetch<SanityPhotoAlbumSummaryResponse[]>(photoAlbumsQuery);
-
-  return data.map(mapPhotoAlbumSummary);
 }
 
 export async function getPhotoAlbumBySlug(slug: string): Promise<PhotoAlbum | null> {

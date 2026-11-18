@@ -18,8 +18,7 @@ export async function GET(request: Request) {
     );
   }
 
-  const wantsDownload =
-    new URL(request.url).searchParams.get("download") === "1";
+  const wantsDownload = new URL(request.url).searchParams.get("download") === "1";
   const bytes = Buffer.from(payload.pdfBase64, "base64");
   const disposition = wantsDownload
     ? `attachment; filename="${RESUME.downloadFilename}"`

@@ -20,6 +20,9 @@ const serverEnvSchema = z.object({
   CLOUDINARY_API_KEY: optionalString,
   CLOUDINARY_API_SECRET: optionalString,
   FIGMA_ACCESS_TOKEN: optionalString,
+  RESEND_API_KEY: optionalString,
+  CONTACT_TO_EMAIL: optionalString,
+  CONTACT_FROM_EMAIL: optionalString,
 });
 
 export type PublicEnv = z.infer<typeof publicEnvSchema>;
@@ -47,7 +50,32 @@ function parseServerEnv(): ServerEnv {
     CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY,
     CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET,
     FIGMA_ACCESS_TOKEN: process.env.FIGMA_ACCESS_TOKEN,
+    RESEND_API_KEY: process.env.RESEND_API_KEY,
+    CONTACT_TO_EMAIL: process.env.CONTACT_TO_EMAIL,
+    CONTACT_FROM_EMAIL: process.env.CONTACT_FROM_EMAIL,
   });
+}
+
+export interface ContactEmailConfig {
+  apiKey: string;
+  to: string;
+  from: string;
+}
+
+export function getContactEmailConfig(): ContactEmailConfig | null {
+  const server = getServerEnv();
+  if (
+    !server.RESEND_API_KEY ||
+    !server.CONTACT_TO_EMAIL ||
+    !server.CONTACT_FROM_EMAIL
+  ) {
+    return null;
+  }
+  return {
+    apiKey: server.RESEND_API_KEY,
+    to: server.CONTACT_TO_EMAIL,
+    from: server.CONTACT_FROM_EMAIL,
+  };
 }
 
 export const publicEnv = parsePublicEnv();

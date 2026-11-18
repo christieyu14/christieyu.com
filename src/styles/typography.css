@@ -1,53 +1,74 @@
-/* Semantic type utilities — six documented styles */
+/* Semantic type utilities — Switzer Regular for copy; Medium→Bold links */
 
-.type-hero {
-  font-family: var(--font-dreamboat);
-  font-weight: var(--type-hero-weight);
-  font-size: var(--type-hero-size);
-  line-height: var(--type-hero-leading);
-  letter-spacing: var(--type-hero-tracking);
-  text-transform: uppercase;
+.type-lg,
+.type-md,
+.type-sm,
+.type-link,
+.type-title {
+  font-family: var(--font-sans);
+  line-height: var(--type-leading);
+  letter-spacing: var(--type-tracking);
 }
 
-.type-header {
-  font-family: var(--font-dreamboat);
-  font-weight: var(--type-header-weight);
-  font-size: var(--type-header-size);
-  line-height: normal;
-  letter-spacing: var(--type-header-tracking);
-  text-transform: uppercase;
-}
-
-.type-subheader {
-  font-family: var(--font-dreamboat);
-  font-weight: var(--type-subheader-weight);
-  font-size: var(--type-subheader-size);
-  line-height: normal;
-  letter-spacing: var(--type-subheader-tracking);
-  text-transform: uppercase;
-}
-
-.type-body-lg {
+.type-display {
   font-family: var(--font-display);
-  font-weight: var(--type-body-lg-weight);
-  font-size: var(--type-body-lg-size);
-  line-height: var(--type-body-lg-leading);
-  letter-spacing: var(--type-body-lg-tracking);
+  font-size: 6rem; /* 96px */
+  font-weight: var(--weight-regular);
+  line-height: 1;
+  letter-spacing: 0.001em;
+  color: var(--color-black);
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
 }
 
-.type-body {
-  font-family: var(--font-display);
-  font-weight: var(--type-body-weight);
-  font-size: var(--type-body-size);
-  line-height: var(--type-body-leading);
-  letter-spacing: var(--type-body-tracking);
+.type-lg {
+  font-size: var(--type-lg-size);
+  font-weight: var(--weight-medium);
 }
 
-.type-metadata {
-  font-family: var(--font-dreamboat);
-  font-weight: var(--type-metadata-weight);
-  font-size: var(--type-metadata-size);
-  line-height: var(--type-metadata-leading);
-  letter-spacing: var(--type-metadata-tracking);
+.type-md {
+  font-size: var(--type-md-size);
+  font-weight: var(--weight-regular);
+}
+
+.type-sm {
+  font-size: var(--type-sm-size);
+  font-weight: var(--weight-regular);
+}
+
+.type-title {
+  font-size: var(--type-md-size);
+  font-weight: var(--weight-bold);
   text-transform: uppercase;
+}
+
+.type-link {
+  font-size: var(--type-md-size);
+  font-weight: var(--weight-medium);
+  text-decoration: underline;
+  text-decoration-thickness: var(--link-underline-thickness);
+  text-underline-position: from-font;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  transition:
+    color var(--motion-duration-fast) var(--motion-snap),
+    font-weight var(--motion-duration-fast) var(--motion-snap);
+}
+
+.type-link:hover,
+.type-link:focus-visible {
+  font-weight: var(--weight-bold);
+}
+
+.type-link[aria-current="page"] {
+  font-weight: var(--weight-bold);
+  color: var(--color-accent);
+}
+
+.type-link:disabled {
+  cursor: default;
+  opacity: 0.5;
 }

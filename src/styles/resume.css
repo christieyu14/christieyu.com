@@ -1,58 +1,116 @@
-/* Resume page — Figma Resume (63:502) */
+/* Resume — Figma 107:926
+ *
+ * Frame 1712:
+ *   frost veil p-24 + gap-24 (chrome sits in the 24px band)
+ *   content row p-64, justify-between
+ *   resume column w-1024 → glass box p-28, border 4
+ *   meta cluster gap-22, thumb 290×163
+ * Inset from viewport edge to content = 24 + 64 = 88px
+ */
 
-.resume-page {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  min-height: calc(100dvh - 6rem);
-  padding-bottom: var(--space-block);
+.photo-stage--resume::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: rgb(242 241 240 / 40%);
+  backdrop-filter: blur(17px);
 }
 
-.resume-page__body {
+.photo-stage--resume {
+  display: grid;
+  /* 1fr so the resume column keeps width even when the PDF viewer has no intrinsic size */
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: minmax(0, 1fr);
+  align-items: stretch;
+  column-gap: 2rem;
+  width: 100%;
+  height: 100dvh;
+  min-height: 100dvh;
+  padding: 5.5rem; /* 88px */
+  box-sizing: border-box;
+}
+
+/* Full-bleed against the stage padding box — not a grid track */
+.photo-stage--resume .photo-stage__bg,
+.photo-stage--resume::before {
+  position: absolute;
+  inset: 0;
+  grid-column: auto;
+  grid-row: auto;
+  width: auto;
+  height: auto;
+}
+
+.photo-stage--resume .photo-stage__panel {
+  grid-column: 1;
+  grid-row: 1;
+  z-index: 2;
   position: relative;
-  z-index: 1;
-  width: min(100%, var(--content-max-width));
-  margin-inline: auto;
-  padding-inline: var(--space-page);
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: stretch;
+  width: min(100%, 64rem); /* 1024px — Figma */
+  max-width: 64rem;
+  min-height: 0;
+  height: 100%;
+  padding: 0;
+  background: transparent;
+  backdrop-filter: none;
+}
+
+.photo-stage--resume .photo-stage__meta {
+  grid-column: 2;
+  grid-row: 1;
+  z-index: 2;
+  position: relative;
+  top: auto;
+  right: auto;
+  width: auto;
+  max-width: none;
+  align-self: center;
+  padding-right: 0;
+  gap: 1.375rem; /* 22px */
+}
+
+.photo-stage--resume .photo-stage__caption,
+.photo-stage--resume .photo-stage__actions {
+  padding-right: 0;
+}
+
+.photo-stage--resume .photo-stage__actions {
+  margin-bottom: 0;
+}
+
+.resume-box {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 0;
+  height: 100%;
+  padding: 1.75rem; /* 28px */
+  border: 4px solid rgb(242 241 240 / 40%);
+  background: var(--surface-contact);
+  backdrop-filter: blur(17px);
 }
 
 .resume__viewer {
-  display: flex;
-  flex-direction: column;
-  gap: 0.625rem;
-  max-width: 42rem;
-  min-width: 0;
-}
-
-.resume__meta-label {
-  margin: 0;
-  font-family: var(--font-dreamboat);
-  font-size: var(--type-subheader-size);
-  font-weight: var(--type-subheader-weight);
-  letter-spacing: var(--type-subheader-tracking);
-  line-height: normal;
-  text-transform: uppercase;
-  color: var(--color-black);
-}
-
-.resume__stage {
-  position: relative;
-  width: 100%;
-  /* Adobe FULL_WINDOW needs a real height, not only min-height */
-  height: calc(100dvh - 10rem);
-  min-height: 48rem;
-  background: var(--color-surface);
-}
-
-.resume__adobe {
   width: 100%;
   height: 100%;
+  min-height: 0;
+  align-self: stretch;
 }
 
+.resume__adobe,
 .resume__adobe #adobe-dc-view {
   width: 100%;
   height: 100%;
+  min-height: 0;
 }
 
 .resume__empty {
@@ -62,38 +120,41 @@
   gap: 0.75rem;
   width: 100%;
   height: 100%;
-  min-height: 20rem;
   padding: 1.5rem;
-  color: var(--color-black);
-  background: var(--color-surface);
 }
 
-.resume__empty-title {
-  margin: 0;
-  font-family: var(--font-dreamboat);
-  font-size: var(--type-subheader-size);
-  letter-spacing: var(--type-subheader-tracking);
-  text-transform: uppercase;
-}
-
-.resume__empty-copy {
-  margin: 0;
-  max-width: 36ch;
-  font-family: var(--font-display);
-  font-size: var(--type-body-size);
-  font-weight: var(--type-body-weight);
-  letter-spacing: var(--type-body-tracking);
-  line-height: var(--type-body-leading);
-}
-
-.resume__empty-copy code {
+.resume__empty code {
   font-family: var(--font-mono);
   font-size: 0.95em;
 }
 
 @media (max-width: 900px) {
-  .resume__stage {
-    height: calc(100dvh - 12rem);
-    min-height: 32rem;
+  .photo-stage--resume {
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(70dvh, 1fr) auto;
+    height: auto;
+    min-height: 100dvh;
+    padding: 5rem var(--space-frame) 4rem;
+    row-gap: 1.5rem;
+  }
+
+  .photo-stage--resume .photo-stage__panel {
+    grid-column: 1;
+    grid-row: 1;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    min-height: 70dvh;
+  }
+
+  .photo-stage--resume .photo-stage__meta {
+    grid-column: 1;
+    grid-row: 2;
+    align-self: flex-start;
+  }
+
+  .resume-box {
+    min-height: 70dvh;
+    height: auto;
   }
 }

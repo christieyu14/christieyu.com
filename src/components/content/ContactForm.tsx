@@ -1,170 +1,279 @@
 "use client";
 
 import * as Form from "@radix-ui/react-form";
-import { useCallback, useState, type FormEvent } from "react";
+import {
+  useCallback,
+  useRef,
+  useState,
+  type FormEvent,
+  type KeyboardEvent,
+  type PointerEvent,
+} from "react";
+import { HazeText } from "@/components/effects/HazeText";
+import { CONTACT_MESSAGE_MAX } from "@/lib/contact";
 
-const CONTACT_EMAIL = "christieyu@aya.yale.edu";
+type FormStatus = "idle" | "submitting" | "sent" | "error";
 
-type FormStatus = "idle" | "submitting" | "sent";
+const MESSAGE_MIN_HEIGHT = 92;
+const KEYBOARD_STEP = 16;
 
-interface ContactFormValues {
-  name: string;
-  email: string;
-  message: string;
+function maxMessageHeight(): number {
+  return Math.max(MESSAGE_MIN_HEIGHT, Math.round(window.innerHeight * 0.6));
 }
 
-function buildMailto({ name, email, message }: ContactFormValues): string {
-  const subject = encodeURIComponent(`Message from ${name}`);
-  const body = encodeURIComponent(`${message}\n\n—\n${name}\n${email}`);
-  return `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+function clampHeight(height: number): number {
+  return Math.min(Math.max(height, MESSAGE_MIN_HEIGHT), maxMessageHeight());
 }
 
-/**
- * Lightweight contact form (Figma 68:726).
- * Uses Radix Form primitives; opens a mailto to christieyu@aya.yale.edu.
- */
+function newSubmissionId(): string {
+  return crypto.randomUUID();
+}
+
+/** Contact form — Figma 109:1136. Posts to /api/contact without leaving the page. */
 export function ContactForm() {
   const [status, setStatus] = useState<FormStatus>("idle");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [messageHeight, setMessageHeight] = useState(MESSAGE_MIN_HEIGHT);
+  const [nameValue, setNameValue] = useState("");
+  const [emailValue, setEmailValue] = useState("");
+  const [messageValue, setMessageValue] = useState("");
+  const [focused, setFocused] = useState<"name" | "email" | "message" | null>(
+    null,
+  );
+  const dragRef = useRef<{ startY: number; startHeight: number } | null>(null);
+  const submissionIdRef = useRef<string | null>(null);
 
-  const onSubmit = useCallback((event: FormEvent<HTMLFormElement>) => {
+  const onSubmit = useCallback(async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = event.currentTarget;
     const data = new FormData(form);
-    const values: ContactFormValues = {
-      name: String(data.get("name") ?? "").trim(),
-      email: String(data.get("email") ?? "").trim(),
-      message: String(data.get("message") ?? "").trim(),
-    };
-
-    if (!values.name || !values.email || !values.message) {
-      return;
-    }
+    submissionIdRef.current ??= newSubmissionId();
 
     setStatus("submitting");
+    setErrorMessage("");
 
-    window.setTimeout(() => {
-      window.location.href = buildMailto(values);
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: String(data.get("name") ?? ""),
+          email: String(data.get("email") ?? ""),
+          message: String(data.get("message") ?? ""),
+          company: String(data.get("company") ?? ""),
+          submissionId: submissionIdRef.current,
+        }),
+      });
+      const result = (await response.json().catch(() => ({}))) as { error?: string };
+
+      if (!response.ok) {
+        setErrorMessage(result.error ?? "Something went wrong. Please try again.");
+        setStatus("error");
+        return;
+      }
+
+      form.reset();
+      setNameValue("");
+      setEmailValue("");
+      setMessageValue("");
+      submissionIdRef.current = null;
+      setMessageHeight(MESSAGE_MIN_HEIGHT);
       setStatus("sent");
-    }, 450);
+    } catch {
+      setErrorMessage("Network error. Please try again.");
+      setStatus("error");
+    }
   }, []);
 
+  function onHandlePointerDown(event: PointerEvent<HTMLDivElement>) {
+    event.preventDefault();
+    event.currentTarget.setPointerCapture(event.pointerId);
+    dragRef.current = { startY: event.clientY, startHeight: messageHeight };
+  }
+
+  function onHandlePointerMove(event: PointerEvent<HTMLDivElement>) {
+    if (!dragRef.current) return;
+    const delta = event.clientY - dragRef.current.startY;
+    setMessageHeight(clampHeight(dragRef.current.startHeight + delta));
+  }
+
+  function onHandlePointerUp(event: PointerEvent<HTMLDivElement>) {
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    }
+    dragRef.current = null;
+  }
+
+  function onHandleKeyDown(event: KeyboardEvent<HTMLDivElement>) {
+    if (event.key === "ArrowUp") {
+      event.preventDefault();
+      setMessageHeight((height) => clampHeight(height + KEYBOARD_STEP));
+    } else if (event.key === "ArrowDown") {
+      event.preventDefault();
+      setMessageHeight((height) => clampHeight(height - KEYBOARD_STEP));
+    }
+  }
+
+  const busy = status === "submitting";
+  const showNamePh = focused !== "name" && nameValue.trim() === "";
+  const showEmailPh = focused !== "email" && emailValue.trim() === "";
+  const showMessagePh = focused !== "message" && messageValue.trim() === "";
+
   return (
-    <Form.Root className="contact-form" onSubmit={onSubmit}>
-      <p className="contact-form__title">Contact me</p>
+    <Form.Root
+      className="contact-card"
+      onSubmit={(event) => {
+        void onSubmit(event);
+      }}
+      onChange={() => {
+        if (status === "sent" || status === "error") {
+          setStatus("idle");
+        }
+      }}
+    >
+      <div className="contact-card__fields">
+        <h1 className="visually-hidden">Contact</h1>
+        <Form.Field className="contact-field contact-field--short" name="name">
+          <Form.Label className="visually-hidden">Name</Form.Label>
+          <div className="contact-field__shell">
+            {showNamePh ? (
+              <HazeText
+                as="span"
+                className="contact-field__placeholder type-md haze-text--inline"
+              >
+                Name
+              </HazeText>
+            ) : null}
+            <Form.Control asChild>
+              <input
+                className="contact-field__control type-md"
+                type="text"
+                required
+                maxLength={200}
+                autoComplete="name"
+                placeholder=""
+                disabled={busy}
+                value={nameValue}
+                onChange={(event) => setNameValue(event.target.value)}
+                onFocus={() => setFocused("name")}
+                onBlur={() => setFocused(null)}
+              />
+            </Form.Control>
+          </div>
+          <Form.Message className="contact-field__error type-sm" match="valueMissing">
+            Please enter your name.
+          </Form.Message>
+        </Form.Field>
 
-      <div className="contact-form__panel">
-        {status !== "sent" ? (
-          <>
-            <Form.Field className="contact-form__field" name="name">
-              <Form.Label className="contact-form__label">
-                Your name*
-              </Form.Label>
-              <Form.Control asChild>
-                <input
-                  className="contact-form__input"
-                  type="text"
-                  name="name"
-                  required
-                  autoComplete="name"
-                  placeholder="Enter your name"
-                  disabled={status === "submitting"}
-                />
-              </Form.Control>
-              <Form.Message className="contact-form__message" match="valueMissing">
-                Please enter your name.
-              </Form.Message>
-            </Form.Field>
+        <Form.Field className="contact-field contact-field--short" name="email">
+          <Form.Label className="visually-hidden">Email</Form.Label>
+          <div className="contact-field__shell">
+            {showEmailPh ? (
+              <HazeText
+                as="span"
+                className="contact-field__placeholder type-md haze-text--inline"
+              >
+                Email
+              </HazeText>
+            ) : null}
+            <Form.Control asChild>
+              <input
+                className="contact-field__control type-md"
+                type="email"
+                required
+                maxLength={320}
+                autoComplete="email"
+                placeholder=""
+                disabled={busy}
+                value={emailValue}
+                onChange={(event) => setEmailValue(event.target.value)}
+                onFocus={() => setFocused("email")}
+                onBlur={() => setFocused(null)}
+              />
+            </Form.Control>
+          </div>
+          <Form.Message className="contact-field__error type-sm" match="valueMissing">
+            Please enter your email.
+          </Form.Message>
+          <Form.Message className="contact-field__error type-sm" match="typeMismatch">
+            Please enter a valid email.
+          </Form.Message>
+        </Form.Field>
 
-            <Form.Field className="contact-form__field" name="email">
-              <Form.Label className="contact-form__label">
-                Email address*
-              </Form.Label>
-              <Form.Control asChild>
-                <input
-                  className="contact-form__input"
-                  type="email"
-                  name="email"
-                  required
-                  autoComplete="email"
-                  placeholder="Enter your email address"
-                  disabled={status === "submitting"}
-                />
-              </Form.Control>
-              <Form.Message className="contact-form__message" match="valueMissing">
-                Please enter your email.
-              </Form.Message>
-              <Form.Message className="contact-form__message" match="typeMismatch">
-                Please enter a valid email.
-              </Form.Message>
-            </Form.Field>
-
-            <Form.Field className="contact-form__field" name="message">
-              <Form.Label className="contact-form__label">Message*</Form.Label>
+        <Form.Field className="contact-field contact-field--message" name="message">
+          <Form.Label className="visually-hidden">Message</Form.Label>
+          <div className="contact-field__message-wrap">
+            <div className="contact-field__shell contact-field__shell--textarea">
+              {showMessagePh ? (
+                <HazeText
+                  as="span"
+                  className="contact-field__placeholder type-md haze-text--inline"
+                >
+                  Message
+                </HazeText>
+              ) : null}
               <Form.Control asChild>
                 <textarea
-                  className="contact-form__textarea"
-                  name="message"
+                  id="contact-message"
+                  className="contact-field__control contact-field__textarea type-md"
                   required
-                  rows={4}
-                  placeholder="Enter your message"
-                  disabled={status === "submitting"}
+                  maxLength={CONTACT_MESSAGE_MAX}
+                  placeholder=""
+                  disabled={busy}
+                  style={{ height: messageHeight }}
+                  value={messageValue}
+                  onChange={(event) => setMessageValue(event.target.value)}
+                  onFocus={() => setFocused("message")}
+                  onBlur={() => setFocused(null)}
                 />
               </Form.Control>
-              <Form.Message className="contact-form__message" match="valueMissing">
-                Please enter a message.
-              </Form.Message>
-            </Form.Field>
-
-            <Form.Submit asChild>
-              <button
-                type="submit"
-                className="contact-form__submit"
-                disabled={status === "submitting"}
-              >
-                {status === "submitting" ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    className="contact-form__spinner"
-                    src="/images/contact/spinner.svg"
-                    alt=""
-                    width={16}
-                    height={16}
-                  />
-                ) : (
-                  "Send me mail!"
-                )}
-              </button>
-            </Form.Submit>
-          </>
-        ) : (
-          <div className="contact-form__success">
-            <p className="contact-form__sent">
-              Sent
+            </div>
+            <div
+              className="contact-field__resize"
+              role="separator"
+              aria-orientation="horizontal"
+              aria-label="Resize message box"
+              aria-controls="contact-message"
+              aria-valuenow={messageHeight}
+              aria-valuemin={MESSAGE_MIN_HEIGHT}
+              tabIndex={0}
+              onPointerDown={onHandlePointerDown}
+              onPointerMove={onHandlePointerMove}
+              onPointerUp={onHandlePointerUp}
+              onPointerCancel={onHandlePointerUp}
+              onKeyDown={onHandleKeyDown}
+            >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                className="contact-form__check"
-                src="/images/contact/check.svg"
+                src="/icons/resize.svg"
                 alt=""
-                width={18}
-                height={18}
+                width={16}
+                height={16}
+                draggable={false}
               />
-            </p>
-            <div className="contact-form__reply">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                className="contact-form__portrait"
-                src="/images/contact/portrait.png"
-                alt=""
-                width={48}
-                height={52}
-              />
-              <p className="contact-form__reply-copy">
-                I’m pretty sure I got your message! I’ll reply in a few business
-                days. Thanks for reaching out.
-              </p>
             </div>
           </div>
-        )}
+          <Form.Message className="contact-field__error type-sm" match="valueMissing">
+            Please enter a message.
+          </Form.Message>
+        </Form.Field>
+
+        <div className="visually-hidden" aria-hidden="true">
+          <label>
+            Company
+            <input type="text" name="company" tabIndex={-1} autoComplete="off" />
+          </label>
+        </div>
+      </div>
+
+      <div className="contact-card__footer">
+        <Form.Submit className="type-link" disabled={busy}>
+          {busy ? "sending…" : "send"}
+        </Form.Submit>
+        <p className="contact-card__status type-sm" role="status" aria-live="polite">
+          {status === "sent" ? "Sent. Thanks for reaching out!" : null}
+          {status === "error" ? errorMessage : null}
+        </p>
       </div>
     </Form.Root>
   );

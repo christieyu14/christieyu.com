@@ -1,337 +1,193 @@
-/* Contact page — Figma 68:726 */
+/* Contact — Figma Contact (107:980) */
 
-.contact-page {
+.contact {
   position: relative;
+  min-height: 100dvh;
+  color: var(--color-white);
+  background: var(--color-black);
+}
 
-  display: flex;
-
-  flex-direction: column;
-
+.contact__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
   width: 100%;
-
-  min-height: min(75vh, 40rem);
-
-  padding-bottom: var(--space-block);
-}
-
-.contact-page__body {
-  position: relative;
-
-  z-index: 1;
-
-  width: min(100%, var(--content-max-width));
-
-  margin-inline: auto;
-
-  padding-inline: var(--space-page);
-}
-
-.contact-form {
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 2rem;
-
-  max-width: 36rem;
-
-  min-width: 0;
-
-  padding: 4rem 4rem 2rem;
-
-  background: var(--color-surface);
-}
-
-.contact-form__title {
-  margin: 0;
-
-  font-family: var(--font-dreamboat);
-
-  font-size: var(--type-header-size);
-
-  font-weight: var(--type-header-weight);
-
-  letter-spacing: var(--type-header-tracking);
-
-  line-height: normal;
-
-  text-transform: uppercase;
-
-  color: var(--color-black);
-}
-
-.contact-form__panel {
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 1.5rem;
-
-  width: 100%;
-
-  padding: 2rem 1.5rem;
-
-  background: #eaeaea;
-}
-
-.contact-form__field {
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 0.25rem;
-
-  width: 100%;
-}
-
-.contact-form__label {
-  font-family: var(--font-dreamboat);
-
-  font-size: var(--type-subheader-size);
-
-  font-weight: var(--type-subheader-weight);
-
-  letter-spacing: var(--type-subheader-tracking);
-
-  line-height: normal;
-
-  text-transform: uppercase;
-
-  color: var(--color-black);
-}
-
-.contact-form__input,
-.contact-form__textarea {
-  width: 100%;
-
-  max-width: 12.5rem;
-
-  margin: 0;
-
-  padding: 0.5rem 0.75rem;
-
-  border: 0.5px solid color-mix(in srgb, var(--color-black) 40%, transparent);
-
-  border-radius: 0.5rem;
-
-  background: var(--color-surface);
-
-  font-family: var(--font-display);
-
-  font-size: var(--type-body-size);
-
-  font-weight: var(--type-body-weight);
-
-  letter-spacing: var(--type-body-tracking);
-
-  line-height: var(--type-body-leading);
-
-  color: var(--color-black);
-}
-
-.contact-form__textarea {
-  max-width: none;
-
-  min-height: 6rem;
-
-  resize: vertical;
-}
-
-.contact-form__input::placeholder,
-.contact-form__textarea::placeholder {
-  color: color-mix(in srgb, var(--color-black) 40%, transparent);
-}
-
-.contact-form__input:focus-visible,
-.contact-form__textarea:focus-visible {
-  outline: 2px solid var(--color-blue);
-
-  outline-offset: 1px;
-}
-
-.contact-form__message {
-  margin: 0;
-
-  font-family: var(--font-display);
-
-  font-size: var(--type-body-size);
-
-  color: color-mix(in srgb, var(--color-black) 70%, transparent);
-}
-
-.contact-form__submit {
-  display: inline-flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  gap: 0.25rem;
-
-  align-self: flex-start;
-
-  width: fit-content;
-
-  min-height: 1.375rem;
-
-  min-width: 0;
-
-  margin: 0;
-
-  padding: 0.125rem 0.75rem;
-
-  border: 0;
-
-  border-radius: 100px;
-
-  background: var(--gradient-radial-mint);
-
-  font-family: var(--font-dreamboat);
-
-  font-size: var(--type-subheader-size);
-
-  font-weight: var(--type-subheader-weight);
-
-  letter-spacing: var(--type-subheader-tracking);
-
-  line-height: normal;
-
-  text-transform: uppercase;
-
-  color: var(--color-black);
-
-  cursor: pointer;
-
-  transition: opacity 160ms ease;
-}
-
-.contact-form__submit:hover:not(:disabled),
-.contact-form__submit:focus-visible:not(:disabled) {
-  opacity: 0.88;
-
-  outline: none;
-}
-
-.contact-form__submit:disabled {
-  cursor: wait;
-}
-
-.contact-form__spinner {
-  display: block;
-
-  width: 1rem;
-
-  height: 1rem;
-
-  animation: contact-spin 0.9s linear infinite;
-}
-
-.contact-form__success {
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 1rem;
-
-  width: 100%;
-}
-
-.contact-form__sent {
-  display: inline-flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  gap: 0.25rem;
-
-  align-self: flex-start;
-
-  min-height: 1.375rem;
-
-  margin: 0;
-
-  padding: 0.125rem 0.75rem;
-
-  border-radius: 100px;
-
-  background: var(--gradient-radial-mint);
-
-  font-family: var(--font-dreamboat);
-
-  font-size: var(--type-subheader-size);
-
-  letter-spacing: var(--type-subheader-tracking);
-
-  text-transform: uppercase;
-
-  color: var(--color-black);
-}
-
-.contact-form__check {
-  display: block;
-
-  width: 1.125rem;
-
-  height: 1.125rem;
-}
-
-.contact-form__reply {
-  display: flex;
-
-  gap: 0.5rem;
-
-  align-items: flex-start;
-
-  width: 100%;
-
-  padding-inline: 1rem;
-}
-
-.contact-form__portrait {
-  flex: 0 0 auto;
-
-  width: 3rem;
-
-  height: 3.25rem;
-
-  border-radius: 100px;
-
+  height: 100%;
   object-fit: cover;
 }
 
-.contact-form__reply-copy {
-  margin: 0;
+.contact__tide {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: auto;
+  mix-blend-mode: screen;
+  opacity: 0.85;
+}
 
-  flex: 1 1 auto;
+.contact__tide-inner {
+  width: 100%;
+  height: 100%;
+}
 
-  font-family: var(--font-display);
+.contact__body {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 100dvh;
+  /* Card bottom sits 107px above the frame edge in Figma */
+  padding: 4.0625rem var(--space-frame) 6.6875rem;
+  /* pointer-events is NOT inherited — welcome wrapper must also opt out */
+  pointer-events: none;
+}
 
-  font-size: var(--type-body-size);
+.contact__welcome {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  pointer-events: none;
+}
 
-  font-weight: var(--type-body-weight);
+.contact__welcome-title {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 0;
+  color: var(--color-white);
+  font-size: 2.25rem; /* 36px — Figma contact title */
+  line-height: 1;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+  pointer-events: none;
+}
 
-  letter-spacing: var(--type-body-tracking);
+@supports not (text-box-trim: trim-both) {
+  .contact__welcome-title {
+    margin-bottom: -0.12em;
+  }
+}
 
-  line-height: var(--type-body-leading);
+/* Card grows upward with the message box: bottom-anchored, auto height */
+.contact-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4.5rem; /* 72px */
+  width: min(100%, 29.125rem); /* 466px */
+  padding: 4.25rem 1.75rem; /* 68px / 28px */
+  border: 4px solid rgb(242 241 240 / 40%);
+  background: var(--surface-contact);
+  backdrop-filter: blur(17px);
+  pointer-events: auto;
+}
 
+.contact-card__fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-gap);
+}
+
+.contact-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.contact-field__shell {
+  position: relative;
+}
+
+.contact-field__shell--textarea {
+  display: block;
+}
+
+.contact-field__placeholder {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.75rem;
+  z-index: 1;
+  color: rgb(8 8 8 / 60%);
+  pointer-events: none;
+}
+
+.contact-field__shell .contact-field__control {
+  position: relative;
+  z-index: 0;
+  background: rgb(255 255 255 / 80%);
+}
+
+.contact-field--short {
+  width: min(100%, 18.75rem); /* 300px — Figma */
+}
+
+.contact-field__control {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
   color: var(--color-black);
+  background: rgb(255 255 255 / 80%);
+  border: 0.5px solid rgb(8 8 8 / 40%);
+  border-radius: 0;
+  outline-offset: 2px;
 }
 
-@keyframes contact-spin {
-  to {
-    transform: rotate(360deg);
+.contact-field__control::placeholder {
+  color: rgb(8 8 8 / 60%);
+  opacity: 1;
+}
+
+.contact-field__message-wrap {
+  position: relative;
+}
+
+.contact-field__textarea {
+  resize: none;
+  overflow-y: auto;
+}
+
+.contact-field__resize {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+  cursor: ns-resize;
+  touch-action: none;
+}
+
+.contact-field__resize img {
+  transform: rotate(180deg);
+  pointer-events: none;
+}
+
+.contact-field__error {
+  color: var(--color-white);
+}
+
+.contact-card__footer {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-gap);
+}
+
+.contact-card__status:empty {
+  display: none;
+}
+
+@media (max-width: 560px) {
+  .contact__body {
+    padding-bottom: 5rem;
   }
-}
 
-@media (max-width: 900px) {
-  .contact-form {
-    padding: 2rem 1.5rem 1.5rem;
+  .contact-card {
+    padding-block: 1.75rem;
+    gap: 2.5rem;
   }
-}
 
-@media (prefers-reduced-motion: reduce) {
-  .contact-form__spinner {
-    animation: none;
+  .contact-field--short {
+    width: 100%;
   }
 }

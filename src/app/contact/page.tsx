@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/content/ContactForm";
-import { AsciiSplash } from "@/components/content/AsciiSplash";
+import { ContactTideOverlay } from "@/components/content/ContactTideOverlay";
 import { buildMetadata, formatPageTitle } from "@/lib/metadata";
 import { getSiteSettings } from "@/sanity/lib/fetch";
 import "@/styles/contact.css";
-import "@/styles/ascii.css";
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSiteSettings();
@@ -18,12 +17,26 @@ export async function generateMetadata(): Promise<Metadata> {
   );
 }
 
-export default async function ContactPage() {
+export default function ContactPage() {
   return (
-    <main id="main-content" className="contact-page">
-      <AsciiSplash variant="contact" />
-      <div className="contact-page__body">
-        <ContactForm />
+    <main id="main-content" className="contact">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        className="contact__bg"
+        src="/images/contact/fishies.jpg"
+        alt=""
+        width={1920}
+        height={1080}
+        fetchPriority="high"
+      />
+      <ContactTideOverlay />
+      <div className="contact__body">
+        <div className="contact__welcome">
+          <p className="contact__welcome-title type-display" aria-hidden="true">
+            contact me...
+          </p>
+          <ContactForm />
+        </div>
       </div>
     </main>
   );

@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
+import { HeroPhotoStage } from "@/components/content/HeroPhotoStage";
 import { ResumeViewer } from "@/components/content/ResumeViewer";
-import { AsciiSplash } from "@/components/content/AsciiSplash";
-import { RESUME, resumeUpdatedLabel } from "@/content/resume";
+import { getHeroAlbumAssets, selectHeroAsset } from "@/cloudinary/lib/hero-album";
+import { RESUME } from "@/content/resume";
 import { getResumeUpdatedLabel, isResumePdfAvailable } from "@/lib/figma/resume-pdf";
 import { buildMetadata, formatPageTitle } from "@/lib/metadata";
 import { getSiteSettings } from "@/sanity/lib/fetch";
+import "@/styles/photo-stage.css";
 import "@/styles/resume.css";
-import "@/styles/ascii.css";
+
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSiteSettings();
@@ -22,21 +25,23 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function ResumePage() {
-  const available = await isResumePdfAvailable();
-  const updatedLabel = available ? await getResumeUpdatedLabel() : resumeUpdatedLabel();
-
-  const pdfSrc = available ? RESUME.pdfRoute : undefined;
+  const [available, assets] = await Promise.all([
+    isResumePdfAvailable(),
+    getHeroAlbumAssets(),
+  ]);
+  const initialAsset = selectHeroAsset(assets);
 
   return (
-    <main id="main-content" className="resume-page">
-      <AsciiSplash variant="resume" />
-      <div className="resume-page__body">
-        <ResumeViewer
-          pdfSrc={pdfSrc}
-          downloadFilename={RESUME.downloadFilename}
-          updatedLabel={updatedLabel}
-        />
-      </div>
+    <main id="main-content">
+      <HeroPhotoStage assets={assets} initialAsset={initialAsset} variant="resume">
+        <h1 className="visually-hidden">Resume</h1>
+        <div className="resume-box">
+          <ResumeViewer
+            pdfSrc={available ? RESUME.pdfRoute : undefined}
+            downloadFilename={RESUME.downloadFilename}
+          />
+        </div>
+      </HeroPhotoStage>
     </main>
   );
 }

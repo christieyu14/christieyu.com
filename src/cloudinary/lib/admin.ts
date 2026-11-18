@@ -1,8 +1,5 @@
 import { v2 as cloudinary } from "cloudinary";
-import {
-  getServerEnv,
-  isCloudinaryAdminConfigured,
-} from "@/lib/env";
+import { getServerEnv, isCloudinaryAdminConfigured } from "@/lib/env";
 
 export { isCloudinaryAdminConfigured };
 

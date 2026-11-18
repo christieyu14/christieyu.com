@@ -1,0 +1,43 @@
+.haze-text {
+  position: relative;
+  display: block;
+}
+
+.haze-text__measure {
+  display: block;
+  visibility: hidden;
+}
+
+.haze-text--done .haze-text__measure {
+  visibility: visible;
+}
+
+.haze-text__live {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  white-space: inherit;
+}
+
+/* Inline usage (brand name, short labels) */
+.haze-text--inline {
+  display: inline-block;
+  max-width: 100%;
+}
+
+.haze-text--inline .haze-text__measure {
+  display: inline;
+  visibility: hidden;
+}
+
+.haze-text--inline.haze-text--done .haze-text__measure {
+  visibility: visible;
+}
+
+/* Multi-paragraph chunk: scramble as one block */
+.haze-text--chunk,
+.haze-text--chunk .haze-text__measure,
+.haze-text--chunk .haze-text__live {
+  white-space: pre-wrap;
+}

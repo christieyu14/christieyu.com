@@ -6,9 +6,9 @@ export function getRevalidationPaths(
 ): string[] {
   switch (documentType) {
     case "portfolioPost": {
-      const paths = ["/", "/work"];
+      const paths = ["/portfolio"];
       if (slug) {
-        paths.push(`/work/${slug}`);
+        paths.push(`/portfolio/${slug}`);
       }
       return paths;
     }
@@ -20,7 +20,7 @@ export function getRevalidationPaths(
       return paths;
     }
     case "siteSettings":
-      return ["/", "/work", "/photos", "/about", "/resume", "/contact"];
+      return ["/", "/portfolio", "/photos", "/resume", "/contact"];
     default:
       return ["/"];
   }

@@ -20,6 +20,7 @@ export const portfolioSummaryProjection = `
   publishedAt,
   projectYear,
   client,
+  location,
   role,
   featured,
   ${coverMediaProjection}

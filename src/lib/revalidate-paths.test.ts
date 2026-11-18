@@ -8,18 +8,16 @@ import {
 describe("revalidation webhook helpers", () => {
   it("returns portfolio paths including slug", () => {
     expect(getRevalidationPaths("portfolioPost", "sample")).toEqual([
-      "/",
-      "/work",
-      "/work/sample",
+      "/portfolio",
+      "/portfolio/sample",
     ]);
   });
 
   it("returns layout paths for site settings", () => {
     expect(getRevalidationPaths("siteSettings")).toEqual([
       "/",
-      "/work",
+      "/portfolio",
       "/photos",
-      "/about",
       "/resume",
       "/contact",
     ]);
