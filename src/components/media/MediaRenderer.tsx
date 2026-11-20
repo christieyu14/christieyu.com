@@ -16,15 +16,16 @@ export function MediaRenderer({
   className,
 }: MediaRendererProps) {
   if (media.kind === "cloudinary-image") {
+    const animated = media.format === "gif";
     const width = variant === "thumbnail" ? 400 : 1600;
     const height = variant === "thumbnail" ? 300 : undefined;
     const src = buildCloudinaryUrl({
       publicId: media.publicId,
       width,
-      height,
-      crop: variant === "thumbnail" ? "fill" : "limit",
+      height: animated ? undefined : height,
+      crop: variant === "thumbnail" && !animated ? "fill" : "limit",
       quality: "auto",
-      format: "auto",
+      format: animated ? "gif" : "auto",
     });
 
     if (!src) {
@@ -86,10 +87,28 @@ export function MediaRenderer({
   }
 
   if (media.kind === "prototype-embed") {
+    const height =
+      typeof media.aspectRatio === "number" && media.aspectRatio > 0
+        ? undefined
+        : 600;
+
     return (
-      <figure className={className}>
-        <figcaption>{media.title ?? "Prototype embed"}</figcaption>
-      </figure>
+      <iframe
+        className={className}
+        src={media.url}
+        title={media.title ?? "Embedded content"}
+        style={{
+          width: "100%",
+          border: 0,
+          height,
+          aspectRatio:
+            typeof media.aspectRatio === "number" && media.aspectRatio > 0
+              ? String(media.aspectRatio)
+              : undefined,
+        }}
+        loading="lazy"
+        allowFullScreen
+      />
     );
   }
 

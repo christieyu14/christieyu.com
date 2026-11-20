@@ -9,6 +9,7 @@ export const portfolioPostBySlugQuery = `*[_type == "portfolioPost" && slug.curr
   duration,
   disciplines,
   body,
+  sections[]{ label, headingText },
   seoTitle,
   seoDescription,
   ogImage,

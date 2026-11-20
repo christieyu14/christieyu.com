@@ -50,6 +50,7 @@ interface SanityPortfolioPostResponse extends SanityPortfolioSummaryResponse {
   duration?: string;
   disciplines?: string[];
   body?: PortableTextBlock[];
+  sections?: { label?: string; headingText?: string }[];
   seoTitle?: string;
   seoDescription?: string;
   ogImage?: string;
@@ -139,6 +140,12 @@ function mapPortfolioPost(data: SanityPortfolioPostResponse): PortfolioPost {
     duration: data.duration,
     disciplines: data.disciplines,
     body: data.body,
+    sections: data.sections
+      ?.filter((section) => section.label && section.headingText)
+      .map((section) => ({
+        label: section.label as string,
+        headingText: section.headingText as string,
+      })),
     seoTitle: data.seoTitle,
     seoDescription: data.seoDescription,
     ogImage: data.ogImage,

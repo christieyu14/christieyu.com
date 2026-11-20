@@ -1,20 +1,19 @@
 export type ChromeTone = "dark" | "light";
 
-/** Pages with dark/coloured backdrops use light (white) chrome text. */
-const LIGHT_TONE_PREFIXES = ["/portfolio", "/contact"];
-
 /**
  * Default header/footer text tone from the route.
- * - dark = black text (home / light Terminal Rain, resume until photo samples)
- * - light = white text (portfolio, contact)
+ * - dark = black text (home, resume until photo samples, portfolio case studies)
+ * - light = white text (portfolio index, contact)
  * Resume overrides dynamically via ChromeToneProvider once the hero photo is sampled.
  */
 export function getChromeTone(pathname: string): ChromeTone {
-  return LIGHT_TONE_PREFIXES.some(
-    (prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`),
-  )
-    ? "light"
-    : "dark";
+  if (pathname === "/portfolio") {
+    return "light";
+  }
+  if (pathname === "/contact" || pathname.startsWith("/contact/")) {
+    return "light";
+  }
+  return "dark";
 }
 
 export function isActivePath(pathname: string, href: string): boolean {

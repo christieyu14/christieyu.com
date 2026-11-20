@@ -16,10 +16,16 @@ export interface PortfolioPostSummary {
   coverMedia?: NormalizedMedia;
 }
 
+export interface PortfolioSection {
+  label: string;
+  headingText: string;
+}
+
 export interface PortfolioPost extends PortfolioPostSummary, SeoFields {
   duration?: string;
   disciplines?: string[];
   body?: PortableTextBlock[];
+  sections?: PortfolioSection[];
   relatedProjects?: PortfolioPostSummary[];
 }
 
