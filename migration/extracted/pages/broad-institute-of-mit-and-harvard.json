@@ -1,0 +1,77 @@
+{
+  "slug": "broad-institute-of-mit-and-harvard",
+  "url": "https://christieyu.com/broad-institute-of-mit-and-harvard",
+  "canonical": "https://christieyu.com/broad-institute-of-mit-and-harvard",
+  "title": "Christie Yu - Broad Institute of MIT and Harvard",
+  "description": "Hi! I",
+  "keywords": "UI/UX,product design,design systems,design language",
+  "ogImage": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/8162cb6e-7630-414c-a177-eff963e87787_car_202x158.jpg?h=0c41cc57faf561296b073fe429f3ab10",
+  "adobePageId": "p67d7a0178a935877acb4f99a60187b771ba2c25b8d8ab6c2f975a",
+  "kind": "project",
+  "passwordProtected": false,
+  "extractedAt": "2026-11-20T01:05:39.993Z",
+  "covers": [],
+  "modules": [
+    {
+      "index": 0,
+      "type": "text",
+      "moduleId": null,
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Cancer research at the Broad Institute of Harvard and MIT",
+          "links": []
+        }
+      ],
+      "links": []
+    },
+    {
+      "index": 1,
+      "type": "text",
+      "moduleId": null,
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "In junior year of high school, I was lucky enough to be a research assistant at the Broad Institute. I worked in Aviv Regev's lab on novel methods in ribosome profiling, where two-thirds of my time was spent in a wet lab under the mentorship of Dr. Tamara Ouspenskaia, while the other third was spent learning & using a pipeline of command-line tools. This was my very first exposure to Terminal & Bash!\n\nWorking at the Broad was such a privilege. I often took elevators to work with CRISPR greats like Feng Zheng. As the CRISPR-Cas9 gene editing protocol was rather new in 2017, this was the most exciting thing that could happen to my little biotech brain.\n\nAs a culmination of my work, I presented my research in a scientific symposium at the Broad Institute and I wrote a 15-pg academic paper for the Siemens Competition.",
+          "links": []
+        }
+      ],
+      "links": []
+    },
+    {
+      "index": 2,
+      "type": "image",
+      "moduleId": null,
+      "image": {
+        "role": "content",
+        "sourceUrl": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/46e0e7c7-5fbc-45c1-bde3-c1922127b44d.jpg?h=5adeac12e874d8e008e4b058ebeb8185",
+        "variant": "lightbox-original",
+        "declaredWidth": null,
+        "crop": null,
+        "assetId": "46e0e7c7-5fbc-45c1-bde3-c1922127b44d",
+        "ext": "jpg",
+        "alt": "",
+        "width": 1400,
+        "height": null,
+        "caption": null
+      }
+    },
+    {
+      "index": 3,
+      "type": "text",
+      "moduleId": null,
+      "blocks": [
+        {
+          "type": "caption",
+          "text": "The final work. As I was already proficient in Adobe Illustrator, that is what I made this poster in. Dr. Ouspenskaia was so impressed that she asked if I could make visualizations for her research paper submission too!",
+          "links": []
+        }
+      ],
+      "links": []
+    }
+  ],
+  "notes": [
+    "Captions are separate text modules with class caption. They are not attributes on the image tag, and the image alt attribute is empty.",
+    "One or more content images have no alt text in the public HTML."
+  ]
+}

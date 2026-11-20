@@ -1,0 +1,77 @@
+{
+  "slug": "student-technology-collaborative",
+  "url": "https://christieyu.com/student-technology-collaborative",
+  "canonical": "https://christieyu.com/student-technology-collaborative",
+  "title": "Christie Yu - Student Technology Collaborative",
+  "description": "Hi! I",
+  "keywords": "UI/UX,product design,design systems,design language",
+  "ogImage": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/ac249da0-8305-4c7a-97de-205d987e6d33_car_202x158.jpg?h=9fa604e4d8fd471338fc5564badb7261",
+  "adobePageId": "p67d7a06bc3b2d1fb108814826c30f12b66022c013bbdee54cecb2",
+  "kind": "project",
+  "passwordProtected": false,
+  "extractedAt": "2026-11-20T01:05:39.993Z",
+  "covers": [],
+  "modules": [
+    {
+      "index": 0,
+      "type": "text",
+      "moduleId": null,
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Managing Media Techs for the Student Technology Collaborative at Yale",
+          "links": []
+        }
+      ],
+      "links": []
+    },
+    {
+      "index": 1,
+      "type": "text",
+      "moduleId": null,
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "I had a short stint managing Media Techs for Yale STC. This was my first paid campus job, which I took in freshman year, and my job consisted mostly of creating infographic posters for how to use our rentable media equipment. Later, when I became a manager in my second year, I also rehauled the communication system of the team in an effort to streamline productivity.",
+          "links": []
+        }
+      ],
+      "links": []
+    },
+    {
+      "index": 2,
+      "type": "image",
+      "moduleId": null,
+      "image": {
+        "role": "content",
+        "sourceUrl": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/98915d39-8261-4441-aec5-941649a264bc.jpg?h=1fbc74e55d7f6f6020691afc0d1cc58d",
+        "variant": "lightbox-original",
+        "declaredWidth": null,
+        "crop": null,
+        "assetId": "98915d39-8261-4441-aec5-941649a264bc",
+        "ext": "jpg",
+        "alt": "",
+        "width": 1400,
+        "height": null,
+        "caption": null
+      }
+    },
+    {
+      "index": 3,
+      "type": "text",
+      "moduleId": null,
+      "blocks": [
+        {
+          "type": "caption",
+          "text": "I took this opportunity to practice using the pen tool on Adobe Illustrator.",
+          "links": []
+        }
+      ],
+      "links": []
+    }
+  ],
+  "notes": [
+    "Captions are separate text modules with class caption. They are not attributes on the image tag, and the image alt attribute is empty.",
+    "One or more content images have no alt text in the public HTML."
+  ]
+}

@@ -47,6 +47,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  gap: 4px;
   pointer-events: none;
 }
 
@@ -62,18 +63,12 @@
   pointer-events: none;
 }
 
-@supports not (text-box-trim: trim-both) {
-  .contact__welcome-title {
-    margin-bottom: -0.12em;
-  }
-}
-
 /* Card grows upward with the message box: bottom-anchored, auto height */
 .contact-card {
   display: flex;
   flex-direction: column;
   gap: 4.5rem; /* 72px */
-  width: min(100%, 29.125rem); /* 466px */
+  width: max(min(100%, 29.125rem), var(--contact-card-width, 0px)); /* 466px min; grows with message */
   padding: 4.25rem 1.75rem; /* 68px / 28px */
   border: 4px solid rgb(242 241 240 / 40%);
   background: var(--surface-contact);
@@ -138,6 +133,8 @@
 
 .contact-field__message-wrap {
   position: relative;
+  width: var(--message-width, 100%);
+  max-width: 100%;
 }
 
 .contact-field__textarea {
@@ -154,12 +151,13 @@
   justify-content: center;
   width: 1rem;
   height: 1rem;
-  cursor: ns-resize;
+  cursor: nesw-resize;
   touch-action: none;
 }
 
 .contact-field__resize img {
-  transform: rotate(180deg);
+  /* SVG is bottom-right; rotate into top-right so strokes point at the corner */
+  transform: rotate(-90deg);
   pointer-events: none;
 }
 

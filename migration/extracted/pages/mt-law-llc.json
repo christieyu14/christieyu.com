@@ -1,0 +1,93 @@
+{
+  "slug": "mt-law-llc",
+  "url": "https://christieyu.com/mt-law-llc",
+  "canonical": "https://christieyu.com/mt-law-llc",
+  "title": "Christie Yu - MT Law, LLC",
+  "description": "Hi! I",
+  "keywords": "UI/UX,product design,design systems,design language",
+  "ogImage": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/4cb6b127-33da-4bcc-8382-a1f121d9e7fc_car_202x158.jpg?h=04289f2638f0d598589e872c64566dee",
+  "adobePageId": "p67d79f9e95e81da064271371ab505ee4ee54ad62a24e4f1d38c8f",
+  "kind": "project",
+  "passwordProtected": false,
+  "extractedAt": "2026-11-20T01:05:39.993Z",
+  "covers": [],
+  "modules": [
+    {
+      "index": 0,
+      "type": "text",
+      "moduleId": null,
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Legal writing for MT Law, LLC",
+          "links": []
+        }
+      ],
+      "links": []
+    },
+    {
+      "index": 1,
+      "type": "text",
+      "moduleId": null,
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "The summer before I started college, I worked as a paralegal at MT Law. I wrote, copy-edited, compiled, and filed immigration petitions to the USCIS.",
+          "links": []
+        }
+      ],
+      "links": []
+    },
+    {
+      "index": 2,
+      "type": "media_collection",
+      "moduleId": "m67d79fc73f15e7cba0f0d1aa8088ecef0630bc32249b9f9cfaec9",
+      "images": [
+        {
+          "role": "content",
+          "sourceUrl": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/3316a44c-06e8-40d8-8d20-451b453a10ae_rw_1920.jpg?h=fb1d86ed9ebda9f830fa5a012b7c82ac",
+          "variant": "largest-srcset",
+          "declaredWidth": 1920,
+          "crop": null,
+          "assetId": null,
+          "ext": null,
+          "alt": "",
+          "width": 1920,
+          "height": 2484,
+          "caption": null
+        },
+        {
+          "role": "content",
+          "sourceUrl": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/23b0afbc-9977-448f-9bc7-eda0cb184d0e_rw_1920.jpg?h=5d708bee4ef420dea524a8725dfb156a",
+          "variant": "largest-srcset",
+          "declaredWidth": 1920,
+          "crop": null,
+          "assetId": null,
+          "ext": null,
+          "alt": "",
+          "width": 1920,
+          "height": 2484,
+          "caption": null
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "type": "text",
+      "moduleId": null,
+      "blocks": [
+        {
+          "type": "caption",
+          "text": "A sample of documents I would write and copy-edit. Heavy stuff!",
+          "links": []
+        }
+      ],
+      "links": []
+    }
+  ],
+  "notes": [
+    "Some images only expose a resized or cropped CDN derivative. The unsuffixed original URL is not in the public HTML for those assets.",
+    "Captions are separate text modules with class caption. They are not attributes on the image tag, and the image alt attribute is empty.",
+    "One or more content images have no alt text in the public HTML."
+  ]
+}

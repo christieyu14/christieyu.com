@@ -94,8 +94,16 @@
   text-align: right;
 }
 
+.photo-stage__caption > span:first-child {
+  font-weight: var(--weight-medium);
+}
+
 .photo-stage__actions {
   margin-bottom: 0.75rem;
+}
+
+.photo-stage__all {
+  white-space: nowrap;
 }
 
 .photo-stage__thumb {
@@ -127,10 +135,6 @@
     top: auto;
     width: 100%;
     padding-block: 2rem 5rem;
-  }
-
-  .photo-stage--resume .photo-stage__meta {
-    padding-top: 0;
   }
 }
 

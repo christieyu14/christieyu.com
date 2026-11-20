@@ -1,0 +1,80 @@
+{
+  "slug": "for-fun",
+  "url": "https://christieyu.com/for-fun",
+  "canonical": "https://christieyu.com/for-fun",
+  "title": "Christie Yu - For fun :)",
+  "description": "Hi! I",
+  "keywords": "UI/UX,product design,design systems,design language",
+  "ogImage": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/69f6d18d-815e-4861-a08f-a0166b69489e_rwc_307x571x1935x1513x1935.jpg?h=4d473cfec551acb299b7a3ef99283906",
+  "adobePageId": "p67d7a0baa5158a96571b397e8b08c97da4bbb36df16f3cf016e2a",
+  "kind": "project",
+  "passwordProtected": false,
+  "extractedAt": "2026-11-20T01:05:39.993Z",
+  "covers": [],
+  "modules": [
+    {
+      "index": 0,
+      "type": "text",
+      "moduleId": null,
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Stuff I did for fun",
+          "links": []
+        }
+      ],
+      "links": []
+    },
+    {
+      "index": 1,
+      "type": "text",
+      "moduleId": null,
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "In junior year, I won the t-shirt design competition for the computer science department at Yale. It was pretty interesting seeing my professors wearing my shirt. To this day, I still notice my friends wearing this shirt when we hang out. Sometimes, I'll even see a stranger on public transport wearing it. This shirt made a much larger splash than I anticipated... I guess it's true that there are a couple thousand copies out there! Funnily enough, I've lost my own.",
+          "links": []
+        }
+      ],
+      "links": []
+    },
+    {
+      "index": 2,
+      "type": "media_collection",
+      "moduleId": "m67d7a0e121d8d1b538070281ede34eea8e4cc6f7ea596f778e8ef",
+      "images": [
+        {
+          "role": "content",
+          "sourceUrl": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/a7ef7de7-e6e1-4dd8-8cac-b274f1de2c1c_rw_1920.jpg?h=bd7f50a411d147de7b19b67d912283c6",
+          "variant": "largest-srcset",
+          "declaredWidth": 1920,
+          "crop": null,
+          "assetId": null,
+          "ext": null,
+          "alt": "",
+          "width": 1920,
+          "height": 2484,
+          "caption": null
+        },
+        {
+          "role": "content",
+          "sourceUrl": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/395357a8-3578-429c-acee-c099a5d095a7_rw_1920.jpg?h=a137a5bb821c5506b2450696e8b11da6",
+          "variant": "largest-srcset",
+          "declaredWidth": 1920,
+          "crop": null,
+          "assetId": null,
+          "ext": null,
+          "alt": "",
+          "width": 1920,
+          "height": 2483,
+          "caption": null
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "Some images only expose a resized or cropped CDN derivative. The unsuffixed original URL is not in the public HTML for those assets.",
+    "This page has images and no elements with class caption.",
+    "One or more content images have no alt text in the public HTML."
+  ]
+}

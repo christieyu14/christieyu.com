@@ -1,0 +1,155 @@
+{
+  "slug": "other-projects",
+  "url": "https://christieyu.com/other-projects",
+  "canonical": "https://christieyu.com/other-projects",
+  "title": "Christie Yu - Other projects",
+  "description": "Hi! I",
+  "keywords": "UI/UX,product design,design systems,design language",
+  "ogImage": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/5a4019da-1cc8-4cdf-a58e-6cad9b7594a5_car_202x158.png?h=06a04400da2c1ac6bf210e82f10a6089",
+  "adobePageId": "p67d79e96db1d4536d9df4341f1ec6c70e3bb0c56c56242de90e7c",
+  "kind": "gallery",
+  "passwordProtected": false,
+  "extractedAt": "2026-11-20T01:05:39.993Z",
+  "covers": [
+    {
+      "order": 0,
+      "href": "/drassomai",
+      "adobePageId": "p67d79e96db1d4536d9df4341f1ec6c70e3bb0c56c56242de90e7c",
+      "title": "Drassomai",
+      "description": "",
+      "date": "03/2024",
+      "customField": "",
+      "cover": {
+        "role": "cover",
+        "sourceUrl": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/5a4019da-1cc8-4cdf-a58e-6cad9b7594a5_carw_202x158x5120.png?h=5dd74b34f54c8ec0b4f27c5b352a20cb",
+        "variant": "largest-srcset",
+        "declaredWidth": 5120,
+        "crop": null,
+        "assetId": null,
+        "ext": null,
+        "alt": "",
+        "width": 5120,
+        "height": null,
+        "caption": null
+      }
+    },
+    {
+      "order": 1,
+      "href": "/student-technology-collaborative",
+      "adobePageId": "p67d7a06bc3b2d1fb108814826c30f12b66022c013bbdee54cecb2",
+      "title": "Student Technology Collaborative",
+      "description": "",
+      "date": "04/2020",
+      "customField": "",
+      "cover": {
+        "role": "cover",
+        "sourceUrl": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/ac249da0-8305-4c7a-97de-205d987e6d33_carw_202x158x5120.jpg?h=5c909920cdea1311101428825b113d91",
+        "variant": "largest-srcset",
+        "declaredWidth": 5120,
+        "crop": null,
+        "assetId": null,
+        "ext": null,
+        "alt": "",
+        "width": 5120,
+        "height": null,
+        "caption": null
+      }
+    },
+    {
+      "order": 2,
+      "href": "/certik",
+      "adobePageId": "p67d79f291c576396cb11d2d103e5a393de365b77e1b26ffe750f3",
+      "title": "CertiK",
+      "description": "",
+      "date": "02/2019",
+      "customField": "",
+      "cover": {
+        "role": "cover",
+        "sourceUrl": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/67393459-29c5-4588-9b8c-c5b9ba7af353_carw_202x158x5120.jpg?h=626eac3edf2311cdc82f4bb48dc2170a",
+        "variant": "largest-srcset",
+        "declaredWidth": 5120,
+        "crop": null,
+        "assetId": null,
+        "ext": null,
+        "alt": "",
+        "width": 5120,
+        "height": null,
+        "caption": null
+      }
+    },
+    {
+      "order": 3,
+      "href": "/mt-law-llc",
+      "adobePageId": "p67d79f9e95e81da064271371ab505ee4ee54ad62a24e4f1d38c8f",
+      "title": "MT Law, LLC",
+      "description": "",
+      "date": "08/2018",
+      "customField": "",
+      "cover": {
+        "role": "cover",
+        "sourceUrl": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/4cb6b127-33da-4bcc-8382-a1f121d9e7fc_carw_202x158x5120.jpg?h=bc44f3f27800b7eee13a5e43440663a1",
+        "variant": "largest-srcset",
+        "declaredWidth": 5120,
+        "crop": null,
+        "assetId": null,
+        "ext": null,
+        "alt": "",
+        "width": 5120,
+        "height": null,
+        "caption": null
+      }
+    },
+    {
+      "order": 4,
+      "href": "/broad-institute-of-mit-and-harvard",
+      "adobePageId": "p67d7a0178a935877acb4f99a60187b771ba2c25b8d8ab6c2f975a",
+      "title": "Broad Institute of MIT and Harvard",
+      "description": "",
+      "date": "08/2017",
+      "customField": "",
+      "cover": {
+        "role": "cover",
+        "sourceUrl": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/8162cb6e-7630-414c-a177-eff963e87787_carw_202x158x5120.jpg?h=3d4581fb19b7ef7ca6194633b1da4089",
+        "variant": "largest-srcset",
+        "declaredWidth": 5120,
+        "crop": null,
+        "assetId": null,
+        "ext": null,
+        "alt": "",
+        "width": 5120,
+        "height": null,
+        "caption": null
+      }
+    },
+    {
+      "order": 5,
+      "href": "/for-fun",
+      "adobePageId": "p67d7a0baa5158a96571b397e8b08c97da4bbb36df16f3cf016e2a",
+      "title": "For fun :)",
+      "description": "",
+      "date": "03/2025",
+      "customField": "",
+      "cover": {
+        "role": "cover",
+        "sourceUrl": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/69f6d18d-815e-4861-a08f-a0166b69489e_rwc_307x571x1935x1513x1935.jpg?h=4d473cfec551acb299b7a3ef99283906",
+        "variant": "cropped-derivative",
+        "declaredWidth": 5120,
+        "crop": {
+          "x": 307,
+          "y": 571,
+          "width": 1935,
+          "height": 1513,
+          "deliveredEdge": 1935
+        },
+        "assetId": null,
+        "ext": null,
+        "alt": "",
+        "width": 5120,
+        "height": null,
+        "caption": null
+      }
+    }
+  ],
+  "modules": [],
+  "notes": []
+}

@@ -25,6 +25,29 @@ function hasRenderableCover(post: PortfolioPostSummary): boolean {
   return false;
 }
 
+/** Display as "Lenovo / Chicago (Remote)" instead of "lenovo / remote (chicago)". */
+function formatWhere(client?: string, location?: string): string | null {
+  const brand = client?.trim();
+  const place = location?.trim();
+  if (!brand && !place) return null;
+
+  const remoteCity = place?.match(/^remote\s*\((.+)\)$/i);
+  if (brand && remoteCity) {
+    return `${titleCase(brand)} / ${titleCase(remoteCity[1]!.trim())} (Remote)`;
+  }
+
+  const cityRemote = place?.match(/^(.+?)\s*\/\s*remote$/i);
+  if (brand && cityRemote) {
+    return `${titleCase(brand)} / ${titleCase(cityRemote[1]!.trim())} (Remote)`;
+  }
+
+  return [brand, place].filter(Boolean).join(" / ");
+}
+
+function titleCase(value: string): string {
+  return value.replace(/\b[a-z]/g, (char) => char.toUpperCase());
+}
+
 export function PortfolioCard({ post, placeholderIndex = 0 }: PortfolioCardProps) {
   const date = formatMonthYear(post.publishedAt);
   const href = `/portfolio/${post.slug}`;
@@ -32,29 +55,21 @@ export function PortfolioCard({ post, placeholderIndex = 0 }: PortfolioCardProps
     PORTFOLIO_DITHER_THEMES[placeholderIndex % PORTFOLIO_DITHER_THEMES.length] ??
     PORTFOLIO_DITHER_THEMES[0]!;
   const waves = ditherWaveJitter(placeholderIndex);
-  const where = [post.client, post.location].filter(Boolean).join(" / ");
+  const where = formatWhere(post.client, post.location);
   const showCover = hasRenderableCover(post);
 
   return (
     <article className="portfolio-card">
       <div className="portfolio-card__meta type-sm">
-        {where ? (
-          <p className="portfolio-card__where">
-            <HazeText as="span" className="haze-text--inline">
-              {where}
-            </HazeText>
-          </p>
-        ) : null}
-        {date ? (
-          <p className="portfolio-card__date">
-            <HazeText as="span" className="haze-text--inline">
-              {date}
-            </HazeText>
-          </p>
-        ) : null}
+        {where ? <p className="portfolio-card__where">{where}</p> : null}
+        {date ? <p className="portfolio-card__date">{date}</p> : null}
       </div>
 
-      <div className="portfolio-card__media">
+      <Link
+        href={href}
+        className="portfolio-card__media"
+        aria-label={`Open project: ${post.title}`}
+      >
         {showCover && post.coverMedia ? (
           <MediaRenderer media={post.coverMedia} variant="full" />
         ) : (
@@ -77,12 +92,12 @@ export function PortfolioCard({ post, placeholderIndex = 0 }: PortfolioCardProps
             aria-hidden
           />
         )}
-      </div>
+      </Link>
 
       <h2 className="portfolio-card__title type-title">
-        <HazeText as="span" className="haze-text--inline">
+        <Link href={href} className="portfolio-card__title-link">
           {post.title}
-        </HazeText>
+        </Link>
       </h2>
       {post.summary ? (
         <HazeText as="p" className="portfolio-card__summary type-md">
@@ -90,9 +105,7 @@ export function PortfolioCard({ post, placeholderIndex = 0 }: PortfolioCardProps
         </HazeText>
       ) : null}
       <Link href={href} className="type-link portfolio-card__link">
-        <HazeText as="span" className="haze-text--inline">
-          read more
-        </HazeText>
+        read more
         <span className="visually-hidden">: {post.title}</span>
       </Link>
     </article>

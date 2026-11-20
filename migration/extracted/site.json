@@ -1,0 +1,458 @@
+{
+  "origin": "https://christieyu.com",
+  "extractedAt": "2026-11-20T01:05:39.993Z",
+  "source": "Public Adobe Portfolio HTML and sitemap. No admin export was available.",
+  "urls": [
+    "https://christieyu.com/",
+    "https://christieyu.com/amoriem-labs",
+    "https://christieyu.com/artmiesa",
+    "https://christieyu.com/broad-institute-of-mit-and-harvard",
+    "https://christieyu.com/cake",
+    "https://christieyu.com/certik",
+    "https://christieyu.com/contact",
+    "https://christieyu.com/drassomai",
+    "https://christieyu.com/for-fun",
+    "https://christieyu.com/generative-ai",
+    "https://christieyu.com/gridify",
+    "https://christieyu.com/mskcc",
+    "https://christieyu.com/mt-law-llc",
+    "https://christieyu.com/other-projects",
+    "https://christieyu.com/portfolio",
+    "https://christieyu.com/red-velvet",
+    "https://christieyu.com/resume",
+    "https://christieyu.com/senior-thesis-computer-science",
+    "https://christieyu.com/senior-thesis-english",
+    "https://christieyu.com/student-technology-collaborative",
+    "https://christieyu.com/teaching-cs50",
+    "https://christieyu.com/yale-daily-news"
+  ],
+  "navigation": {
+    "groups": [
+      [
+        {
+          "kind": "gallery-title",
+          "href": "/portfolio",
+          "label": "Portfolio"
+        },
+        {
+          "kind": "project-title",
+          "href": "/gridify",
+          "label": "Gridify: Leading design for a startup"
+        },
+        {
+          "kind": "project-title",
+          "href": "/generative-ai",
+          "label": "Generative AI at Lenovo"
+        },
+        {
+          "kind": "project-title",
+          "href": "/red-velvet",
+          "label": "Now baking... Red Velvet!"
+        },
+        {
+          "kind": "project-title",
+          "href": "/cake",
+          "label": "Architecting Cake"
+        },
+        {
+          "kind": "project-title",
+          "href": "/artmiesa",
+          "label": "@artmiesa on Instagram"
+        },
+        {
+          "kind": "project-title",
+          "href": "/senior-thesis-computer-science",
+          "label": "Senior thesis: Computer Science"
+        },
+        {
+          "kind": "project-title",
+          "href": "/senior-thesis-english",
+          "label": "Senior thesis: English"
+        },
+        {
+          "kind": "project-title",
+          "href": "/amoriem-labs",
+          "label": "Directing Amoriem Labs"
+        },
+        {
+          "kind": "project-title",
+          "href": "/yale-daily-news",
+          "label": "Producing the Yale Daily News"
+        },
+        {
+          "kind": "project-title",
+          "href": "/teaching-cs50",
+          "label": "Teaching CS50"
+        },
+        {
+          "kind": "project-title",
+          "href": "/mskcc",
+          "label": "Tech incubation at MSKCC"
+        }
+      ],
+      [
+        {
+          "kind": "gallery-title",
+          "href": "/other-projects",
+          "label": "Other projects"
+        }
+      ]
+    ],
+    "social": [
+      "https://www.linkedin.com/in/christieyu/",
+      "https://www.instagram.com/artmiesa/",
+      "https://github.com/christieyu"
+    ],
+    "email": [
+      "mailto:christieyu@aya.yale.edu"
+    ]
+  },
+  "pages": [
+    {
+      "slug": "home",
+      "url": "https://christieyu.com/",
+      "kind": "gallery",
+      "title": "Christie Yu",
+      "passwordProtected": false,
+      "moduleCounts": {},
+      "coverCount": 11,
+      "notes": []
+    },
+    {
+      "slug": "amoriem-labs",
+      "url": "https://christieyu.com/amoriem-labs",
+      "kind": "project",
+      "title": "Christie Yu - Directing Amoriem Labs",
+      "passwordProtected": false,
+      "moduleCounts": {
+        "text": 16,
+        "image": 7,
+        "media_collection": 4
+      },
+      "coverCount": 0,
+      "notes": [
+        "Some images only expose a resized or cropped CDN derivative. The unsuffixed original URL is not in the public HTML for those assets.",
+        "Captions are separate text modules with class caption. They are not attributes on the image tag, and the image alt attribute is empty.",
+        "One or more content images have no alt text in the public HTML."
+      ]
+    },
+    {
+      "slug": "artmiesa",
+      "url": "https://christieyu.com/artmiesa",
+      "kind": "project",
+      "title": "Christie Yu - @artmiesa on Instagram",
+      "passwordProtected": false,
+      "moduleCounts": {
+        "embed": 1
+      },
+      "coverCount": 0,
+      "notes": [
+        "Embed or video content is referenced by URL. The embedded document or player payload was not extracted."
+      ]
+    },
+    {
+      "slug": "broad-institute-of-mit-and-harvard",
+      "url": "https://christieyu.com/broad-institute-of-mit-and-harvard",
+      "kind": "project",
+      "title": "Christie Yu - Broad Institute of MIT and Harvard",
+      "passwordProtected": false,
+      "moduleCounts": {
+        "text": 3,
+        "image": 1
+      },
+      "coverCount": 0,
+      "notes": [
+        "Captions are separate text modules with class caption. They are not attributes on the image tag, and the image alt attribute is empty.",
+        "One or more content images have no alt text in the public HTML."
+      ]
+    },
+    {
+      "slug": "cake",
+      "url": "https://christieyu.com/cake",
+      "kind": "project",
+      "title": "Christie Yu - Architecting Cake",
+      "passwordProtected": false,
+      "moduleCounts": {
+        "text": 18,
+        "image": 5,
+        "media_collection": 8
+      },
+      "coverCount": 0,
+      "notes": [
+        "Some images only expose a resized or cropped CDN derivative. The unsuffixed original URL is not in the public HTML for those assets.",
+        "Captions are separate text modules with class caption. They are not attributes on the image tag, and the image alt attribute is empty.",
+        "One or more content images have no alt text in the public HTML."
+      ]
+    },
+    {
+      "slug": "certik",
+      "url": "https://christieyu.com/certik",
+      "kind": "project",
+      "title": "Christie Yu - CertiK",
+      "passwordProtected": false,
+      "moduleCounts": {
+        "text": 4,
+        "media_collection": 2
+      },
+      "coverCount": 0,
+      "notes": [
+        "Some images only expose a resized or cropped CDN derivative. The unsuffixed original URL is not in the public HTML for those assets.",
+        "Captions are separate text modules with class caption. They are not attributes on the image tag, and the image alt attribute is empty.",
+        "One or more content images have no alt text in the public HTML."
+      ]
+    },
+    {
+      "slug": "contact",
+      "url": "https://christieyu.com/contact",
+      "kind": "project",
+      "title": "Christie Yu - Contact",
+      "passwordProtected": false,
+      "moduleCounts": {
+        "form": 1
+      },
+      "coverCount": 0,
+      "notes": []
+    },
+    {
+      "slug": "drassomai",
+      "url": "https://christieyu.com/drassomai",
+      "kind": "project",
+      "title": "Christie Yu - Drassomai",
+      "passwordProtected": false,
+      "moduleCounts": {
+        "text": 2,
+        "media_collection": 1
+      },
+      "coverCount": 0,
+      "notes": [
+        "Some images only expose a resized or cropped CDN derivative. The unsuffixed original URL is not in the public HTML for those assets.",
+        "This page has images and no elements with class caption.",
+        "One or more content images have no alt text in the public HTML."
+      ]
+    },
+    {
+      "slug": "for-fun",
+      "url": "https://christieyu.com/for-fun",
+      "kind": "project",
+      "title": "Christie Yu - For fun :)",
+      "passwordProtected": false,
+      "moduleCounts": {
+        "text": 2,
+        "media_collection": 1
+      },
+      "coverCount": 0,
+      "notes": [
+        "Some images only expose a resized or cropped CDN derivative. The unsuffixed original URL is not in the public HTML for those assets.",
+        "This page has images and no elements with class caption.",
+        "One or more content images have no alt text in the public HTML."
+      ]
+    },
+    {
+      "slug": "generative-ai",
+      "url": "https://christieyu.com/generative-ai",
+      "kind": "password-protected",
+      "title": "Password Protected Page",
+      "passwordProtected": true,
+      "moduleCounts": {},
+      "coverCount": 0,
+      "notes": [
+        "A password field is in the public HTML. Protected body content was not available."
+      ]
+    },
+    {
+      "slug": "gridify",
+      "url": "https://christieyu.com/gridify",
+      "kind": "project",
+      "title": "Christie Yu - Gridify: Leading design for a startup",
+      "passwordProtected": false,
+      "moduleCounts": {
+        "image": 5,
+        "text": 11,
+        "media_collection": 9,
+        "embed": 1
+      },
+      "coverCount": 0,
+      "notes": [
+        "Some images only expose a resized or cropped CDN derivative. The unsuffixed original URL is not in the public HTML for those assets.",
+        "This page has images and no elements with class caption.",
+        "One or more content images have no alt text in the public HTML.",
+        "Embed or video content is referenced by URL. The embedded document or player payload was not extracted."
+      ]
+    },
+    {
+      "slug": "mskcc",
+      "url": "https://christieyu.com/mskcc",
+      "kind": "project",
+      "title": "Christie Yu - Tech incubation at MSKCC",
+      "passwordProtected": false,
+      "moduleCounts": {
+        "text": 30,
+        "image": 4,
+        "media_collection": 8
+      },
+      "coverCount": 0,
+      "notes": [
+        "Some images only expose a resized or cropped CDN derivative. The unsuffixed original URL is not in the public HTML for those assets.",
+        "Captions are separate text modules with class caption. They are not attributes on the image tag, and the image alt attribute is empty.",
+        "One or more content images have no alt text in the public HTML."
+      ]
+    },
+    {
+      "slug": "mt-law-llc",
+      "url": "https://christieyu.com/mt-law-llc",
+      "kind": "project",
+      "title": "Christie Yu - MT Law, LLC",
+      "passwordProtected": false,
+      "moduleCounts": {
+        "text": 3,
+        "media_collection": 1
+      },
+      "coverCount": 0,
+      "notes": [
+        "Some images only expose a resized or cropped CDN derivative. The unsuffixed original URL is not in the public HTML for those assets.",
+        "Captions are separate text modules with class caption. They are not attributes on the image tag, and the image alt attribute is empty.",
+        "One or more content images have no alt text in the public HTML."
+      ]
+    },
+    {
+      "slug": "other-projects",
+      "url": "https://christieyu.com/other-projects",
+      "kind": "gallery",
+      "title": "Christie Yu - Other projects",
+      "passwordProtected": false,
+      "moduleCounts": {},
+      "coverCount": 6,
+      "notes": []
+    },
+    {
+      "slug": "portfolio",
+      "url": "https://christieyu.com/portfolio",
+      "kind": "gallery",
+      "title": "Christie Yu",
+      "passwordProtected": false,
+      "moduleCounts": {},
+      "coverCount": 11,
+      "notes": []
+    },
+    {
+      "slug": "red-velvet",
+      "url": "https://christieyu.com/red-velvet",
+      "kind": "project",
+      "title": "Christie Yu - Now baking... Red Velvet!",
+      "passwordProtected": false,
+      "moduleCounts": {
+        "text": 20,
+        "image": 12,
+        "media_collection": 5
+      },
+      "coverCount": 0,
+      "notes": [
+        "Some images only expose a resized or cropped CDN derivative. The unsuffixed original URL is not in the public HTML for those assets.",
+        "Captions are separate text modules with class caption. They are not attributes on the image tag, and the image alt attribute is empty.",
+        "One or more content images have no alt text in the public HTML."
+      ]
+    },
+    {
+      "slug": "resume",
+      "url": "https://christieyu.com/resume",
+      "kind": "project",
+      "title": "Christie Yu - Resume",
+      "passwordProtected": false,
+      "moduleCounts": {
+        "embed": 1
+      },
+      "coverCount": 0,
+      "notes": [
+        "Embed or video content is referenced by URL. The embedded document or player payload was not extracted."
+      ]
+    },
+    {
+      "slug": "senior-thesis-computer-science",
+      "url": "https://christieyu.com/senior-thesis-computer-science",
+      "kind": "project",
+      "title": "Christie Yu - Senior thesis: Computer Science",
+      "passwordProtected": false,
+      "moduleCounts": {
+        "text": 47,
+        "image": 6,
+        "media_collection": 3
+      },
+      "coverCount": 0,
+      "notes": [
+        "Some images only expose a resized or cropped CDN derivative. The unsuffixed original URL is not in the public HTML for those assets.",
+        "Captions are separate text modules with class caption. They are not attributes on the image tag, and the image alt attribute is empty.",
+        "One or more content images have no alt text in the public HTML."
+      ]
+    },
+    {
+      "slug": "senior-thesis-english",
+      "url": "https://christieyu.com/senior-thesis-english",
+      "kind": "project",
+      "title": "Christie Yu - Senior thesis: English",
+      "passwordProtected": false,
+      "moduleCounts": {
+        "image": 1,
+        "text": 1,
+        "embed": 1
+      },
+      "coverCount": 0,
+      "notes": [
+        "This page has images and no elements with class caption.",
+        "One or more content images have no alt text in the public HTML.",
+        "Embed or video content is referenced by URL. The embedded document or player payload was not extracted."
+      ]
+    },
+    {
+      "slug": "student-technology-collaborative",
+      "url": "https://christieyu.com/student-technology-collaborative",
+      "kind": "project",
+      "title": "Christie Yu - Student Technology Collaborative",
+      "passwordProtected": false,
+      "moduleCounts": {
+        "text": 3,
+        "image": 1
+      },
+      "coverCount": 0,
+      "notes": [
+        "Captions are separate text modules with class caption. They are not attributes on the image tag, and the image alt attribute is empty.",
+        "One or more content images have no alt text in the public HTML."
+      ]
+    },
+    {
+      "slug": "teaching-cs50",
+      "url": "https://christieyu.com/teaching-cs50",
+      "kind": "project",
+      "title": "Christie Yu - Teaching CS50",
+      "passwordProtected": false,
+      "moduleCounts": {
+        "text": 8,
+        "media_collection": 2,
+        "image": 5
+      },
+      "coverCount": 0,
+      "notes": [
+        "Some images only expose a resized or cropped CDN derivative. The unsuffixed original URL is not in the public HTML for those assets.",
+        "This page has images and no elements with class caption.",
+        "One or more content images have no alt text in the public HTML."
+      ]
+    },
+    {
+      "slug": "yale-daily-news",
+      "url": "https://christieyu.com/yale-daily-news",
+      "kind": "project",
+      "title": "Christie Yu - Producing the Yale Daily News",
+      "passwordProtected": false,
+      "moduleCounts": {
+        "image": 5,
+        "text": 16,
+        "media_collection": 6
+      },
+      "coverCount": 0,
+      "notes": [
+        "Some images only expose a resized or cropped CDN derivative. The unsuffixed original URL is not in the public HTML for those assets.",
+        "Captions are separate text modules with class caption. They are not attributes on the image tag, and the image alt attribute is empty.",
+        "One or more content images have no alt text in the public HTML."
+      ]
+    }
+  ]
+}

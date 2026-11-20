@@ -1,0 +1,27 @@
+{
+  "slug": "artmiesa",
+  "url": "https://christieyu.com/artmiesa",
+  "canonical": "https://christieyu.com/artmiesa",
+  "title": "Christie Yu - @artmiesa on Instagram",
+  "description": "I",
+  "keywords": "Digital art,Procreate,Illustration",
+  "ogImage": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/d6cbf1bd-844d-462c-a823-51f409a557c8_rwc_0x36x4000x3127x4000.png?h=4ef368d078c977de6c6fec77df588550",
+  "adobePageId": "p67d65103765bcb4545df52ca20078f136964792a9cbe7c97e4fab",
+  "kind": "project",
+  "passwordProtected": false,
+  "extractedAt": "2026-11-20T01:05:39.993Z",
+  "covers": [],
+  "modules": [
+    {
+      "index": 0,
+      "type": "embed",
+      "moduleId": null,
+      "embedUrls": [
+        "https://www.instagram.com/artmiesa/embed/"
+      ]
+    }
+  ],
+  "notes": [
+    "Embed or video content is referenced by URL. The embedded document or player payload was not extracted."
+  ]
+}

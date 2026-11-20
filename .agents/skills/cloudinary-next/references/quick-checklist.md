@@ -3,6 +3,7 @@
 Use this at the end of generation or review tasks to catch common Cloudinary + Next.js mistakes before finalizing.
 
 ## Best Practices
+
 - ✅ Default to `<CldImage>` for any Cloudinary image. Use `getCldImageUrl` only when you need a string URL.
 - ✅ Always pass `sizes` for non-icon images.
 - ✅ Always include `alt` on `<CldImage>`.
@@ -21,6 +22,7 @@ Use this at the end of generation or review tasks to catch common Cloudinary + N
 ## Quick Reference Checklist
 
 When something isn't working, check:
+
 - [ ] **Picked the right tool?** → `<CldImage>` for JSX images, `getCldImageUrl` for URL strings, `<CldUploadWidget>` for browser uploads, `cloudinary.uploader.upload` (Node SDK, server) for server-side uploads, `cloudinary.uploader.destroy` (Node SDK, server) for deletes
 - [ ] **`"use client"`** at the top of any file using `<CldUploadWidget>`, `<CldUploadButton>`, `<CldVideoPlayer>`, or any `<CldImage>` with event handlers / refs
 - [ ] **Env vars**: `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME` set; `CLOUDINARY_API_SECRET` (server only, NEVER prefixed with `NEXT_PUBLIC_`); dev server restarted after edits

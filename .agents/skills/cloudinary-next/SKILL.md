@@ -4,7 +4,7 @@ description: Guidance for building, debugging, and reviewing next.js apps that u
 license: MIT
 metadata:
   author: cloudinary
-  version: '1.0.0'
+  version: "1.0.0"
 ---
 
 # Cloudinary Next

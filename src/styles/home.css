@@ -45,18 +45,13 @@
 .home__welcome-title {
   position: relative;
   z-index: 1;
-  /* Figma: text-box-trim cap/alphabetic — collapses TAYBang metric gap above the hero box */
+  /* Match contact title: 36px TAYBang with metric trim */
+  font-size: 2.25rem;
   line-height: 1;
   text-box-trim: trim-both;
   text-box-edge: cap alphabetic;
-  margin-bottom: 0;
+  margin-bottom: 4px;
   pointer-events: none;
-}
-
-@supports not (text-box-trim: trim-both) {
-  .home__welcome-title {
-    margin-bottom: -0.35em;
-  }
 }
 
 .home__panel {
@@ -140,8 +135,13 @@
   pointer-events: auto;
 }
 
+.home__meta-caption > span:first-child {
+  font-weight: var(--weight-medium);
+}
+
 .home__meta-all {
   text-align: right;
+  white-space: nowrap;
 }
 
 .home__meta-thumb {
@@ -172,9 +172,5 @@
 
   .home__meta {
     align-items: flex-start;
-  }
-
-  .home__welcome-title {
-    font-size: clamp(3rem, 14vw, 6rem);
   }
 }

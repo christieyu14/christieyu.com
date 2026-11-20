@@ -1,0 +1,880 @@
+{
+  "slug": "mskcc",
+  "url": "https://christieyu.com/mskcc",
+  "canonical": "https://christieyu.com/mskcc",
+  "title": "Christie Yu - Tech incubation at MSKCC",
+  "description": "I was an intern for the Tech Incubation team at MSKCC in summers of 2020 and 2021. I worked on projects exploring ambient computing, conversational interfaces, and digital therapeutics, in engineering, design, and project management capacities. I also led my team to 1st place in an accessible healthcare intern hackathon.",
+  "keywords": "UI/UX,product design,design systems,design language",
+  "ogImage": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/2cadf624-f3c5-4b10-b212-6e7fd6db4791_rwc_290x0x1450x1134x1450.jpg?h=f1817a3eefe394b2eb1fa6154d84adf5",
+  "adobePageId": "p67d6535d3f7a103749717e56e68e54cca7b2b62ea301f82d42a1e",
+  "kind": "project",
+  "passwordProtected": false,
+  "extractedAt": "2026-11-20T01:05:39.993Z",
+  "covers": [],
+  "modules": [
+    {
+      "index": 0,
+      "type": "text",
+      "moduleId": null,
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Tech Incubation at Memorial Sloan Kettering Cancer Center",
+          "links": []
+        }
+      ],
+      "links": []
+    },
+    {
+      "index": 1,
+      "type": "text",
+      "moduleId": null,
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "In summer of 2020, I was lucky enough to join a cohort of 40 interns in various teams in the Digital, Informatics & Technology Solutions department (DigITS) of Memorial Sloan Kettering Cancer Center (MSKCC), the largest and oldest private cancer center in the world. DigITS at MSKCC has existed for a while, but really began its current operational model in 2019 with the introduction of its CTO/CDO, Dr. Claus Jensen. DigITS currently employs over 2000 project managers, software engineers, UI/UX specialists, and product designers, and supports the tens of thousands of health industry workers at hospital locations across New York and New Jersey.\n\nI was even luckier to be assigned to (subjectively) one of the best teams at DigITS: Tech Incubation, led by Dr. Daniel Stein, a biotechnology visionary and healthcare innovation expert. TechInc, as we call it, was established only in March 2020, making it MSK’s newest team, and is a special “thinktank”-esque, full-stack group of around 20 individuals exploring the potential of the newest tech in the industry.\n\nI say that I am lucky because:",
+          "links": []
+        },
+        {
+          "type": "paragraph",
+          "text": "1. I got to work with a team whose whole concept is to think about the unbelievable — and I love science fiction!",
+          "links": []
+        },
+        {
+          "type": "paragraph",
+          "text": "2. I arrived during the team’s conception phase, since they had only met in person once or twice before working remotely. This meant I could listen into team-building discussions and even contribute my own thoughts on the team direction.",
+          "links": []
+        },
+        {
+          "type": "paragraph",
+          "text": "3. Despite the novelty of the team and its concept, it was still made up of industry experts from a full-stack background, which meant I had full-stack support for a project that did end up being very full-stack.",
+          "links": []
+        },
+        {
+          "type": "paragraph",
+          "text": "Along with two other interns, Hal from Cornell and Ethan from Brooklyn Med, I had a blast of a time working on three projects: an individual project, a group project with Hal and Ethan, and a collaborative “hackathon” project with 9 other interns across the DigITS teams, for which we won the hackathon grand prize!",
+          "links": []
+        }
+      ],
+      "links": []
+    },
+    {
+      "index": 2,
+      "type": "image",
+      "moduleId": null,
+      "image": {
+        "role": "content",
+        "sourceUrl": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/9f0b5722-4bf0-4113-b92c-f767fa227210.jpg?h=276505a7d026eb4b5147fd2d4f2dbc6e",
+        "variant": "lightbox-original",
+        "declaredWidth": null,
+        "crop": null,
+        "assetId": "9f0b5722-4bf0-4113-b92c-f767fa227210",
+        "ext": "jpg",
+        "alt": "",
+        "width": 1920,
+        "height": null,
+        "caption": null
+      }
+    },
+    {
+      "index": 3,
+      "type": "text",
+      "moduleId": null,
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "All slides here were part of a final presentation created and presented by me. As you can see, I got quite a lot more than I bargained for. I was only hoping to get some hands-on coding and design experience out of this project, but I ended up also learning and focusing a lot on the project-building process and cross-team collaboration, which I learned is one of my strengths and my favorite part of creating and managing a project. Plus, this was my first hands-on work in Agile project management — sprints, stand-up meetings, and all!",
+          "links": []
+        }
+      ],
+      "links": []
+    },
+    {
+      "index": 4,
+      "type": "text",
+      "moduleId": null,
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Personal project: Conversationalizing surveys with IBM Watson",
+          "links": []
+        }
+      ],
+      "links": []
+    },
+    {
+      "index": 5,
+      "type": "text",
+      "moduleId": null,
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "I devoted most of my time this summer to a personal project, for which I was mentored by my manager and TechInc Project Portfolio Manager, Kristine Colon, as well as Software Engineer Ricardo Dodds, Product Designer Divya Gaitonde, and, of course, TechInc manager Dr. Daniel Stein. The idea was that TechInc had been assigned IBM Watson as a platform to investigate — not necessarily to stake out exact implementation plans, but instead to explore its overall potential and strengths against competing software such as Amazon Lex.\n\nFor this project, I connected IBM Cloud (Watson Assistant, API’s, Functions, SQL database), internal MSK API’s, internal MSK SQL databases, and the existing MSK forms portal, called “MSK Engage,” which is maintained by a non-TechInc team. The project was written mostly in Python.",
+          "links": []
+        }
+      ],
+      "links": []
+    },
+    {
+      "index": 6,
+      "type": "image",
+      "moduleId": null,
+      "image": {
+        "role": "content",
+        "sourceUrl": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/7225458e-45cb-4e55-bf6c-275cab4b9dc1.jpg?h=691ef480ff4be7b844e4ef2ee6a7859d",
+        "variant": "lightbox-original",
+        "declaredWidth": null,
+        "crop": null,
+        "assetId": "7225458e-45cb-4e55-bf6c-275cab4b9dc1",
+        "ext": "jpg",
+        "alt": "",
+        "width": 1920,
+        "height": null,
+        "caption": null
+      }
+    },
+    {
+      "index": 7,
+      "type": "text",
+      "moduleId": null,
+      "blocks": [
+        {
+          "type": "caption",
+          "text": "Because the MSK firewall prevented us from directly linking to IBM Watson, we used that opportunity to create a set of \"mock\" actions using purely IBM databases and API's by copying dummy data over from \"real\" MSK tools. So, for a demo that I did for the TechInc team, I used \"mock\" actions, but I also implemented \"real\" actions in case MSK ever got InfoSec clearance.",
+          "links": []
+        }
+      ],
+      "links": []
+    },
+    {
+      "index": 8,
+      "type": "text",
+      "moduleId": null,
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "You can see full project specs here, final slide deck here, and a copy of our Github repository here. Unfortunately, I was not able to export the IBM Watson project or project README due to security and PHI issues, but you can see demo visuals in the complete slide deck.",
+          "links": [
+            {
+              "href": "https://github.com/christieyu/christieyu.github.io/blob/master/images/mskcc/ci-confluence.pdf",
+              "text": "here"
+            },
+            {
+              "href": "https://github.com/christieyu/christieyu.github.io/blob/master/images/mskcc/christie_ppt.pdf",
+              "text": "here"
+            },
+            {
+              "href": "https://github.com/christieyu/mskcc-watson-engage",
+              "text": "here"
+            }
+          ]
+        }
+      ],
+      "links": [
+        {
+          "href": "https://github.com/christieyu/christieyu.github.io/blob/master/images/mskcc/ci-confluence.pdf",
+          "text": "here"
+        },
+        {
+          "href": "https://github.com/christieyu/christieyu.github.io/blob/master/images/mskcc/christie_ppt.pdf",
+          "text": "here"
+        },
+        {
+          "href": "https://github.com/christieyu/mskcc-watson-engage",
+          "text": "here"
+        }
+      ]
+    },
+    {
+      "index": 9,
+      "type": "media_collection",
+      "moduleId": "m67d656453c9da643720320e94af67e19631c1ac2b5cf67dd45c70",
+      "images": [
+        {
+          "role": "content",
+          "sourceUrl": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/388d6052-3ad3-4e65-b884-61aecc80b5e7_rw_1920.jpg?h=ac63669f2fd107843c1196a7540b6b23",
+          "variant": "largest-srcset",
+          "declaredWidth": 1920,
+          "crop": null,
+          "assetId": null,
+          "ext": null,
+          "alt": "",
+          "width": 1920,
+          "height": 1078,
+          "caption": null
+        },
+        {
+          "role": "content",
+          "sourceUrl": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/0cf9f290-32e4-4b92-929f-4dfc418a749a_rw_1920.jpg?h=dd60f13911a3e826fb7b28f318d75a73",
+          "variant": "largest-srcset",
+          "declaredWidth": 1920,
+          "crop": null,
+          "assetId": null,
+          "ext": null,
+          "alt": "",
+          "width": 1920,
+          "height": 1078,
+          "caption": null
+        },
+        {
+          "role": "content",
+          "sourceUrl": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/a3f1b3b5-e33d-4285-848d-c35e6f4d2359_rw_1920.jpg?h=2e4f97419d00969d8cabfdda62d6891d",
+          "variant": "largest-srcset",
+          "declaredWidth": 1920,
+          "crop": null,
+          "assetId": null,
+          "ext": null,
+          "alt": "",
+          "width": 1920,
+          "height": 1078,
+          "caption": null
+        },
+        {
+          "role": "content",
+          "sourceUrl": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/7b313e22-09c3-413a-aa68-de4a22fd47c7_rw_1920.jpg?h=8290f615c9a70ef9aff3ce9ad4a9588a",
+          "variant": "largest-srcset",
+          "declaredWidth": 1920,
+          "crop": null,
+          "assetId": null,
+          "ext": null,
+          "alt": "",
+          "width": 1920,
+          "height": 1078,
+          "caption": null
+        }
+      ]
+    },
+    {
+      "index": 10,
+      "type": "text",
+      "moduleId": null,
+      "blocks": [
+        {
+          "type": "caption",
+          "text": "Some of the rationale behind my project. You can see from the full slides that I named the project \"Exploring IBM Watson as a product to conversationalize surveys,\" not \"Integrating MSK Engage with an IBM Watson assistant\" because I worked hard to keep the project exploratory, creative, and fluid, rather than simply an engineering implementation for the Engage team.",
+          "links": []
+        }
+      ],
+      "links": []
+    },
+    {
+      "index": 11,
+      "type": "text",
+      "moduleId": null,
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "I came up with this idea of a comprehensive patient “assistant” as an application of IBM Watson and a model for MSK’s future patient-system interaction. Specifically, I wanted to work on developing a proof of concept and prototyping a conversational agent that could transform the patient’s survey experience, as cancer patients interact with so many surveys before, during, and after each visit that it causes what we called “patient burnout.”",
+          "links": []
+        }
+      ],
+      "links": []
+    },
+    {
+      "index": 12,
+      "type": "media_collection",
+      "moduleId": "m67d6566fa90121c71af849ea9ed590593caabf61e06fefb494170",
+      "images": [
+        {
+          "role": "content",
+          "sourceUrl": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/c2fd53f5-dc59-4eab-a0a3-109c2473b834_rw_1920.jpg?h=766088634259fc5a8bc4a2ef02f0bd0b",
+          "variant": "largest-srcset",
+          "declaredWidth": 1920,
+          "crop": null,
+          "assetId": null,
+          "ext": null,
+          "alt": "",
+          "width": 1920,
+          "height": 1078,
+          "caption": null
+        },
+        {
+          "role": "content",
+          "sourceUrl": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/f81a90e3-28f8-42aa-a6b4-8eb7c26b60b3_rw_1920.jpg?h=b8a8def60418d680ed2615165016b092",
+          "variant": "largest-srcset",
+          "declaredWidth": 1920,
+          "crop": null,
+          "assetId": null,
+          "ext": null,
+          "alt": "",
+          "width": 1920,
+          "height": 1078,
+          "caption": null
+        }
+      ]
+    },
+    {
+      "index": 13,
+      "type": "text",
+      "moduleId": null,
+      "blocks": [
+        {
+          "type": "caption",
+          "text": "In the top right corner, I've labeled all my project proposals by version number. Yes, this is the fifth version, and it isn't even the most updated! I had to create slide decks for the team and Dr. Stein at the end of each week, which was a very useful exercise in summarizing, condensing, and conceptualizing my complex project!",
+          "links": []
+        }
+      ],
+      "links": []
+    },
+    {
+      "index": 14,
+      "type": "text",
+      "moduleId": null,
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "The project scoping started very differently, though, as you can see below.",
+          "links": []
+        }
+      ],
+      "links": []
+    },
+    {
+      "index": 15,
+      "type": "media_collection",
+      "moduleId": "m67d656a6c95157d43831777eced16744bd9f1066943e8f161d947",
+      "images": [
+        {
+          "role": "content",
+          "sourceUrl": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/c1b87975-c729-4012-909a-decf190ab479_rw_1920.jpg?h=1b83c3b9cefa3b0e991cae7523909d93",
+          "variant": "largest-srcset",
+          "declaredWidth": 1920,
+          "crop": null,
+          "assetId": null,
+          "ext": null,
+          "alt": "",
+          "width": 1920,
+          "height": 1078,
+          "caption": null
+        },
+        {
+          "role": "content",
+          "sourceUrl": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/63bb5c17-d970-415c-83bd-604462ef4bd7_rw_1920.jpg?h=116f5bc1cd34f65cf9b1d58b987de569",
+          "variant": "largest-srcset",
+          "declaredWidth": 1920,
+          "crop": null,
+          "assetId": null,
+          "ext": null,
+          "alt": "",
+          "width": 1920,
+          "height": 1078,
+          "caption": null
+        },
+        {
+          "role": "content",
+          "sourceUrl": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/b7e443f9-1975-49b8-830f-9f32fbe39ed1_rw_1920.jpg?h=7eea184f31151272927af9d6db1fd59b",
+          "variant": "largest-srcset",
+          "declaredWidth": 1920,
+          "crop": null,
+          "assetId": null,
+          "ext": null,
+          "alt": "",
+          "width": 1920,
+          "height": 1078,
+          "caption": null
+        },
+        {
+          "role": "content",
+          "sourceUrl": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/955b2526-7d13-4398-be57-8eb95f311b08_rw_1920.jpg?h=b96ce401430e218d7dbc0cc95d5979f8",
+          "variant": "largest-srcset",
+          "declaredWidth": 1920,
+          "crop": null,
+          "assetId": null,
+          "ext": null,
+          "alt": "",
+          "width": 1920,
+          "height": 1078,
+          "caption": null
+        }
+      ]
+    },
+    {
+      "index": 16,
+      "type": "text",
+      "moduleId": null,
+      "blocks": [
+        {
+          "type": "caption",
+          "text": "Only at version 3 did I slim my idea down to IBM Watson. Throughout the project, I operated under the holistic model presented in version 3 of my project, but had to slowly narrow my scope after communicating with other teams and realizing some of these features were not quite ready to be explored yet.",
+          "links": []
+        }
+      ],
+      "links": []
+    },
+    {
+      "index": 17,
+      "type": "text",
+      "moduleId": null,
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "After finally landing on forms, I then timelined my project to fit within my 10-week span, as well as connected with many teams outside of TechInc. I learned a lot about working across teams in a department as big as DigITS — a big reason for why my project scope changed so many times was because of new information provided by other teams as to how ready an MSK service was.",
+          "links": []
+        }
+      ],
+      "links": []
+    },
+    {
+      "index": 18,
+      "type": "media_collection",
+      "moduleId": "m67d656c67252aaa5af3ad0da1c7a948bec4b552c16b5371d7b5ea",
+      "images": [
+        {
+          "role": "content",
+          "sourceUrl": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/f7de0835-863a-482f-9251-3ba875bb0834_rw_1920.jpg?h=9b33536de78d035a72874d79bdae63c7",
+          "variant": "largest-srcset",
+          "declaredWidth": 1920,
+          "crop": null,
+          "assetId": null,
+          "ext": null,
+          "alt": "",
+          "width": 1920,
+          "height": 1078,
+          "caption": null
+        },
+        {
+          "role": "content",
+          "sourceUrl": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/215815b4-5f57-4e92-b880-8c82a9e3ace0_rw_1920.jpg?h=5b3037df60ec9421393d66c0a5e3c762",
+          "variant": "largest-srcset",
+          "declaredWidth": 1920,
+          "crop": null,
+          "assetId": null,
+          "ext": null,
+          "alt": "",
+          "width": 1920,
+          "height": 1078,
+          "caption": null
+        }
+      ]
+    },
+    {
+      "index": 19,
+      "type": "text",
+      "moduleId": null,
+      "blocks": [
+        {
+          "type": "caption",
+          "text": "Although TechInc itself is a very small team, I worked with so many people across DigITS that I really feel like I understand cross-team dynamics pretty well! I was very lucky to speak with and consult so many program directors this summer.",
+          "links": []
+        }
+      ],
+      "links": []
+    },
+    {
+      "index": 20,
+      "type": "text",
+      "moduleId": null,
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "At the end, I presented my project findings to people involved in the process, from fellow interns to TechInc team members to DigITS executives. In fact, some of my discoveries ended up being helpful in shaping the direction of TechInc’s next exploration, which is voice tech!",
+          "links": []
+        }
+      ],
+      "links": []
+    },
+    {
+      "index": 21,
+      "type": "image",
+      "moduleId": null,
+      "image": {
+        "role": "content",
+        "sourceUrl": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/ed57277d-f582-4251-ab1d-82fb7ef51cd1.jpg?h=79dd4d6ead8b26d987042379f12e13f4",
+        "variant": "lightbox-original",
+        "declaredWidth": null,
+        "crop": null,
+        "assetId": "ed57277d-f582-4251-ab1d-82fb7ef51cd1",
+        "ext": "jpg",
+        "alt": "",
+        "width": 1920,
+        "height": null,
+        "caption": null
+      }
+    },
+    {
+      "index": 22,
+      "type": "text",
+      "moduleId": null,
+      "blocks": [
+        {
+          "type": "caption",
+          "text": "If you read my full slide deck, you will find the rationale behind my conclusion that IBM Watson was a powerful tool, but unsuited for conversationalizing surveys. Instead, I proposed four areas of further exploration for the team to work on after my departure.",
+          "links": []
+        }
+      ],
+      "links": []
+    },
+    {
+      "index": 23,
+      "type": "text",
+      "moduleId": null,
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "I think what I learned most in this project process was seeing things from a bird’s eye view, which I think is a valuable skill for any project manager. I needed to stop myself and ask why I was taking the project where I wanted it to go, and whether my project would fit in with the rest of MSK’s work, as well as what the intention of my project was. These were questions I asked myself at every discover or blocker I faced.\n\nAt one point, I became so invested in implementing an IBM Watson chat survey that could almost realistically be launched the next week that I forgot the original mission of TechInc; I wasn’t supposed to create something implementable. Other teams could do that! My job was to explore and to dream up models of Watson use cases, which was both fun and challenging to remember at times. Our team needed to think agilely and work with what MSK currently has to plan out its technological road forward for the next 20 years. That meant \"thinking big,\" \"failing fast,\" and communicating with each other and the 50+ teams of DigITS very intensely to understand the gaps between now and future.\n\nI’m so thankful for my mentors Kristine, Dr. Stein, Ricardo, and Divya for keeping me on the right track and for letting me really take full control in defining my own project specs. I know that such freedom for an intern is rare in most large corporations, so I am incredibly grateful for finding my niche in a small, full-stack team with the resources of a billion-dollar operation like MSK.\n\nI learned so much about not just project building but also myself through this process. As I told my managers, I truly felt like I had come into my own during this internship. In the past, I’ve had to fit my skillset awkwardly into various roles — marketer, events organizer, paralegal, biomedical research assistant… — but at MSK, as a tech project manager who was able to define and execute my own project with the technical help of a full-stack team, I think I used my skillset to its potential and produced some of my best work yet.\n\nThank you again to all involved in this process. I will never forget this summer!",
+          "links": []
+        }
+      ],
+      "links": []
+    },
+    {
+      "index": 24,
+      "type": "text",
+      "moduleId": null,
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Group project: Dreaming up the future of ambient technology with Hal and Ethan",
+          "links": []
+        }
+      ],
+      "links": []
+    },
+    {
+      "index": 25,
+      "type": "text",
+      "moduleId": null,
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "For our group project, Dr. Stein gave us one direction: Think of something you only see in sci-fi movies. How far is MSK from achieving it?\n\nWow, what a prompt! Hal, Ethan, and I had quite some trouble thinking up what we could possibly research. Hal and Ethan are both pre-med, and I am studying CS/English with a background in design, so we put our skillsets to use.\n\nYou can see the final slide deck here.",
+          "links": [
+            {
+              "href": "https://fiddle.jshell.net/_display/images/mskcc/group_ppt.pdf",
+              "text": "here"
+            }
+          ]
+        }
+      ],
+      "links": [
+        {
+          "href": "https://fiddle.jshell.net/_display/images/mskcc/group_ppt.pdf",
+          "text": "here"
+        }
+      ]
+    },
+    {
+      "index": 26,
+      "type": "media_collection",
+      "moduleId": "m67d65785a0479ddbe55fb5d730dd1f3f7d162f32307219eecb392",
+      "images": [
+        {
+          "role": "content",
+          "sourceUrl": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/b19030b0-5b69-4c52-b4a4-4354ab9eebf7_rw_1920.jpg?h=755e164ccac0998b0e7f077d1985d403",
+          "variant": "largest-srcset",
+          "declaredWidth": 1920,
+          "crop": null,
+          "assetId": null,
+          "ext": null,
+          "alt": "",
+          "width": 1920,
+          "height": 1075,
+          "caption": null
+        },
+        {
+          "role": "content",
+          "sourceUrl": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/898150da-96eb-40b2-9f0c-59a31547843c_rw_1920.jpg?h=1ed9a230ce1ec2d0fde307ea57f917da",
+          "variant": "largest-srcset",
+          "declaredWidth": 1920,
+          "crop": null,
+          "assetId": null,
+          "ext": null,
+          "alt": "",
+          "width": 1920,
+          "height": 1075,
+          "caption": null
+        }
+      ]
+    },
+    {
+      "index": 27,
+      "type": "text",
+      "moduleId": null,
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Early in the brainstorming process, we noticed that every futuristic medical bay centers around the simple concept of \"easiness.\" Everything is at a command or gesture or reach away. We settled on this topic of ambient computing to consider the realistic potential of ambient technology in the patient home, specifically the bathroom.",
+          "links": []
+        }
+      ],
+      "links": []
+    },
+    {
+      "index": 28,
+      "type": "image",
+      "moduleId": null,
+      "image": {
+        "role": "content",
+        "sourceUrl": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/6d9b1e58-2925-4c93-9cda-f9ec89bac3e6.jpg?h=60f701b09d592376ec4f52819b79a0c2",
+        "variant": "lightbox-original",
+        "declaredWidth": null,
+        "crop": null,
+        "assetId": "6d9b1e58-2925-4c93-9cda-f9ec89bac3e6",
+        "ext": "jpg",
+        "alt": "",
+        "width": 1920,
+        "height": null,
+        "caption": null
+      }
+    },
+    {
+      "index": 29,
+      "type": "text",
+      "moduleId": null,
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Our final proposal was a futuristic \"product line\" MSK would offer for patients in remote care. The center of this package would be a mirror \"hub\" that would speak with the user; project biometrics, warnings, and notifications; fill out surveys and take messages from the user using a conversational agent like IBM Watson; and serve as a \"hologram\"-esque video projection for physician telehealth visits, which increased by 2018% this year at MSKCC and is not projected to decrease even after the pandemic. I created the \"hub\" and \"spoke\" prototypes with Adobe Illustrator (it was great pen tool exercise!).",
+          "links": []
+        }
+      ],
+      "links": []
+    },
+    {
+      "index": 30,
+      "type": "media_collection",
+      "moduleId": "m67d657d4cf01f899bd669bb5d88ae0183333d63be4a1b40ab2276",
+      "images": [
+        {
+          "role": "content",
+          "sourceUrl": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/3061881a-02a6-45db-8f8d-900801a2e497_rw_1920.jpg?h=9468f38933a7ab59b82a18920ca8f9e6",
+          "variant": "largest-srcset",
+          "declaredWidth": 1920,
+          "crop": null,
+          "assetId": null,
+          "ext": null,
+          "alt": "",
+          "width": 1920,
+          "height": 1075,
+          "caption": null
+        },
+        {
+          "role": "content",
+          "sourceUrl": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/f0175b5a-aedf-4716-95c2-e284f4259830_rw_1920.jpg?h=f0a194e967fc5d2e7c4e80170c649b9d",
+          "variant": "largest-srcset",
+          "declaredWidth": 1920,
+          "crop": null,
+          "assetId": null,
+          "ext": null,
+          "alt": "",
+          "width": 1920,
+          "height": 1075,
+          "caption": null
+        }
+      ]
+    },
+    {
+      "index": 31,
+      "type": "text",
+      "moduleId": null,
+      "blocks": [
+        {
+          "type": "caption",
+          "text": "We made efforts to address all of the symptoms on the left slide to emphasize comprehensiveness of our remote monitoring system. On the right slide, we point out concerns we have that will need to be bridged by TechInc in order to pursue our ambient computing remote monitoring vision.",
+          "links": []
+        }
+      ],
+      "links": []
+    },
+    {
+      "index": 32,
+      "type": "text",
+      "moduleId": null,
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Although this proposal sounds absurd for 2020, Dr. Stein highlighted that this sort of exploratory work can inspire the direction of future MSK endeavors in these very relevant fields of ambient computing and remote monitoring. For instance, MSK has already created \"smart hospital\" rooms with features such as interactive walls and location tracking.\n\nOn another note, it was so much fun working with Hal and Ethan, who are hard-working, grounded, hilarious individuals with so much talent. Every day at the internship was a joy because of our continual (and remote!) hijinks!",
+          "links": []
+        }
+      ],
+      "links": []
+    },
+    {
+      "index": 33,
+      "type": "text",
+      "moduleId": null,
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "Hackathon project: Paving the way for an accessible MSK knowledge bank",
+          "links": []
+        }
+      ],
+      "links": []
+    },
+    {
+      "index": 34,
+      "type": "text",
+      "moduleId": null,
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "All 40 interns also participated in a summer-long “hackathon,” devising solutions for the following prompt: How can MSK create a knowledge bank for the “layperson”? Whether it be rural, minority, low education, internet-less, homeless, illiterate, or non-English speaking populations, how can MSK reach everybody with an assumed robust WebMD-style knowledge bank?\n\nYou can view my team's final presentation, which won the hackathon, here.",
+          "links": [
+            {
+              "href": "https://fiddle.jshell.net/_display/images/mskcc/hackathon_ppt.pdf",
+              "text": "here"
+            }
+          ]
+        }
+      ],
+      "links": [
+        {
+          "href": "https://fiddle.jshell.net/_display/images/mskcc/hackathon_ppt.pdf",
+          "text": "here"
+        }
+      ]
+    },
+    {
+      "index": 35,
+      "type": "media_collection",
+      "moduleId": "m67d658167ecdcbf29bcfafaa701ae5173e5880cea80bc93991c2f",
+      "images": [
+        {
+          "role": "content",
+          "sourceUrl": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/7ac29a8e-0129-4e56-8341-8992b91678c4_rw_1920.jpg?h=ba50b463648cea1837564e03e9b1982c",
+          "variant": "largest-srcset",
+          "declaredWidth": 1920,
+          "crop": null,
+          "assetId": null,
+          "ext": null,
+          "alt": "",
+          "width": 1920,
+          "height": 1074,
+          "caption": null
+        },
+        {
+          "role": "content",
+          "sourceUrl": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/97a9a1c0-26f3-4283-baf2-9ffb75d1f24f_rw_1920.jpg?h=e3fea0937ecb5af28495e3143c44d224",
+          "variant": "largest-srcset",
+          "declaredWidth": 1920,
+          "crop": null,
+          "assetId": null,
+          "ext": null,
+          "alt": "",
+          "width": 1920,
+          "height": 1074,
+          "caption": null
+        }
+      ]
+    },
+    {
+      "index": 36,
+      "type": "text",
+      "moduleId": null,
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Our proposal highlighted multiple touchpoints for accessibility: 1) Intuitive content design, because accessibility only begins with ADA website guidelines. 2) Software as a tool for accessibility, which highlights conversational agents as an avenue for increased accessibility, and 3) Unique hardware touchpoints, such as city kiosks, supermarket kiosks for rural areas, and pediatric robots for schools. We paired these tangible platform touchpoints with a more abstract touchpoint: cultural influence in popular media.",
+          "links": []
+        },
+        {
+          "type": "paragraph",
+          "text": "As an additional “wow”-factor for our presentation, I decided to actually wireframe out our intended website accessibility designs using InVision and Adobe Illustrator. You can view all the prototypes in the slide deck, but I’ve also attached two of my favorites here.",
+          "links": []
+        }
+      ],
+      "links": []
+    },
+    {
+      "index": 37,
+      "type": "media_collection",
+      "moduleId": "m67d658354146561b207d0849f4cf76f31495e35cad657afd74c9b",
+      "images": [
+        {
+          "role": "content",
+          "sourceUrl": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/531c9e62-6bf1-438e-b7a8-92b20a77e033_rw_1920.jpg?h=c9897c826bf3f5c26e29fcd3692119a5",
+          "variant": "largest-srcset",
+          "declaredWidth": 1920,
+          "crop": null,
+          "assetId": null,
+          "ext": null,
+          "alt": "",
+          "width": 1920,
+          "height": 1650,
+          "caption": null
+        },
+        {
+          "role": "content",
+          "sourceUrl": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/da65ab73-8913-4240-a7f2-a314f819a350_rw_1920.jpg?h=ca893cc199b0a8a86a5c8ea2aeb12284",
+          "variant": "largest-srcset",
+          "declaredWidth": 1920,
+          "crop": null,
+          "assetId": null,
+          "ext": null,
+          "alt": "",
+          "width": 1920,
+          "height": 1651,
+          "caption": null
+        }
+      ]
+    },
+    {
+      "index": 38,
+      "type": "text",
+      "moduleId": null,
+      "blocks": [
+        {
+          "type": "caption",
+          "text": "For this presentation, we also created user personas who interact with our platform in different ways. We included many details in our wireframe targeted toward ease of use depending on what intent you have regarding interacting with the site.",
+          "links": []
+        }
+      ],
+      "links": []
+    },
+    {
+      "index": 39,
+      "type": "text",
+      "moduleId": null,
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "With our multi-pronged software/hardware approach, as well as our focus on longterm cultural impact and capturing pediatric demographics for “the long haul,” our group caught the attention of judges and won the hackathon! You can read a recap of the judging here.\n\nBoth the group and hackathon projects added new facets to my internship experience beside my personal project, which gave me so much technical and professional experience. In particular, I learned to consider a bold, futuristic view of what projects could be, not just next month, but also in two months, two years, twenty years…\n\nI remember in the beginning of this process, I had no clue what to even propose as projects for the group and hackathon projects, given our vague prompts. I am a much more confident brainstormer and bolder thinker now, after this exercise. I am so lucky to have gone through these experiences, because I think even in the most corporate, fixed hierarchy, there is always room for more creativity.",
+          "links": [
+            {
+              "href": "https://fiddle.jshell.net/_display/images/mskcc/hackathon-recap.pdf",
+              "text": "here"
+            }
+          ]
+        }
+      ],
+      "links": [
+        {
+          "href": "https://fiddle.jshell.net/_display/images/mskcc/hackathon-recap.pdf",
+          "text": "here"
+        }
+      ]
+    },
+    {
+      "index": 40,
+      "type": "text",
+      "moduleId": null,
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "In conclusion:",
+          "links": []
+        }
+      ],
+      "links": []
+    },
+    {
+      "index": 41,
+      "type": "text",
+      "moduleId": null,
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Altogether, I am so grateful to Kristine, my manager, and the rest of the internship program directors for putting together a 10-week experience in which I never felt idle or doing tedious work. Many days I worked overtime because I felt so inspired by the hard work, brilliant ideas, and constructive feedback from the people around me. The internship directors’ ability to cultivate this sort of energy in the midst of a pandemic for a virtual internship is truly remarkable.\n\nI had plans with Kristine to stay for a fall internship in conjunction with a gap semester from Yale, but unfortunately my academic schedule did not work out. Whether it be in the coming years or the distant future, I hope to someday find my way back to MSKCC, which has an amazing workplace culture, but more importantly is doing work that I believe to be genuinely vital and compassionate. I came into Yale considering a pre-med track and have worked hard to pivot away to CS and tech… but I feel myself getting drawn back to healthcare!\n\nThere is simply an urgency and compassion to healthcare work that is unsurpassable; at the end of the day, I want to do work with people that helps people. To combine my love of biotechnology with my skillset in CS, writing, and design in my future career… I guess I have a new dream to work toward!",
+          "links": []
+        }
+      ],
+      "links": []
+    }
+  ],
+  "notes": [
+    "Some images only expose a resized or cropped CDN derivative. The unsuffixed original URL is not in the public HTML for those assets.",
+    "Captions are separate text modules with class caption. They are not attributes on the image tag, and the image alt attribute is empty.",
+    "One or more content images have no alt text in the public HTML."
+  ]
+}

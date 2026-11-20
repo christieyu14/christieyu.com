@@ -1,0 +1,47 @@
+{
+  "slug": "contact",
+  "url": "https://christieyu.com/contact",
+  "canonical": "https://christieyu.com/contact",
+  "title": "Christie Yu - Contact",
+  "description": "Hi! I",
+  "keywords": "UI/UX,product design,design systems,design language",
+  "ogImage": "",
+  "adobePageId": "p67d62fd7741df2b7b055445ae13d843eff2e3b4e0439634fd84d7",
+  "kind": "project",
+  "passwordProtected": false,
+  "extractedAt": "2026-11-20T01:05:39.993Z",
+  "covers": [],
+  "modules": [
+    {
+      "index": 0,
+      "type": "form",
+      "moduleId": "m67d62fd7769c5d2098e295193abf25fc585e7f2f164420f222e77",
+      "fields": [
+        {
+          "label": "Name *",
+          "control": "input",
+          "name": "field1",
+          "placeholder": "Your Name...",
+          "required": true
+        },
+        {
+          "label": "Email Address *",
+          "control": "input",
+          "name": "email",
+          "placeholder": "Your Email Address...",
+          "required": true
+        },
+        {
+          "label": "Message *",
+          "control": "textarea",
+          "name": "field2",
+          "placeholder": "Your Message...",
+          "required": true
+        }
+      ],
+      "submitLabel": "Submit",
+      "successMessage": "Thanks! I'll get back to you shortly."
+    }
+  ],
+  "notes": []
+}

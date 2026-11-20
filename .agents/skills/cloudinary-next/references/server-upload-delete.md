@@ -2,16 +2,15 @@
 
 Use this for Server Actions or route handlers that upload or delete assets using the Cloudinary Node SDK v2.
 
-
 ## Server-side upload (Server Action / route handler)
 
 Use the Node SDK v2 directly. This is for: uploading a file you already have on the server (e.g. a Server Action receiving a `FormData`), uploading a remote URL, scheduled jobs, etc.
 
 ```ts
 // app/actions/upload.ts
-'use server';
+"use server";
 
-import { v2 as cloudinary, type UploadApiResponse } from 'cloudinary';
+import { v2 as cloudinary, type UploadApiResponse } from "cloudinary";
 
 cloudinary.config({
   cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
@@ -19,16 +18,18 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-export async function uploadImage(formData: FormData): Promise<{ publicId: string; url: string }> {
-  const file = formData.get('file');
-  if (!(file instanceof File)) throw new Error('No file provided');
+export async function uploadImage(
+  formData: FormData,
+): Promise<{ publicId: string; url: string }> {
+  const file = formData.get("file");
+  if (!(file instanceof File)) throw new Error("No file provided");
 
   const arrayBuffer = await file.arrayBuffer();
   const buffer = Buffer.from(arrayBuffer);
 
   const result = await new Promise<UploadApiResponse>((resolve, reject) => {
     cloudinary.uploader
-      .upload_stream({ folder: 'user-uploads', resource_type: 'auto' }, (err, res) => {
+      .upload_stream({ folder: "user-uploads", resource_type: "auto" }, (err, res) => {
         if (err || !res) return reject(err);
         resolve(res);
       })
@@ -51,9 +52,9 @@ export async function uploadImage(formData: FormData): Promise<{ publicId: strin
 
 ```ts
 // app/actions/delete.ts
-'use server';
+"use server";
 
-import { v2 as cloudinary } from 'cloudinary';
+import { v2 as cloudinary } from "cloudinary";
 
 cloudinary.config({
   cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
@@ -63,11 +64,11 @@ cloudinary.config({
 
 export async function deleteAsset(
   publicId: string,
-  resourceType: 'image' | 'video' | 'raw' = 'image',
+  resourceType: "image" | "video" | "raw" = "image",
 ): Promise<{ result: string }> {
   const res = await cloudinary.uploader.destroy(publicId, {
     resource_type: resourceType,
-    invalidate: true,   // purge the CDN cache
+    invalidate: true, // purge the CDN cache
   });
   // res.result === 'ok' | 'not found'
   return { result: res.result };

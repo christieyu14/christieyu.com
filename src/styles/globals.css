@@ -122,6 +122,13 @@ main {
   bottom: 0;
 }
 
+/* Scroll pages: freeze chrome; GradualBlur strips sit behind (z-index 20) */
+.site-frame--scroll .site-header,
+.site-frame--scroll .site-footer {
+  position: fixed;
+}
+
+
 .site-header--dark,
 .site-footer--dark {
   color: var(--color-black);

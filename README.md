@@ -136,7 +136,7 @@ Config:
 - `studio-christieyu.com/schemaTypes/`
 - `studio-christieyu.com/structure.ts` (siteSettings singleton)
 
-Set `NEXT_PUBLIC_SANITY_PROJECT_ID=g25dm52w` and `NEXT_PUBLIC_SANITY_DATASET=production` in the Next app `.env.local`.
+Set `NEXT_PUBLIC_SANITY_PROJECT_ID=hjf5x3d3` and `NEXT_PUBLIC_SANITY_DATASET=production` in the Next app `.env.local`.
 
 ### Data access
 

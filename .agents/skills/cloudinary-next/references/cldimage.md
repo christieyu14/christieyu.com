@@ -2,19 +2,18 @@
 
 Use this for JSX image rendering with `CldImage`, demo assets, and string URL generation with `getCldImageUrl`.
 
-
 ## CldImage — basic usage
 
 `CldImage` extends Next.js `<Image>`. **Required props**: `src` (a Cloudinary public ID), `alt`, `width`, `height` (or `fill`).
 
 ```tsx
-import { CldImage } from 'next-cloudinary';
+import { CldImage } from "next-cloudinary";
 
 <CldImage
-  src="samples/cloudinary-icon"   // public ID, NOT a URL
+  src="samples/cloudinary-icon" // public ID, NOT a URL
   width={960}
   height={600}
-  sizes="100vw"                   // strongly recommended for responsive
+  sizes="100vw" // strongly recommended for responsive
   alt="Cloudinary icon"
 />;
 ```
@@ -28,6 +27,7 @@ import { CldImage } from 'next-cloudinary';
 ### Sample assets (use for demos when no upload yet)
 
 Cloudinary accounts ship with sample public IDs that **may** exist (users can delete them — always handle `onError`):
+
 - Images: `samples/cloudinary-icon`, `samples/two-ladies`, `samples/food/spices`, `samples/landscapes/beach-boat`, `samples/bike`, `samples/landscapes/girl-urban-view`, `samples/animals/reindeer`, `samples/food/pot-mussels`
 - Video: `samples/elephants`
 - ✅ Default for a single image: `samples/cloudinary-icon`. Prefer uploaded assets when available.
@@ -37,13 +37,13 @@ Cloudinary accounts ship with sample public IDs that **may** exist (users can de
 Use when you need a URL string (metadata, route handlers, plain `<img>` outside React, server-side prefetching, etc.). Same options as `CldImage`.
 
 ```ts
-import { getCldImageUrl } from 'next-cloudinary';
+import { getCldImageUrl } from "next-cloudinary";
 
 const url = getCldImageUrl({
-  src: 'samples/cloudinary-icon',
+  src: "samples/cloudinary-icon",
   width: 960,
   height: 600,
-  crop: 'fill',
+  crop: "fill",
   removeBackground: true,
 });
 ```

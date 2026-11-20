@@ -6,76 +6,104 @@ import { getPortfolioPosts, getSiteSettings } from "@/sanity/lib/fetch";
 import type { PortfolioPostSummary } from "@/types/content";
 import "@/styles/portfolio.css";
 
-const PLACEHOLDER_COUNT = 6;
-
 const PLACEHOLDER_POSTS: PortfolioPostSummary[] = [
   {
-    _id: "placeholder-1",
-    title: "Generative AI at Lenovo",
-    slug: "generative-ai-at-lenovo",
+    _id: "placeholder-gridify",
+    title: "Gridify: Leading design for a startup",
+    slug: "gridify",
     summary:
-      "I defined the product vision for Lenovo IT Assist from day one, pioneering patentable generative AI design patterns.",
+      "I was the 3rd teammate to join Gridify, a climate tech startup transforming the Renewable Energy Certificate market.",
     publishedAt: "2025-06-01",
-    client: "lenovo",
-    location: "remote (chicago)",
+    client: "Gridify",
+    location: "Remote",
   },
   {
-    _id: "placeholder-2",
-    title: "Generative AI at Lenovo",
-    slug: "generative-ai-at-lenovo-2",
+    _id: "placeholder-red-velvet",
+    title: "Now baking... Red Velvet",
+    slug: "red-velvet",
     summary:
-      "I defined the product vision for Lenovo IT Assist from day one, pioneering patentable generative AI design patterns.",
+      "I owned Red Velvet, a B2B sub-language of Lenovo's Cake UI, for which I created 200+ components from scratch.",
     publishedAt: "2025-06-01",
-    client: "lenovo",
-    location: "remote (chicago)",
+    client: "Lenovo",
+    location: "Chicago (Remote)",
   },
   {
-    _id: "placeholder-3",
-    title: "Generative AI at Lenovo",
-    slug: "generative-ai-at-lenovo-3",
+    _id: "placeholder-cake",
+    title: "Architecting Cake",
+    slug: "architecting-cake",
     summary:
-      "I defined the product vision for Lenovo IT Assist from day one, pioneering patentable generative AI design patterns.",
+      "I co-created Cake UI, Lenovo’s PC design language. I used Cake to redesign Lenovo Vantage, a consumer app with 3mil+ daily usership.",
     publishedAt: "2025-06-01",
-    client: "lenovo",
-    location: "remote (chicago)",
+    client: "Lenovo",
+    location: "Chicago (Remote)",
   },
   {
-    _id: "placeholder-4",
-    title: "Generative AI at Lenovo",
-    slug: "generative-ai-at-lenovo-4",
+    _id: "placeholder-artmiesa",
+    title: "@artmiesa on Instagram",
+    slug: "artmiesa",
     summary:
-      "I defined the product vision for Lenovo IT Assist from day one, pioneering patentable generative AI design patterns.",
-    publishedAt: "2025-06-01",
-    client: "lenovo",
-    location: "remote (chicago)",
+      "I'm a bit of a digital artist in my free time - I used to do a lot of mixed media, from oil paints to jewelry-making, but these days I mostly just use Procreate on the iPad.",
+    publishedAt: "2024-01-01",
+    client: "@artmiesa",
   },
   {
-    _id: "placeholder-5",
-    title: "Generative AI at Lenovo",
-    slug: "generative-ai-at-lenovo-5",
+    _id: "placeholder-thesis-cs",
+    title: "Senior thesis: Computer Science",
+    slug: "senior-thesis-computer-science",
     summary:
-      "I defined the product vision for Lenovo IT Assist from day one, pioneering patentable generative AI design patterns.",
-    publishedAt: "2025-06-01",
-    client: "lenovo",
-    location: "remote (chicago)",
+      "For my capstone project for the CS dept, I investigated how to digitize the museum experience, attempting to recreate one of the most intangible yet powerful user experiences.",
+    publishedAt: "2022-05-01",
+    client: "Yale University",
+    location: "New Haven",
   },
   {
-    _id: "placeholder-6",
-    title: "Generative AI at Lenovo",
-    slug: "generative-ai-at-lenovo-6",
+    _id: "placeholder-thesis-english",
+    title: "Senior thesis: English",
+    slug: "senior-thesis-english",
     summary:
-      "I defined the product vision for Lenovo IT Assist from day one, pioneering patentable generative AI design patterns.",
-    publishedAt: "2025-06-01",
-    client: "lenovo",
-    location: "remote (chicago)",
+      "For my capstone project for the English department, I examined Virginia Woolf's views on consciousness and its daily demands of our personae.",
+    publishedAt: "2022-05-01",
+    client: "Yale University",
+    location: "New Haven",
+  },
+  {
+    _id: "placeholder-amoriem",
+    title: "Directing Amoriem Labs",
+    slug: "amoriem-labs",
+    summary:
+      "In January of 2019, I founded Amoriem Labs, Yale's only undergraduate video game development studio. I directed it until I graduated in 2022.",
+    publishedAt: "2022-05-01",
+    client: "Yale University",
+    location: "New Haven",
+  },
+  {
+    _id: "placeholder-ydn",
+    title: "Producing the Yale Daily News",
+    slug: "yale-daily-news",
+    summary:
+      "I served as an inaugural Digital Desk editor in 2021, and a Production & Design Editor/staffer for the daily print paper from 2018-2020.",
+    publishedAt: "2021-05-01",
+    client: "Yale University",
+    location: "New Haven",
+  },
+
+  {
+    _id: "placeholder-mskcc",
+    title: "Tech incubation at MSKCC",
+    slug: "mskcc",
+    summary:
+      "I was an intern for the Tech Incubation team at MSKCC in summers of 2020 and 2021, working on projects exploring ambient computing, conversational interfaces, and digital therapeutics.",
+    publishedAt: "2021-08-01",
+    client: "MSKCC",
+    location: "New York City",
   },
 ];
 
 function withPlaceholders(posts: PortfolioPostSummary[]): PortfolioPostSummary[] {
-  if (posts.length >= PLACEHOLDER_COUNT) {
+  if (posts.length > 0) {
     return posts;
   }
-  return [...posts, ...PLACEHOLDER_POSTS.slice(0, PLACEHOLDER_COUNT - posts.length)];
+  return PLACEHOLDER_POSTS;
 }
 
 export async function generateMetadata(): Promise<Metadata> {

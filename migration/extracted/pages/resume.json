@@ -1,0 +1,27 @@
+{
+  "slug": "resume",
+  "url": "https://christieyu.com/resume",
+  "canonical": "https://christieyu.com/resume",
+  "title": "Christie Yu - Resume",
+  "description": "Hi! I",
+  "keywords": "UI/UX,product design,design systems,design language",
+  "ogImage": "",
+  "adobePageId": "p67d64680827642acaf75aadf01bc9685cdc7e12b47455d1eb7d53",
+  "kind": "project",
+  "passwordProtected": false,
+  "extractedAt": "2026-11-20T01:05:39.993Z",
+  "covers": [],
+  "modules": [
+    {
+      "index": 0,
+      "type": "embed",
+      "moduleId": null,
+      "embedUrls": [
+        "https://embed.figma.com/design/MTz2WVacz9Unw0fUQT39tB/Resume?node-id=1-3&embed-host=share"
+      ]
+    }
+  ],
+  "notes": [
+    "Embed or video content is referenced by URL. The embedded document or player payload was not extracted."
+  ]
+}

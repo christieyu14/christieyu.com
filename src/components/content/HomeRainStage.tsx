@@ -211,9 +211,7 @@ export function HomeRainStage({
                 refresh
               </button>
               <Link href={HERO_ALBUM_PATH} className="type-link home__meta-all">
-                all
-                <br />
-                photos
+                all photos
               </Link>
             </div>
             <figure className="home__meta-thumb">

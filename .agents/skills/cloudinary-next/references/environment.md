@@ -2,7 +2,6 @@
 
 Use this when configuring `.env.local`, debugging missing Cloudinary variables, or adding TypeScript environment typings.
 
-
 ## Environment Variables
 
 - ✅ **Required**: `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME` in `.env.local`. Access via `process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME` if you ever need to read it directly (most code doesn't — `next-cloudinary` reads it for you).

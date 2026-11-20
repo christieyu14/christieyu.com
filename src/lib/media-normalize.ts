@@ -51,6 +51,8 @@ export function normalizeCloudinaryAsset(
     return undefined;
   }
 
+  const format = asset.format ?? asset.asset?.format;
+
   return {
     kind: "cloudinary-image",
     publicId,
@@ -58,6 +60,7 @@ export function normalizeCloudinaryAsset(
     caption: asset.caption,
     width: asset.width ?? asset.asset?.width,
     height: asset.height ?? asset.asset?.height,
+    ...(format ? { format } : {}),
   };
 }
 

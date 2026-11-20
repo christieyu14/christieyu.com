@@ -1,0 +1,18 @@
+{
+  "slug": "generative-ai",
+  "url": "https://christieyu.com/generative-ai",
+  "canonical": "",
+  "title": "Password Protected Page",
+  "description": "",
+  "keywords": "",
+  "ogImage": "",
+  "adobePageId": null,
+  "kind": "password-protected",
+  "passwordProtected": true,
+  "extractedAt": "2026-11-20T01:05:39.993Z",
+  "covers": [],
+  "modules": [],
+  "notes": [
+    "A password field is in the public HTML. Protected body content was not available."
+  ]
+}

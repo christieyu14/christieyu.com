@@ -1,0 +1,319 @@
+{
+  "slug": "home",
+  "url": "https://christieyu.com/",
+  "canonical": "https://christieyu.com/portfolio",
+  "title": "Christie Yu",
+  "description": "Hi! I",
+  "keywords": "UI/UX,product design,design systems,design language",
+  "ogImage": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/2ffe981d-d917-496a-80ba-bbc290e2b62d_rwc_100x0x1056x826x1056.png?h=83ab136a709905dabac8448dfb7be8ae",
+  "adobePageId": "p67d72ff735de9a447048324c32f2272b6ee9c86f9304573de8597",
+  "kind": "gallery",
+  "passwordProtected": false,
+  "extractedAt": "2026-11-20T01:05:39.993Z",
+  "covers": [
+    {
+      "order": 0,
+      "href": "/gridify",
+      "adobePageId": "p67d72ff735de9a447048324c32f2272b6ee9c86f9304573de8597",
+      "title": "Gridify: Leading design for a startup",
+      "description": "I was the 3rd teammate to join Gridify, a climate tech startup transforming the Renewable Energy Certificate market. As the sole designer from day one, I defined and executed the branding strategy and led product design in Figma, driving the visual and strategic direction of both the brand and product. I also create marketable reports for our clients using InDesign.",
+      "date": "01/2025",
+      "customField": "Gridify (Remote)",
+      "cover": {
+        "role": "cover",
+        "sourceUrl": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/2ffe981d-d917-496a-80ba-bbc290e2b62d_rwc_100x0x1056x826x1056.png?h=83ab136a709905dabac8448dfb7be8ae",
+        "variant": "cropped-derivative",
+        "declaredWidth": 5120,
+        "crop": {
+          "x": 100,
+          "y": 0,
+          "width": 1056,
+          "height": 826,
+          "deliveredEdge": 1056
+        },
+        "assetId": null,
+        "ext": null,
+        "alt": "",
+        "width": 5120,
+        "height": null,
+        "caption": null
+      }
+    },
+    {
+      "order": 1,
+      "href": "/generative-ai",
+      "adobePageId": "p67d74125d2aec6def9d467d2c99db7949281660980e53a77fd42a",
+      "title": "Generative AI at Lenovo",
+      "description": "I defined the product vision for Lenovo IT Assist from day one, pioneering patentable generative AI design patterns and leading beta-testing efforts to proactively diagnose and resolve customer pain points. (This project is under NDA so this is password protected. Please reach out if you need access.)",
+      "date": "11/2024",
+      "customField": "Lenovo (Chicago/Remote)",
+      "cover": {
+        "role": "cover",
+        "sourceUrl": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/3dbedaf7-9a3e-4b42-80bb-8d17b59a9ee4_rwc_533x0x1381x1080x1381.png?h=74987b791c87b70b27aff3f4438dec07",
+        "variant": "cropped-derivative",
+        "declaredWidth": 5120,
+        "crop": {
+          "x": 533,
+          "y": 0,
+          "width": 1381,
+          "height": 1080,
+          "deliveredEdge": 1381
+        },
+        "assetId": null,
+        "ext": null,
+        "alt": "",
+        "width": 5120,
+        "height": null,
+        "caption": null
+      }
+    },
+    {
+      "order": 2,
+      "href": "/red-velvet",
+      "adobePageId": "p67d64443cd637b5acc85c10bd315fe5c9ebb4dc02a2c54aa36941",
+      "title": "Now baking... Red Velvet!",
+      "description": "I was selected to lead & own Red Velvet, a B2B sub-language of Lenovo's Cake UI, for which I created 200+ components from scratch. I am now using Red Velvet to redesign 8 Lenovo SaaS cloud solutions, including Lenovo Device Intelligence and Lenovo Cloud Marketplace.",
+      "date": "06/2024",
+      "customField": "Lenovo (Chicago/Remote)",
+      "cover": {
+        "role": "cover",
+        "sourceUrl": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/43cd1c91-c5b8-48ea-9369-49c695960d1e_rwc_31x0x1381x1080x1381.png?h=174ce6a47b29b612a9a65c02de2edca4",
+        "variant": "cropped-derivative",
+        "declaredWidth": 5120,
+        "crop": {
+          "x": 31,
+          "y": 0,
+          "width": 1381,
+          "height": 1080,
+          "deliveredEdge": 1381
+        },
+        "assetId": null,
+        "ext": null,
+        "alt": "",
+        "width": 5120,
+        "height": null,
+        "caption": null
+      }
+    },
+    {
+      "order": 3,
+      "href": "/cake",
+      "adobePageId": "p67d62fd97813d65c9b4ff4e73ccf7ed9e44bafe286100527c7927",
+      "title": "Architecting Cake",
+      "description": "I co-created Cake UI, Lenovo’s new unified design language, mapping 500+ variables to 100+ components in Figma. I used Cake to redesign Lenovo Vantage, a consumer app with 3mil+ daily usership.",
+      "date": "10/2023",
+      "customField": "Lenovo (Chicago/Remote)",
+      "cover": {
+        "role": "cover",
+        "sourceUrl": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/cf609f7b-201b-44ee-a862-a9ee79c748ab_rwc_195x0x1534x1200x1534.png?h=ed398e68a922dae5f8bd5b4b41e48945",
+        "variant": "cropped-derivative",
+        "declaredWidth": 5120,
+        "crop": {
+          "x": 195,
+          "y": 0,
+          "width": 1534,
+          "height": 1200,
+          "deliveredEdge": 1534
+        },
+        "assetId": null,
+        "ext": null,
+        "alt": "",
+        "width": 5120,
+        "height": null,
+        "caption": null
+      }
+    },
+    {
+      "order": 4,
+      "href": "/artmiesa",
+      "adobePageId": "p67d65103765bcb4545df52ca20078f136964792a9cbe7c97e4fab",
+      "title": "@artmiesa on Instagram",
+      "description": "I'm a bit of a digital artist in my free time! I used to do a lot of mixed media, from oil paints to jewelry-making, but these days I mostly just use Procreate on the iPad.",
+      "date": "08/2022",
+      "customField": "Digital space",
+      "cover": {
+        "role": "cover",
+        "sourceUrl": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/d6cbf1bd-844d-462c-a823-51f409a557c8_rwc_0x36x4000x3127x4000.png?h=4ef368d078c977de6c6fec77df588550",
+        "variant": "cropped-derivative",
+        "declaredWidth": 5120,
+        "crop": {
+          "x": 0,
+          "y": 36,
+          "width": 4000,
+          "height": 3127,
+          "deliveredEdge": 4000
+        },
+        "assetId": null,
+        "ext": null,
+        "alt": "",
+        "width": 5120,
+        "height": null,
+        "caption": null
+      }
+    },
+    {
+      "order": 5,
+      "href": "/senior-thesis-computer-science",
+      "adobePageId": "p67d65b35a382e496e3faad45ab7c0e81dc721c7ba58503e20b531",
+      "title": "Senior thesis: Computer Science",
+      "description": "For my capstone project for the Computer Science department, I investigated how to digitize the museum experience, attempting to recreate one of the most intangible yet powerful user experiences. I proposed what I call the “semi-generous interface” as a more suitable touchpoint for exploring museum content, and shared Figma prototypes & an early implementation of an algorithm.",
+      "date": "05/2022",
+      "customField": "Yale University",
+      "cover": {
+        "role": "cover",
+        "sourceUrl": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/4aa6a7ea-135b-41d1-9719-9ab36d8cf5ec_rwc_5x37x629x491x629.png?h=03ed695ff9372ed7b8cc25bc43aabfa0",
+        "variant": "cropped-derivative",
+        "declaredWidth": 5120,
+        "crop": {
+          "x": 5,
+          "y": 37,
+          "width": 629,
+          "height": 491,
+          "deliveredEdge": 629
+        },
+        "assetId": null,
+        "ext": null,
+        "alt": "",
+        "width": 5120,
+        "height": null,
+        "caption": null
+      }
+    },
+    {
+      "order": 6,
+      "href": "/senior-thesis-english",
+      "adobePageId": "p67d66c9b7c3b13a4b56533e2f6e2843983efc6dcbf0a7c0dea79b",
+      "title": "Senior thesis: English",
+      "description": "For my capstone project for the English department, I wrote a dissertation on Virginia Woolf, an author I studied in three seminars. In particular, I examined her views on consciousness and its daily demands of our selves: the internal self, the external self, the self we create, and the self that creates us.",
+      "date": "05/2022",
+      "customField": "Yale University",
+      "cover": {
+        "role": "cover",
+        "sourceUrl": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/ba6dbf4c-90a7-43af-90cc-92b4fa55bbac_carw_202x158x5120.png?h=65e23e411b69121ee5adb95980212312",
+        "variant": "largest-srcset",
+        "declaredWidth": 5120,
+        "crop": null,
+        "assetId": null,
+        "ext": null,
+        "alt": "",
+        "width": 5120,
+        "height": null,
+        "caption": null
+      }
+    },
+    {
+      "order": 7,
+      "href": "/amoriem-labs",
+      "adobePageId": "p67d79790562e727455d87174ceb5e55dbfd99f0cd574d86207a51",
+      "title": "Directing Amoriem Labs",
+      "description": "In January of 2019, I founded Amoriem Labs, Yale's only undergraduate video game development studio. I PM'ed it until I graduated in 2022.",
+      "date": "04/2022",
+      "customField": "Yale University",
+      "cover": {
+        "role": "cover",
+        "sourceUrl": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/822cf506-e60a-436d-ad91-049394662dc3_rwc_303x0x1311x1025x1311.png?h=86ee23635434604a4994ab16e2ba85d9",
+        "variant": "cropped-derivative",
+        "declaredWidth": 5120,
+        "crop": {
+          "x": 303,
+          "y": 0,
+          "width": 1311,
+          "height": 1025,
+          "deliveredEdge": 1311
+        },
+        "assetId": null,
+        "ext": null,
+        "alt": "",
+        "width": 5120,
+        "height": null,
+        "caption": null
+      }
+    },
+    {
+      "order": 8,
+      "href": "/yale-daily-news",
+      "adobePageId": "p67d7912029de71884f09189113103ab7614cac0e6684ae679585f",
+      "title": "Producing the Yale Daily News",
+      "description": "I served as an inaugural Digital Desk editor in 2021, working cross-functionally on the many multimedia moving parts of YDN's online presence. I was a Production & Design Editor and staffer for the print paper from 2018-2020.",
+      "date": "12/2021",
+      "customField": "Yale University",
+      "cover": {
+        "role": "cover",
+        "sourceUrl": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/4bcb3b14-b911-489a-bf1e-43b94424355f_rwc_0x117x1081x845x1081.jpg?h=42d0c873fc831fc99e88412de3679d15",
+        "variant": "cropped-derivative",
+        "declaredWidth": 5120,
+        "crop": {
+          "x": 0,
+          "y": 117,
+          "width": 1081,
+          "height": 845,
+          "deliveredEdge": 1081
+        },
+        "assetId": null,
+        "ext": null,
+        "alt": "",
+        "width": 5120,
+        "height": null,
+        "caption": null
+      }
+    },
+    {
+      "order": 9,
+      "href": "/teaching-cs50",
+      "adobePageId": "p67d79abb5aa6094e128c7e0567acb2d1404caaa926dd414d802e7",
+      "title": "Teaching CS50",
+      "description": "I taught the Yale-Harvard course \"CS50: Intro to Programming\" at Yale during fall of 2019, 2020, and 2021.",
+      "date": "12/2021",
+      "customField": "Yale University",
+      "cover": {
+        "role": "cover",
+        "sourceUrl": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/26f80013-15a5-4f40-9270-6d6041d8e856_rwc_141x0x1637x1280x1637.jpg?h=a1c88895bab4641c339afef5e2c0a0f7",
+        "variant": "cropped-derivative",
+        "declaredWidth": 5120,
+        "crop": {
+          "x": 141,
+          "y": 0,
+          "width": 1637,
+          "height": 1280,
+          "deliveredEdge": 1637
+        },
+        "assetId": null,
+        "ext": null,
+        "alt": "",
+        "width": 5120,
+        "height": null,
+        "caption": null
+      }
+    },
+    {
+      "order": 10,
+      "href": "/mskcc",
+      "adobePageId": "p67d6535d3f7a103749717e56e68e54cca7b2b62ea301f82d42a1e",
+      "title": "Tech incubation at MSKCC",
+      "description": "I was an intern for the Tech Incubation team at MSKCC in summers of 2020 and 2021. I worked on projects exploring ambient computing, conversational interfaces, and digital therapeutics, in engineering, design, and project management capacities. I also led my team to 1st place in an accessible healthcare intern hackathon.",
+      "date": "08/2021",
+      "customField": "MSKCC (New York City)",
+      "cover": {
+        "role": "cover",
+        "sourceUrl": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/2cadf624-f3c5-4b10-b212-6e7fd6db4791_rwc_290x0x1450x1134x1450.jpg?h=f1817a3eefe394b2eb1fa6154d84adf5",
+        "variant": "cropped-derivative",
+        "declaredWidth": 5120,
+        "crop": {
+          "x": 290,
+          "y": 0,
+          "width": 1450,
+          "height": 1134,
+          "deliveredEdge": 1450
+        },
+        "assetId": null,
+        "ext": null,
+        "alt": "",
+        "width": 5120,
+        "height": null,
+        "caption": null
+      }
+    }
+  ],
+  "modules": [],
+  "notes": []
+}

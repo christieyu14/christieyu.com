@@ -2,7 +2,6 @@
 
 Use this when starting a new Next.js + Cloudinary project or adding missing setup files to an existing project.
 
-
 ## Project setup (rules-only / without CLI)
 
 If the user is **not** using a CLI scaffold and only has these rules, generate the following so they get a correct config end-to-end.
@@ -35,6 +34,7 @@ NEXT_PUBLIC_CLOUDINARY_PRIVATE_CDN=true
 ```
 
 Rules:
+
 - ✅ `NEXT_PUBLIC_*` is exposed to the browser. Use it for `CLOUD_NAME` and (optionally) `API_KEY` (the API key is not secret).
 - ❌ **Never** prefix `CLOUDINARY_API_SECRET` with `NEXT_PUBLIC_`. The secret must only be read on the server (`process.env.CLOUDINARY_API_SECRET`).
 - ✅ `.env.local` must be in `.gitignore` (Next.js's default `.gitignore` already does this — verify it).
@@ -50,9 +50,7 @@ Rules:
 /** @type {import('next').NextConfig} */
 module.exports = {
   images: {
-    remotePatterns: [
-      { protocol: 'https', hostname: 'res.cloudinary.com' },
-    ],
+    remotePatterns: [{ protocol: "https", hostname: "res.cloudinary.com" }],
   },
 };
 ```
@@ -62,6 +60,7 @@ module.exports = {
 Create `app/api/sign-cloudinary-params/route.ts` (App Router) — see **"Signed uploads (App Router)"** below for the canonical implementation.
 
 **5. Summary for rules-only users**
+
 - **Env**: `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME` is required; add `NEXT_PUBLIC_CLOUDINARY_API_KEY` + `CLOUDINARY_API_SECRET` only when signing uploads. Restart dev server after edits.
 - **No `Cloudinary` instance to construct**: `next-cloudinary` reads env automatically. Just import components/helpers and use them.
 - **Components are client-side**: `CldUploadWidget`, `CldUploadButton`, `CldVideoPlayer` always need `"use client"`. `CldImage` works in both, but make the file a Client Component if you also use refs / event handlers / state with it.

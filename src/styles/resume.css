@@ -19,16 +19,18 @@
 }
 
 .photo-stage--resume {
+  /* Album thumb (290) + gutter — panel flexes so it never sits under the meta */
+  --resume-album-rail: calc(18.125rem + var(--space-gap));
+
   display: grid;
-  /* 1fr so the resume column keeps width even when the PDF viewer has no intrinsic size */
-  grid-template-columns: minmax(0, 1fr) auto;
+  /* Single track for the PDF; meta is absolutely pinned to the home spot */
+  grid-template-columns: minmax(0, 1fr);
   grid-template-rows: minmax(0, 1fr);
   align-items: stretch;
-  column-gap: 2rem;
   width: 100%;
   height: 100dvh;
   min-height: 100dvh;
-  padding: 5.5rem; /* 88px */
+  padding: 5.5rem; /* 88px — PDF inset */
   box-sizing: border-box;
 }
 
@@ -53,8 +55,9 @@
   flex-direction: column;
   align-items: stretch;
   justify-content: stretch;
-  width: min(100%, 64rem); /* 1024px — Figma */
-  max-width: 64rem;
+  /* Cap at 1024px, but shrink to leave a gutter beside the fixed album */
+  width: min(100%, 64rem, calc(100% - var(--resume-album-rail)));
+  max-width: min(64rem, calc(100% - var(--resume-album-rail)));
   min-height: 0;
   height: 100%;
   padding: 0;
@@ -62,27 +65,43 @@
   backdrop-filter: none;
 }
 
+/*
+ * Pin to the same viewport spot as .home__meta:
+ * home body pads 4.0625rem / space-frame, then meta adds 0 4rem 4rem.
+ */
 .photo-stage--resume .photo-stage__meta {
-  grid-column: 2;
-  grid-row: 1;
-  z-index: 2;
-  position: relative;
+  position: absolute;
   top: auto;
-  right: auto;
+  right: var(--space-frame);
+  bottom: 4.0625rem;
+  left: auto;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
   width: auto;
   max-width: none;
-  align-self: center;
-  padding-right: 0;
-  gap: 1.375rem; /* 22px */
+  margin: 0;
+  padding: 0 4rem 4rem;
+  gap: 1.375rem; /* 22px — same as .home__meta */
+  pointer-events: none;
 }
 
 .photo-stage--resume .photo-stage__caption,
 .photo-stage--resume .photo-stage__actions {
   padding-right: 0;
+  pointer-events: auto;
 }
 
 .photo-stage--resume .photo-stage__actions {
   margin-bottom: 0;
+}
+
+.photo-stage--resume .photo-stage__thumb {
+  width: 18.125rem; /* 290px — same as home */
+  height: 10.1875rem; /* 163px */
+  pointer-events: auto;
 }
 
 .resume-box {
@@ -135,7 +154,7 @@
     height: auto;
     min-height: 100dvh;
     padding: 5rem var(--space-frame) 4rem;
-    row-gap: 1.5rem;
+    row-gap: 0;
   }
 
   .photo-stage--resume .photo-stage__panel {
@@ -147,10 +166,27 @@
     min-height: 70dvh;
   }
 
+  .photo-stage--resume {
+    --resume-album-rail: 0px;
+  }
+
+  /* Mirror home mobile: in-flow, full-width, left-aligned */
   .photo-stage--resume .photo-stage__meta {
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
     grid-column: 1;
     grid-row: 2;
-    align-self: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    padding: 2rem 0;
+  }
+
+  .photo-stage--resume .photo-stage__caption,
+  .photo-stage--resume .photo-stage__actions {
+    justify-content: flex-start;
+    text-align: left;
   }
 
   .resume-box {

@@ -12,14 +12,14 @@ Use this when building image overlays, text overlays, badges, labels, or waterma
   sizes="100vw"
   overlays={[
     {
-      publicId: 'logo',                 // image overlay
-      position: { x: 50, y: 50, gravity: 'south_east' },
-      effects: [{ crop: 'fill', gravity: 'auto', width: 200, height: 200 }],
-      appliedEffects: [{ multiply: true }],   // blend modes go here
+      publicId: "logo", // image overlay
+      position: { x: 50, y: 50, gravity: "south_east" },
+      effects: [{ crop: "fill", gravity: "auto", width: 200, height: 200 }],
+      appliedEffects: [{ multiply: true }], // blend modes go here
     },
   ]}
   alt=""
-/>;
+/>
 ```
 
 ```tsx
@@ -39,6 +39,7 @@ overlays={[
 ```
 
 Rules for the overlay shape:
+
 - ✅ **Image overlay** → use `publicId` (just the ID, no URL, no extension).
 - ✅ **Text overlay** → use a `text` object (with `text` inside it being the actual string). Do **not** put text under `publicId`.
 - ✅ **Position** → object with `x`, `y`, `gravity` (and optional `angle`). `gravity` strings use **underscores**: `"south_east"`, `"north_west"`, `"center"` — not camelCase.

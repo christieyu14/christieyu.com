@@ -5,6 +5,7 @@ import {
   useCallback,
   useRef,
   useState,
+  type CSSProperties,
   type FormEvent,
   type KeyboardEvent,
   type PointerEvent,
@@ -15,14 +16,23 @@ import { CONTACT_MESSAGE_MAX } from "@/lib/contact";
 type FormStatus = "idle" | "submitting" | "sent" | "error";
 
 const MESSAGE_MIN_HEIGHT = 92;
+const MESSAGE_MIN_WIDTH = 280;
 const KEYBOARD_STEP = 16;
 
 function maxMessageHeight(): number {
   return Math.max(MESSAGE_MIN_HEIGHT, Math.round(window.innerHeight * 0.6));
 }
 
+function maxMessageWidth(): number {
+  return Math.max(MESSAGE_MIN_WIDTH, Math.round(window.innerWidth * 0.7));
+}
+
 function clampHeight(height: number): number {
   return Math.min(Math.max(height, MESSAGE_MIN_HEIGHT), maxMessageHeight());
+}
+
+function clampWidth(width: number): number {
+  return Math.min(Math.max(width, MESSAGE_MIN_WIDTH), maxMessageWidth());
 }
 
 function newSubmissionId(): string {
@@ -34,13 +44,20 @@ export function ContactForm() {
   const [status, setStatus] = useState<FormStatus>("idle");
   const [errorMessage, setErrorMessage] = useState("");
   const [messageHeight, setMessageHeight] = useState(MESSAGE_MIN_HEIGHT);
+  const [messageWidth, setMessageWidth] = useState<number | null>(null);
   const [nameValue, setNameValue] = useState("");
   const [emailValue, setEmailValue] = useState("");
   const [messageValue, setMessageValue] = useState("");
   const [focused, setFocused] = useState<"name" | "email" | "message" | null>(
     null,
   );
-  const dragRef = useRef<{ startY: number; startHeight: number } | null>(null);
+  const dragRef = useRef<{
+    startX: number;
+    startY: number;
+    startWidth: number;
+    startHeight: number;
+  } | null>(null);
+  const messageWrapRef = useRef<HTMLDivElement | null>(null);
   const submissionIdRef = useRef<string | null>(null);
 
   const onSubmit = useCallback(async (event: FormEvent<HTMLFormElement>) => {
@@ -78,6 +95,7 @@ export function ContactForm() {
       setMessageValue("");
       submissionIdRef.current = null;
       setMessageHeight(MESSAGE_MIN_HEIGHT);
+      setMessageWidth(null);
       setStatus("sent");
     } catch {
       setErrorMessage("Network error. Please try again.");
@@ -88,13 +106,23 @@ export function ContactForm() {
   function onHandlePointerDown(event: PointerEvent<HTMLDivElement>) {
     event.preventDefault();
     event.currentTarget.setPointerCapture(event.pointerId);
-    dragRef.current = { startY: event.clientY, startHeight: messageHeight };
+    const wrap = messageWrapRef.current;
+    const startWidth = messageWidth ?? wrap?.getBoundingClientRect().width ?? MESSAGE_MIN_WIDTH;
+    dragRef.current = {
+      startX: event.clientX,
+      startY: event.clientY,
+      startWidth,
+      startHeight: messageHeight,
+    };
   }
 
   function onHandlePointerMove(event: PointerEvent<HTMLDivElement>) {
     if (!dragRef.current) return;
-    const delta = event.clientY - dragRef.current.startY;
-    setMessageHeight(clampHeight(dragRef.current.startHeight + delta));
+    // Top-right handle: drag right/up expands outward.
+    const deltaX = event.clientX - dragRef.current.startX;
+    const deltaY = event.clientY - dragRef.current.startY;
+    setMessageWidth(clampWidth(dragRef.current.startWidth + deltaX));
+    setMessageHeight(clampHeight(dragRef.current.startHeight - deltaY));
   }
 
   function onHandlePointerUp(event: PointerEvent<HTMLDivElement>) {
@@ -111,6 +139,16 @@ export function ContactForm() {
     } else if (event.key === "ArrowDown") {
       event.preventDefault();
       setMessageHeight((height) => clampHeight(height - KEYBOARD_STEP));
+    } else if (event.key === "ArrowRight") {
+      event.preventDefault();
+      setMessageWidth((width) =>
+        clampWidth((width ?? messageWrapRef.current?.clientWidth ?? MESSAGE_MIN_WIDTH) + KEYBOARD_STEP),
+      );
+    } else if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      setMessageWidth((width) =>
+        clampWidth((width ?? messageWrapRef.current?.clientWidth ?? MESSAGE_MIN_WIDTH) - KEYBOARD_STEP),
+      );
     }
   }
 
@@ -119,9 +157,19 @@ export function ContactForm() {
   const showEmailPh = focused !== "email" && emailValue.trim() === "";
   const showMessagePh = focused !== "message" && messageValue.trim() === "";
 
+  const cardStyle = {
+    ...(messageWidth
+      ? ({
+          ["--contact-card-width" as string]: `${messageWidth + 56}px`,
+          ["--message-width" as string]: `${messageWidth}px`,
+        } as CSSProperties)
+      : null),
+  } as CSSProperties;
+
   return (
     <Form.Root
       className="contact-card"
+      style={cardStyle}
       onSubmit={(event) => {
         void onSubmit(event);
       }}
@@ -202,7 +250,7 @@ export function ContactForm() {
 
         <Form.Field className="contact-field contact-field--message" name="message">
           <Form.Label className="visually-hidden">Message</Form.Label>
-          <div className="contact-field__message-wrap">
+          <div ref={messageWrapRef} className="contact-field__message-wrap">
             <div className="contact-field__shell contact-field__shell--textarea">
               {showMessagePh ? (
                 <HazeText

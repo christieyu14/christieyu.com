@@ -2,7 +2,6 @@
 
 Use this when the user needs secure browser uploads through `CldUploadWidget` with a server-side signature endpoint.
 
-
 ### Signed uploads (App Router) — canonical pattern
 
 When the user wants signed/secure uploads, do this end-to-end:
@@ -10,13 +9,13 @@ When the user wants signed/secure uploads, do this end-to-end:
 **1. Pass `signatureEndpoint` to the widget instead of `uploadPreset`-only:**
 
 ```tsx
-'use client';
-import { CldUploadWidget } from 'next-cloudinary';
+"use client";
+import { CldUploadWidget } from "next-cloudinary";
 
 <CldUploadWidget
   signatureEndpoint="/api/sign-cloudinary-params"
-  uploadPreset="<signed-preset>"   // optional; widget will sign whatever params it sends
-  options={{ folder: 'user-uploads' }}
+  uploadPreset="<signed-preset>" // optional; widget will sign whatever params it sends
+  options={{ folder: "user-uploads" }}
   onSuccess={(result) => console.log(result.info)}
 >
   {({ open }) => <button onClick={() => open()}>Upload</button>}
@@ -26,7 +25,7 @@ import { CldUploadWidget } from 'next-cloudinary';
 **2. Create the route handler at `app/api/sign-cloudinary-params/route.ts`:**
 
 ```ts
-import { v2 as cloudinary } from 'cloudinary';
+import { v2 as cloudinary } from "cloudinary";
 
 cloudinary.config({
   cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
@@ -35,7 +34,9 @@ cloudinary.config({
 });
 
 export async function POST(request: Request) {
-  const { paramsToSign } = (await request.json()) as { paramsToSign: Record<string, string | number> };
+  const { paramsToSign } = (await request.json()) as {
+    paramsToSign: Record<string, string | number>;
+  };
 
   const signature = cloudinary.utils.api_sign_request(
     paramsToSign,
@@ -47,6 +48,7 @@ export async function POST(request: Request) {
 ```
 
 **Rules**:
+
 - ✅ Return shape **must be** `{ signature }`. Do **not** wrap it (`{ data: { signature } }` will not work).
 - ✅ Use the **Node SDK v2** (`import { v2 as cloudinary } from 'cloudinary'`). Do not use v1.
 - ✅ The route runs on the Node.js runtime by default — fine. If you set `export const runtime = 'edge'`, **switch back** to Node: the Node SDK depends on Node-only APIs.

@@ -23,7 +23,10 @@ function buildTransformationSegment(options: MediaTransformOptions): string {
   } else {
     parts.push("q_auto");
   }
-  if (options.format) {
+  if (options.format === "gif") {
+    parts.push("fl_animated");
+    parts.push("f_gif");
+  } else if (options.format) {
     parts.push(`f_${options.format}`);
   } else {
     parts.push("f_auto");

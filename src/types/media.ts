@@ -15,6 +15,8 @@ export interface CloudinaryImageMedia {
   width?: number;
   height?: number;
   aspectRatio?: number;
+  /** Original file format. `gif` is delivered as an animation. */
+  format?: string;
 }
 
 export interface SanityImageMedia {

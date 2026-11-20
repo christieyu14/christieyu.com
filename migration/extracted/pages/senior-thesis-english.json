@@ -1,0 +1,60 @@
+{
+  "slug": "senior-thesis-english",
+  "url": "https://christieyu.com/senior-thesis-english",
+  "canonical": "https://christieyu.com/senior-thesis-english",
+  "title": "Christie Yu - Senior thesis: English",
+  "description": "For my capstone project for the English department, I wrote a dissertation on Virginia Woolf, an author I studied in three seminars. In particular, I examined her views on consciousness and its daily demands of our selves: the internal self, the external self, the self we create, and the self that creates us.",
+  "keywords": "UI/UX,product design,design systems,design language",
+  "ogImage": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/ba6dbf4c-90a7-43af-90cc-92b4fa55bbac_car_202x158.png?h=f4be1da802053dba492b9be88739541d",
+  "adobePageId": "p67d66c9b7c3b13a4b56533e2f6e2843983efc6dcbf0a7c0dea79b",
+  "kind": "project",
+  "passwordProtected": false,
+  "extractedAt": "2026-11-20T01:05:39.993Z",
+  "covers": [],
+  "modules": [
+    {
+      "index": 0,
+      "type": "image",
+      "moduleId": null,
+      "image": {
+        "role": "content",
+        "sourceUrl": "https://cdn.myportfolio.com/c7e93eda-a4d0-46e4-920f-c5a1915a4d2c/a9c2aab8-5cdc-43b2-9e1a-79408fb1cd4d.png?h=44fe764fd69470585b2d3d80fd7236d6",
+        "variant": "lightbox-original",
+        "declaredWidth": null,
+        "crop": null,
+        "assetId": "a9c2aab8-5cdc-43b2-9e1a-79408fb1cd4d",
+        "ext": "png",
+        "alt": "",
+        "width": 1194,
+        "height": null,
+        "caption": null
+      }
+    },
+    {
+      "index": 1,
+      "type": "text",
+      "moduleId": null,
+      "blocks": [
+        {
+          "type": "heading",
+          "text": "The things people don't say: Tracing a Woolfian topology of self",
+          "links": []
+        }
+      ],
+      "links": []
+    },
+    {
+      "index": 2,
+      "type": "embed",
+      "moduleId": null,
+      "embedUrls": [
+        "https://www.scribd.com/embeds/839714534/content?start_page=1&view_mode=slideshow&access_key=key-5JXu0aBqgWUYVsUXbev3"
+      ]
+    }
+  ],
+  "notes": [
+    "This page has images and no elements with class caption.",
+    "One or more content images have no alt text in the public HTML.",
+    "Embed or video content is referenced by URL. The embedded document or player payload was not extracted."
+  ]
+}

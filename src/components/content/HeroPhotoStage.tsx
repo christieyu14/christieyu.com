@@ -321,9 +321,7 @@ export function HeroPhotoStage({
               refresh
             </button>
             <Link href={HERO_ALBUM_PATH} className="type-link photo-stage__all">
-              all
-              <br />
-              photos
+              all photos
             </Link>
           </div>
           <figure className="photo-stage__thumb">

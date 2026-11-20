@@ -52,6 +52,7 @@ fps_20-25                      # FPS range
 **Requires a video base.** `fl_splice` concatenates a clip onto a video timeline; the spliced-in asset can be a video or an [image](https://cloudinary.com/documentation/video_concatenation.md?install_source=skillspack&referrer=trans-skill#concatenate_videos_with_images) (set its duration with `du_<seconds>`). It is ignored on image-only transformations.
 
 **Pattern:**
+
 1. Declare: `fl_splice,l_video:<public_id>`
 2. Transform overlay (optional)
 3. Apply: `fl_layer_apply` (with `so_0` to splice at beginning)
@@ -67,14 +68,16 @@ c_fill,h_300,w_450/du_5/fl_splice,l_video:second_clip/c_fill,h_300,w_450/du_5/fl
 To deliver an animated WebP from a video, use **one** of these valid combinations:
 
 **Path A (simplest):** `f_auto:animated` — sufficient on its own; no extension or fl_ flags required.
+
 ```
 du_5/f_auto:animated/q_auto                 # First 5 seconds as animated WebP (or GIF where unsupported)
 du_5/e_loop/f_auto:animated/q_auto          # Looping animated WebP
 ```
 
-Note: `f_auto:animated` delivers WebP only when the client sends a WebP Accept header. It falls back to GIF otherwise. 
+Note: `f_auto:animated` delivers WebP only when the client sends a WebP Accept header. It falls back to GIF otherwise.
 
 **Path B:** `fl_animated,fl_awebp` together, **plus** a WebP delivery signal (`f_webp`, `f_auto`, or `.webp` extension):
+
 ```
 du_5/fl_animated,fl_awebp/f_webp/q_auto    # Animated WebP via fl_ flags + f_webp
 du_5/e_loop/fl_animated,fl_awebp/f_auto    # Looping, with f_auto as WebP signal
@@ -83,6 +86,7 @@ du_5/e_loop/fl_animated,fl_awebp/f_auto    # Looping, with f_auto as WebP signal
 Note: `f_auto` is valid here because `fl_awebp` already constrains output to animated WebP.
 
 **WRONG — these do NOT produce animated WebP:**
+
 - `fl_animated` alone (missing `fl_awebp`)
 - `fl_animated,fl_awebp` with no format parameter and no `.webp` extension
 - `f_auto` alone with a `.webp` extension (returns a still frame, not animated)

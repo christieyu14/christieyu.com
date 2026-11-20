@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { EmptyState } from "@/components/content/EmptyState";
-import { PhotoAlbumGallery } from "@/components/content/PhotoAlbumGallery";
+import { PhotosCarousel } from "@/components/content/PhotosCarousel";
 import { getHeroAlbumAssets } from "@/cloudinary/lib/hero-album";
 import { isCloudinaryAdminConfigured } from "@/lib/env";
 import { buildMetadata, formatPageTitle } from "@/lib/metadata";
 import { getSiteSettings } from "@/sanity/lib/fetch";
+import "@/styles/contact.css";
 import "@/styles/photos.css";
 
 export const revalidate = 3600;
@@ -26,26 +27,26 @@ export default async function PhotosPage() {
   const assets = cloudinaryReady ? await getHeroAlbumAssets() : [];
 
   return (
-    <main id="main-content">
-      <div className="content-page">
-        <header className="content-page__header">
-          <h1 className="type-title">My photo album</h1>
-        </header>
+    <main id="main-content" className="photos-page">
+      <h1 className="visually-hidden">My photo album</h1>
 
-        {!cloudinaryReady ? (
+      {!cloudinaryReady ? (
+        <div className="content-page">
           <EmptyState
             title="Cloudinary not configured"
             description="Set NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, and CLOUDINARY_API_SECRET in .env.local. Images must live in the hero folder with caption and date context metadata."
           />
-        ) : assets.length === 0 ? (
+        </div>
+      ) : assets.length === 0 ? (
+        <div className="content-page">
           <EmptyState
             title="No photos yet"
             description="Add images to the Cloudinary hero folder with caption, date context, and tags."
           />
-        ) : (
-          <PhotoAlbumGallery assets={assets} />
-        )}
-      </div>
+        </div>
+      ) : (
+        <PhotosCarousel assets={assets} />
+      )}
     </main>
   );
 }

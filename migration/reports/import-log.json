@@ -1,0 +1,31 @@
+{
+  "written": [
+    "gridify",
+    "red-velvet",
+    "cake",
+    "artmiesa",
+    "senior-thesis-computer-science",
+    "senior-thesis-english",
+    "amoriem-labs",
+    "yale-daily-news",
+    "teaching-cs50",
+    "mskcc"
+  ],
+  "issues": [
+    {
+      "slug": "mskcc",
+      "href": "https://fiddle.jshell.net/_display/images/mskcc/group_ppt.pdf",
+      "text": "here"
+    },
+    {
+      "slug": "mskcc",
+      "href": "https://fiddle.jshell.net/_display/images/mskcc/hackathon_ppt.pdf",
+      "text": "here"
+    },
+    {
+      "slug": "mskcc",
+      "href": "https://fiddle.jshell.net/_display/images/mskcc/hackathon-recap.pdf",
+      "text": "here"
+    }
+  ]
+}
